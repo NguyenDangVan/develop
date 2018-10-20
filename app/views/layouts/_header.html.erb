@@ -1,0 +1,32 @@
+<div class="header">
+    <div class="container">
+      <!-- header -->
+        <!-- logo -->
+        <div class="logo">
+          <%= link_to image_tag("logo.png"),root_url %>
+        </div>
+        <!-- logo -->
+        <!-- top-nav -->
+        <div class="top-nav">
+          <span class="menu"> </span>
+          <ul>
+            <li class="active"><%= link_to "Home",root_url %></li>
+            <li><%= link_to "Album","#" %></li>
+            <li><%= link_to "Login","#" %></li>
+            <div class="clearfix"> </div>
+          </ul>
+        </div>
+        <div class="clearfix"> </div>
+        <!-- top-nav -->
+        <!-- script-for-menu -->
+        <script>
+          $(document).ready(function(){
+            $("span.menu").click(function(){
+              $(".top-nav ul").slideToggle(200);
+            });
+          });
+        </script>
+        <!-- script-for-menu -->
+      </div>
+      <!-- header -->
+    </div>
