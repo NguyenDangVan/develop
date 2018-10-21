@@ -1,7 +1,4 @@
-/*
-* 	Owl Carousel Owl Demo Theme
-*	v1.24
-*/
+
     #owl-demo .item{
     }
     #owl-demo .item img{
@@ -93,10 +90,6 @@
 	min-height: 150px;
 	background: url(AjaxLoader.gif) no-repeat center center
 }
-/*
- * 	Core Owl Carousel CSS File
- *	v1.24
- */
 
 /* clearfix */
 .owl-carousel .owl-wrapper:after {
