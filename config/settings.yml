@@ -1,0 +1,6 @@
+enabled_locales: ["en", "ja"]
+models:
+  maxsize_name: 30
+  maximum_age: 2
+  maximum_email: 255
+  minimum_password: 6

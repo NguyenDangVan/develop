@@ -1,4 +1,4 @@
-<%= render "layouts/header" %>
+
     <!-- banner -->
     <div class="banner">
       <!-- slider -->
@@ -36,7 +36,7 @@
                       <div class="slider-caption-inner">
                          <h1>music<span>Z</span></h1>
                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi sollicitudin lectus in quam elementum aliquet. Quisque gravida fringilla velit nec ornare. </p>
-                       <%= link_to "Sign Up","#", class: "caption-btn" %>
+                       <%= link_to "Sign Up",signup_path, class: "caption-btn" %>
                      </div>
                     </div>
                   </li>
@@ -103,7 +103,7 @@
       <div class="col-md-8 content-left">
         <div class="artical">
           <div class="col-md-4 artical-left">
-            <a href="#"><%= image_tag("post1.jpg") %></a>
+            <a href="#"><%= image_tag("artists/post1.jpg") %></a>
           </div>
           <div class="col-md-8 artical-right">
             <div class="artical-head">
@@ -122,7 +122,7 @@
         <!-- artical-end -->
         <div class="artical"> <!-- onclick="location.href='details.html';"  -->
           <div class="col-md-4 artical-left">
-            <a href="#"><%= image_tag("post1.jpg") %></a>
+            <a href="#"><%= image_tag("artists/post1.jpg") %></a>
           </div>
           <div class="col-md-8 artical-right">
             <div class="artical-head">
@@ -176,13 +176,13 @@
                <!-- start content_slider -->
                    <div id="owl-demo" class="owl-carousel text-center">
                           <div class="item">
-                            <%= image_tag("post3.jpg") %>
+                            <%= image_tag("artists/post3.jpg") %>
                           </div>
                           <div class="item">
-                            <%= image_tag("post5.jpg") %>
+                            <%= image_tag("artists/post5.jpg") %>
                           </div>
                           <div class="item">
-                            <%= image_tag("/post6.jpg") %>
+                            <%= image_tag("artists/post6.jpg") %>
                           </div>
                       </div>
             <!--//sreen-gallery-cursual---->
@@ -236,4 +236,3 @@
     </div>
     <!-- content -->
     <!-- container -->
-<%= render "layouts/footer" %>
