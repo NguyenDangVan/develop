@@ -28,7 +28,7 @@ class UsersController < ApplicationController
   def edit; end
 
   def update
-    if @user.update user_params
+    if @user.update_atributes user_params
       flash[:success] = "Profile updated"
       redirect_to @user
     else
@@ -65,9 +65,5 @@ class UsersController < ApplicationController
       return if @user
       flash.now[:danger] = "Not found user"
       redirect_to users_url
-    end
-
-    def admin_user
-      redirect_to(root_url) unless current_user.admin?
     end
 end
