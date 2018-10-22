@@ -1,5 +1,5 @@
 class ArtistsController < ApplicationController
-  before_action :find_artist, except: %i(create new)
+  before_action :find_artist, except: %i(create new index)
 
   def new
     @artist = Artist.new
@@ -41,7 +41,7 @@ class ArtistsController < ApplicationController
     def find_artist
       @artist = Artist.find_by id: params[:id]
       return if @artist
-      flash.now[:danger] = "Not found artist"
+      flash[:danger] = "Not found artist"
       redirect_to root_url
     end
 end

@@ -1,10 +1,23 @@
-<% if @artist.errors.any? %>
-  <div id="error_explanation">
-    <div class="alert alert-danger">
-      The form contains <%= pluralize @artist.errors.count, "error" %>.
+<% if @artist != nil %>
+  <% if @artist.errors.any? %>
+    <div id="error_explanation">
+      <div class="alert alert-danger">
+        The form contains <%= pluralize @artist.errors.count, "error" %>.
+      </div>
+      <ul>
+      <% @artist.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+<% elsif @album.errors.any? %>
+<div id="error_explanation">
+  <div class="alert alert-danger">
+      The form contains <%= pluralize @album.errors.count, "error" %>.
     </div>
     <ul>
-    <% @artist.errors.full_messages.each do |msg| %>
+    <% @album.errors.full_messages.each do |msg| %>
       <li><%= msg %></li>
     <% end %>
     </ul>

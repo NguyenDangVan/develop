@@ -19,6 +19,7 @@ ActiveRecord::Schema.define(version: 2018_10_22_024853) do
     t.text "description"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["artist_id", "category_id", "created_at"], name: "index_albums_on_artist_id_and_category_id_and_created_at", unique: true
     t.index ["artist_id"], name: "index_albums_on_artist_id"
     t.index ["category_id"], name: "index_albums_on_category_id"
   end

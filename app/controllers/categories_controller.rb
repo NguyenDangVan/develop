@@ -20,11 +20,17 @@ class CategoriesController < ApplicationController
 
   def show
     @category = Category.find_by id: params[:id]
+    @albums = @category.albums.ordered_by_create_at.page(params[:page]). per 3
   end
 
   private
 
     def categories_params
       params.require(:category).permit :name
+    end
+
+    def correct_category
+      @category = Category.find_by id: params[:id]
+      redirect_to root_url unless current_category? @category
     end
 end
