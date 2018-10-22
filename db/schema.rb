@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_10_21_154041) do
+ActiveRecord::Schema.define(version: 2018_10_22_024020) do
 
   create_table "albums", force: :cascade do |t|
     t.string "title"
@@ -82,6 +82,9 @@ ActiveRecord::Schema.define(version: 2018_10_21_154041) do
     t.datetime "updated_at", null: false
     t.string "password_digest"
     t.string "remember_digest"
+    t.string "activation_digest"
+    t.boolean "activated", default: false
+    t.datetime "activated_at"
     t.index ["email"], name: "index_users_on_email", unique: true
   end
 
