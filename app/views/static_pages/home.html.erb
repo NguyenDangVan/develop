@@ -102,16 +102,18 @@
       <div class="col-md-8 content-left">
         <div class="artical">
           <div class="col-md-4 artical-left">
-            <a href="#"><%= image_tag("artists/post1.jpg") %></a>
+            <%= link_to image_tag("artists/edsheeran.jpg"), details_path(id: 1)%>
           </div>
           <div class="col-md-8 artical-right">
             <div class="artical-head">
-              <h2><a href="#">Name Artist</a></h2>
+              <h2><%= link_to "Ed Sheeran", details_path(id: 1) %></h2>
               <div class="clearfix"> </div>
             </div>
             <div class="clearfix"> </div>
             <!-- artical-info -->
             <div class="artical-info">
+              <p><strong>Alnum:</strong>Lorem</p>
+              <p><strong>Song:</strong>Lorem</p>
               <p><strong>Info:</strong>Lorem</p>
             </div>
             <!-- artical-info -->
@@ -121,16 +123,18 @@
         <!-- artical-end -->
         <div class="artical"> <!-- onclick="location.href='details.html';"  -->
           <div class="col-md-4 artical-left">
-            <a href="#"><%= image_tag("artists/post1.jpg") %></a>
+            <%= link_to image_tag("artists/adam.jpg"), details_path(id: 2)%>
           </div>
           <div class="col-md-8 artical-right">
             <div class="artical-head">
-              <h2><a href="#">Name Artist</a></h2>
+              <h2><%= link_to "Adam", details_path(id: 2) %></h2>
               <div class="clearfix"> </div>
             </div>
             <div class="clearfix"> </div>
             <!-- artical-info -->
             <div class="artical-info">
+              <p><strong>Alnum:</strong>Lorem</p>
+              <p><strong>Song:</strong>Lorem</p>
               <p><strong>Info:</strong>Lorem</p>
             </div>
             <!-- artical-info -->

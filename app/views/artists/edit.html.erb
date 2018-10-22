@@ -1,0 +1,14 @@
+<% provide :title, "Edit artist" %>
+<div class="row">
+  <div class="col-md-6 col-md-offset-3">
+    <h1 style="text-align: center;">Update artist</h1>
+    <%= form_for @artist do |f| %>
+      <%= render "shared/error_messages_artist" %>
+      <%= f.label :name %>
+      <%= f.text_field :name, class: "form-control" %>
+      <%= f.label :info %>
+      <%= f.text_area :info, class: "form-control" %>
+      <%= f.submit "Save changes", class: "btn btn-primary" %>
+    <% end %>
+  </div>
+</div>
