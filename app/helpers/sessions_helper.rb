@@ -9,6 +9,7 @@ module SessionsHelper
 
   def current_user? user
     user == current_user
+  end
 
   def remember user
     user.remember
@@ -40,7 +41,7 @@ module SessionsHelper
   def store_location
     session[:forwarding_url] = request.original_url if request.get?
   end
-    
+
   def forget user
     user.forget
     cookies.delete :user_id
