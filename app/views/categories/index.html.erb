@@ -1,0 +1,6 @@
+<% provide :title, "Categories" %>
+<h1 style="text-align: center;">Categories</h1>
+<ul class="users">
+  <%= render @categories %>
+</ul>
+<div style="margin-left: 40px;"><%= paginate @categories, theme: "twitter-bootstrap-3" %></div>

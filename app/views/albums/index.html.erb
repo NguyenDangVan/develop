@@ -1,0 +1,27 @@
+<% provide :title, "Albums" %>
+<%= render "layouts/searchmenu" %>
+<div class="content">
+      <div class="container">
+        <div class="albums">
+          <h1>albums</h1>
+          <div class="album-grids">
+            <% @albums.each do |album| %>
+            <div class="album-grid">
+              <div class="album-grid-pic">
+                <%= image_tag("artists/adam.jpg", size: "100x200") %>
+              </div>
+              <div class="album-grid-info">
+                <p><strong>Title:</strong> <%= album.title %> </p>
+                <p><strong>Artist:</strong> <%= album.artist.name %> </p>
+                <p><strong>Category:</strong> <%= album.category.name %> </p>
+                <p><strong>Description:</strong> <%= album.description %> </p>
+                <a class="download-album" href="#">Play album</a>
+              </div>
+            </div>
+            <% end %>
+            <div class="clearfix"> </div>
+          </div>
+          <%= paginate @albums, theme: "twitter-bootstrap-3" %>
+        </div>
+      </div>
+    </div>

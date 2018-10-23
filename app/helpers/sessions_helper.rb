@@ -3,6 +3,13 @@ module SessionsHelper
     session[:user_id] = user.id
   end
 
+  def admin_user
+    redirect_to(root_url) unless current_user.admin?
+  end
+
+  def current_user? user
+    user == current_user
+
   def remember user
     user.remember
     cookies.permanent.signed[:user_id] = user.id
@@ -25,6 +32,15 @@ module SessionsHelper
     !current_user.nil?
   end
 
+  def redirect_back_or default
+    redirect_to session[:forwarding_url] || default
+    session.delete :forwarding_url
+  end
+
+  def store_location
+    session[:forwarding_url] = request.original_url if request.get?
+  end
+    
   def forget user
     user.forget
     cookies.delete :user_id

@@ -7,6 +7,11 @@ gem "rails", "~> 5.2.1"
 gem "sqlite3"
 gem "puma", "~> 3.11"
 gem "bcrypt", "3.1.12"
+gem "ffaker"
+gem "kaminari"
+gem "carrierwave"
+gem "mini_magick"
+gem "bootstrap-kaminari-views"
 gem "bootstrap-sass", "3.3.7"
 gem "sass-rails", "~> 5.0"
 gem "uglifier", ">= 1.3.0"
@@ -35,6 +40,7 @@ end
 
 group :production do
   gem "pg", "0.18.4"
+  gem "fog", "1.42"
 end
 
 gem "tzinfo-data", platforms: [:mingw, :mswin, :x64_mingw, :jruby]
