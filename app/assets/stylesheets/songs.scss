@@ -1,10 +1,29 @@
 .player{
-  margin-left: 20%;
+  margin-left: 10%;
 }
-audio{
-  width: 120%;
+.play-song{
+  width: 90%;
+
 }
 .lyric{
   position: relative;
   width: 150%;
+}
+.download{
+  font-size: 1.5em;
+}
+#new_playlist_song{
+  width: 10%;
+  position: relative;
+}
+.add-playlist{
+  background-color: green;
+  color: yellow;
+}
+.list-pls{
+  display: none;
+}
+audio{
+  background-image: linear-gradient(#fc0808, #00ff42) !important;
+  border-radius: 20px;
 }

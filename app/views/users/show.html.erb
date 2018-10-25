@@ -8,4 +8,19 @@
       </h1>
     </section>
   </aside>
+  <div class="col-md-8">
+    <%= link_to new_user_playlist_path(params[:id]) do %>
+      <%= image_tag "icon/add-playlist.png", size: "30x30" %>
+      <span class="new-playlist">New playlist</span>
+    <% end %>
+    <% if @user.playlists.any? %>
+      <h3>Playlists (<%= @user.playlists.count %>)</h3>
+      <ol class="play_lists">
+        <%= render @playlists %>
+      </ol>
+      <%= paginate @playlists %>
+    <% else %>
+      <h4> You have no playlists </h4>
+    <% end %>
+  </div>
 </div>

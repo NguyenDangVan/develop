@@ -4,4 +4,6 @@
  *= require custom
  *= require owl.carousel
  *= require_self
+ *= require playlists
+ *= require songs
  */

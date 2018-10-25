@@ -1,4 +1,3 @@
-
 Rails.application.routes.draw do
   get "password_resets/new"
   get "password_resets/edit"
@@ -12,7 +11,6 @@ Rails.application.routes.draw do
   get "/details", to: "artists#show"
   get "/song_album/:id", to: "albums#song_album", as: :song_album
 
-  resources :users
   namespace :admin do
     resources :categories, only: :index
     resources :songs, only: :index
@@ -31,6 +29,11 @@ Rails.application.routes.draw do
   resources :artists do
     resources :songs, only: :index
   end
+  get "/not_found", to: "static_pages#not_found"
+  resources :users do
+    resources :playlists
+  end
+  resources :playlist_songs
   resources :albums
   resources :songs
 end

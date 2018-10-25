@@ -18,6 +18,7 @@ class SongsController < ApplicationController
     end
   end
 
+
   def index
     @artist = Artist.find_by id: params[:artist_id]
     @category = Category.find_by id: params[:category_id]
@@ -29,7 +30,6 @@ class SongsController < ApplicationController
       elsif @artist
         @songs = @artist.songs.page(params[:page]).per 5
       else
-        #@q = Song.ransack(params[:q])
         @songs = Song.page(params[:page]).per 5
       end
     end
@@ -46,12 +46,17 @@ class SongsController < ApplicationController
     end
   end
 
-  def show; end
+  def show
+    @playlist_song = PlaylistSong.new
+    return if @song
+    flash[:danger] = "Not found this song"
+    redirect_to not_found_path
+  end
 
   def download
     file_path = @song.audio
     if @song.audio?
-      send_file "#{Rails.root}/public/#{file_path}", :x_sendfile => true
+      send_file @song.audio.path, :x_send_file => true
     else
       redirect_to @song
     end
@@ -62,8 +67,8 @@ class SongsController < ApplicationController
       flash[:success] = "deleted song"
       redirect_to admin_songs_path
     else
-      redirect_to admin_songs_path
       flash[:danger] = "There was an error with delete song"
+      redirect_to admin_songs_path
     end
   end
 

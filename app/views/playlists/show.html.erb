@@ -1,0 +1,25 @@
+<div class="row">
+  <div class="col-md-8 col-md-offset-1">
+    <h2><b><%= @playlist.title %></b></h2>
+
+    <h5>Update at <%= @playlist.user.updated_at %></h5>
+    <% if @playlist.songs.empty? %>
+      <h3>No songs in this playlist</h3>
+    <% end %>
+    <ul>
+      <% @playlist.songs.each do |song| %>
+      <li class="play-list" >
+        <audio controls="true">
+          <source src= "<%= song.audio%>" class="<%= song.name %>" type="audio/mp3">
+        </audio>
+        <%= song.name %>
+        <%= link_to song_download_path(song.id), target: :_blank do %>
+          <%= image_tag "download.png", size: "20x20"%>
+        <% end %>
+      </li>
+      <% end %>
+    </ul>
+    <h5>Create at <%= @playlist.user.created_at %></h5>
+    <span><%= @playlist.description %></span>
+  </div>
+</div>

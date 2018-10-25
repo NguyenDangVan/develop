@@ -3,8 +3,8 @@ class User < ApplicationRecord
   before_save :downcase_email
   before_create :create_activation_digest
   has_many :favorite
-  has_many :playlist
   VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
+  has_many :playlists, dependent: :destroy
   validates :name, :email, :age, presence: true
   validates :name, length: {maximum: 30}
   validates :age, numericality: true, length: {maximum: 3}

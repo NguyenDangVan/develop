@@ -5,5 +5,7 @@
 //= require jquery.min
 //= require main
 //= require responsiveslides.min
-//= require bootstrap
 //= require load_paginate
+//= require playlist
+//= require song
+//= require bootstrap

@@ -1,3 +1,4 @@
+
 User.create! name: "admin1101",
              email: "admin@gmail.com",
              age: 21,
@@ -5,6 +6,24 @@ User.create! name: "admin1101",
              password_confirmation: "123456",
              admin: true,
              activated: true
+
+
+User.create!
+  name: "man1",
+  email: "man1@yahoo.com",
+  age: 21,
+  password: "123456",
+  password_confirmation: "123456",
+  activated: true
+
+User.create!
+  name: "man2",
+  email: "man2@yahoo.com",
+  age: 21,
+  password: "123456",
+  password_confirmation: "123456",
+  activated: true
+
 
 20.times do |n|
   name  = FFaker::Name.name
@@ -94,3 +113,31 @@ song4 = Song.create!(
   lyric: "...............",
   album: album3
 )
+
+testsong = Song.create!(
+  name: "testSong",
+  lyric: "abcdxyz",
+  album: album1
+  )
+testplaylist1 = Playlist.create!(
+  title: "testPlaylist1",
+  user: User.find(1),
+  description: FFaker::Lorem.sentence(2)
+  )
+testplaylist2 = Playlist.create!(
+  title: "testPlaylist2",
+  user: User.find(2),
+  description: FFaker::Lorem.sentence(2)
+  )
+plistsong1 = PlaylistSong.create!(
+  playlist: testplaylist2,
+  song: testsong
+  )
+20.times do |n|
+  title  = FFaker::Name.name,
+  description = FFaker::Lorem.sentence(2)
+  Playlist.create!(
+    title: title,
+    user: User.find(2),
+    description: description)
+end
