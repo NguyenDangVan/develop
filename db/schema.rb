@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_10_24_022856) do
+ActiveRecord::Schema.define(version: 2018_10_25_031441) do
 
   create_table "albums", force: :cascade do |t|
     t.string "title"
@@ -72,6 +72,7 @@ ActiveRecord::Schema.define(version: 2018_10_24_022856) do
     t.text "lyric"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "audio"
     t.index ["album_id"], name: "index_songs_on_album_id"
   end
 
@@ -86,9 +87,9 @@ ActiveRecord::Schema.define(version: 2018_10_24_022856) do
     t.string "activation_digest"
     t.boolean "activated", default: false
     t.datetime "activated_at"
+    t.boolean "admin", default: false
     t.string "reset_digest"
     t.datetime "reset_sent_at"
-    t.boolean "admin", default: false
     t.index ["email"], name: "index_users_on_email", unique: true
   end
 

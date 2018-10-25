@@ -1,0 +1,6 @@
+<% provide :title, "Song Album" %>
+<h1 style="text-align: center;">All Song Album</h1>
+<ul class="users">
+  <%= render @songs %>
+</ul>
+<div style="margin-left: 40px;"><%= paginate @songs, theme: "twitter-bootstrap-3" %></div>

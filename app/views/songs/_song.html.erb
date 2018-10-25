@@ -1,0 +1,11 @@
+<li>
+<p><strong>Name:</strong> <strong class="name-song"><%= link_to song.name, song %></strong></p>
+<p><strong>Album:</strong> <%= link_to song.album.title, song %></p>
+<p><strong>Lyric:</strong> <%= song.lyric %></p>
+<p class="user">
+  Posted <%= time_ago_in_words(song.created_at) %> ago.
+  <% if logged_in? && current_user.admin? %>
+    | <%= link_to "delete", song, method: :delete, data: { confirm: "You sure?" } %>
+    | <%= link_to "upload", new_song_path %>
+  <% end %>
+</p></li>
