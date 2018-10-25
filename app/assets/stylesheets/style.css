@@ -1672,3 +1672,20 @@ a.home:hover{
 		font-size: 0.875em;
 	}
 }
+
+/* remember me */
+.checkbox {
+  margin-top: -10px;
+  margin-left: -20px;
+}
+.remember_me{
+	font-weight: normal;
+}
+#session_remember_me {
+  width: auto;
+  margin-left: 0;
+}
+
+h1 #forgot{
+  text-align: center;
+}

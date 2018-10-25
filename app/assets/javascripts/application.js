@@ -5,3 +5,5 @@
 //= require main
 //= require owl.carousel
 //= require responsiveslides.min
+//= require jquery
+//= require bootstrap
