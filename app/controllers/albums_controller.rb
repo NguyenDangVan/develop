@@ -38,9 +38,6 @@ class AlbumsController < ApplicationController
   def song_album
     @album = Album.find_by id: params[:id]
     @songs = @album.songs.page(params[:page]). per 3
-    return if @songs
-    flash.now[:danger] = "No any song on album"
-    redirect_to albums_url
   end
 
   private
