@@ -9,10 +9,14 @@ Rails.application.routes.draw do
   get "/upload", to: "songs#new"
   get "/download/:id", to: "songs#download", as: :song_download
   get "/details", to: "artists#show"
+  get "/song_album/:id", to: "albums#song_album", as: :song_album
   resources :users
-  resources :account_activations, only: [:edit]
-  resources :password_resets,     only: %i(new create edit update)
-  resources :categories
+  resources :account_activations, only: :edit
+  resources :password_resets, only: %i(new create edit update)
+  resources :categories do
+    resources :albums, only: :show
+  end
   resources :artists
   resources :albums
+  resources :songs
 end

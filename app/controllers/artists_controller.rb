@@ -19,7 +19,9 @@ class ArtistsController < ApplicationController
 
   def edit; end
 
-  def show; end
+  def show
+    @albums = @artist.albums.page(params[:page]).per 3
+  end
 
   def update
     if @artist.update_attributes artist_params

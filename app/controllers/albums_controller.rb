@@ -1,6 +1,6 @@
 class AlbumsController < ApplicationController
-  before_action :logged_in_user, except: %i(show index)
-  before_action :admin_user, except: %i(show index)
+  before_action :logged_in_user, except: %i(show index song_album)
+  before_action :admin_user, except: %i(show index song_album)
   before_action :correct_category, only: :destroy
 
   def new
@@ -33,6 +33,11 @@ class AlbumsController < ApplicationController
     @album.destroy
     flash[:success] = "Album deleted"
     redirect_to request.referrer || root_url
+  end
+
+  def song_album
+    @album = Album.find_by id: params[:id]
+    @songs = @album.songs.page(params[:page]). per 3
   end
 
   private

@@ -2,11 +2,11 @@
   <%= link_to image_tag("artists/post6.jpg", size: "100x100"), artist %>
   <p><strong>Name:</strong> <%= link_to artist.name, artist %></p>
   <p><strong>Info:</strong> <%= artist.info %></p>
+  <% if logged_in? && current_user.admin? %>
   <p class="user">
     Posted <%= time_ago_in_words(artist.created_at) %> ago.
-    <% if logged_in? && current_user.admin? %>
       | <%= link_to "delete", artist, method: :delete, data: { confirm: "You sure?" } %>
       | <%= link_to "new", new_artist_path %>
-    <% end %>
   </p>
+  <% end %>
 </li>

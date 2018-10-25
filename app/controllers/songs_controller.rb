@@ -1,5 +1,5 @@
 class SongsController < ApplicationController
-  before_action :logged_in_user, only: [:create, :download]
+  before_action :logged_in_user, only: :create
   def new
     @song = Song.new
   end
@@ -16,7 +16,7 @@ class SongsController < ApplicationController
   end
 
   def index
-    @q = Songs.ransack(params[:q])
+    @q = Song.ransack(params[:q])
     @songs = @q.result.page(params[:page]).per 10
   end
 

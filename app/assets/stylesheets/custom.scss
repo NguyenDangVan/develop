@@ -111,7 +111,7 @@ input {
   text-transform: uppercase;
   font-weight: 700;
   color: #ffff;
-  margin: 5px 0 1em 20px;
+  margin: 5px 0 1em 38px;
   background-color: #747474;
 }
 
@@ -121,4 +121,24 @@ input {
 
 .new-point {
   color: #1B242F
+}
+.name-song {
+  font-size: 20px;
+}
+
+.info-user {
+  width: 200px;
+  float: left;
+  display: block;
+  padding: 10px;
+  margin: 0 10px;
+}
+
+.update-user {
+  float: left;
+  display: block;
+  padding: 10px;
+  margin: 10px 10px;
+  background: #c8c4dc;
+  border-radius: 10px;
 }
