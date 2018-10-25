@@ -20,6 +20,10 @@ gem "turbolinks", "~> 5"
 gem "jbuilder", "~> 2.5"
 gem "bootsnap", ">= 1.1.0", require: false
 gem "jquery-rails"
+gem 'carrierwave',             '1.2.2'
+gem 'mini_magick',             '4.7.0'
+gem 'carrierwave-ffmpeg'
+gem "ffaker", "1.9.1"
 
 group :development, :test do
   gem "sqlite3"
