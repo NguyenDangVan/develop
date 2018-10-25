@@ -1,16 +1,11 @@
-
-Song.create!(
-  name: "testSong",
-  lyric: "abcdxyz",
-  album_id: 1
-  )
-
-User.create!(name: "Nguyen Dang Van",
-             email: "dinvvan@gmail.com",
+User.create!(name: "admin1101",
+             email: "admin@gmail.com",
              age: 21,
              password: "123456",
              password_confirmation: "123456",
-             admin: true)
+             admin: true,
+             activated: true
+)
 
 20.times do |n|
   name  = FFaker::Name.name
@@ -58,4 +53,8 @@ album3 = Album.create!(
   category: category,
   description: "All stars on the sky."
 )
-
+song1 = Song.create!(
+  name: "testSong",
+  lyric: "abcdxyz",
+  album: album1
+)

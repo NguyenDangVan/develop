@@ -15,6 +15,11 @@ class SongsController < ApplicationController
     end
   end
 
+  def index
+    @q = Songs.ransack(params[:q])
+    @songs = @q.result.page(params[:page]).per 10
+  end
+
   def show
     @song = Song.find params[:id]
   end
