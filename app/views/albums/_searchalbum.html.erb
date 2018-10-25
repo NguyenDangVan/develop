@@ -2,9 +2,9 @@
   <div class="container">
     <div class="categories-left">
       <ul class="options">
-        <% @categories.each do |category| %>
-          <li><%= link_to category.name, "#" %></li>
-        <% end %>
+        <li><%= link_to "US-UK", category_albums_path(1) %></li>
+        <li><%= link_to "V-Pop", category_albums_path(3) %></li>
+        <li><%= link_to "K-Pop", category_albums_path(4) %></li>
       </ul>
           <select class="s-option">
             <option>select categories</option>

@@ -29,8 +29,14 @@ artist2 = Artist.create!(
   info: "Adam Noah Levine (born March 18, 1979) is an American singer, songwriter and actor. He is the lead singer for the pop rock band Maroon 5. Born and raised in Los Angeles, California, Levine began his musical career in 1994"
 )
 
-category = Category.create!(
+category1 = Category.create!(
   name: "US-UK"
+)
+category2 = Category.create!(
+  name: "K-Pop"
+)
+category3 = Category.create!(
+  name: "V-Pop"
 )
 
 album1 = Album.create!(

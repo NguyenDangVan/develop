@@ -14,7 +14,7 @@ Rails.application.routes.draw do
   resources :account_activations, only: :edit
   resources :password_resets, only: %i(new create edit update)
   resources :categories do
-    resources :albums, only: :show
+    resources :albums, only: %i(show index)
   end
   resources :artists
   resources :albums

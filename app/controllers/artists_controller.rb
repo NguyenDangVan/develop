@@ -40,7 +40,7 @@ class ArtistsController < ApplicationController
 
   def index
     @q = Artist.ransack(params[:q])
-    @artists = @q.result.page(params[:page]).per 10
+    @artists = @q.result.page(params[:page]).per 5
   end
 
   private

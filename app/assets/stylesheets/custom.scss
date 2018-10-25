@@ -120,7 +120,7 @@ input {
 }
 
 .new-point {
-  color: #1B242F
+  color: #e8adad;
 }
 
 .name-song {
@@ -128,7 +128,7 @@ input {
 }
 
 .info-user {
-  width: 200px;
+  width: 40%;
   float: left;
   display: block;
   padding: 10px;
@@ -142,4 +142,33 @@ input {
   margin: 10px 10px;
   background: #c8c4dc;
   border-radius: 10px;
+  cursor: all-scroll;
+}
+
+.play-song {
+  float: left;
+  display: block;
+  padding: 10px 40px;
+  margin: 10px 10px;
+  background: #c8c4dc;
+  border-radius: 10px;
+  cursor: all-scroll;
+}
+
+.title {
+  padding: 10px;
+  margin-left: 29px;
+  border: 1px solid #EEE;
+}
+
+.image-artist {
+  width: 10%;
+  float: left;
+  display: block;
+  padding: 10px;
+  margin: 0 10px;
+}
+.admin-see {
+  clear: both;
+  margin-left: 20px;
 }

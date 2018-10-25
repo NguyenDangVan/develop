@@ -1,13 +1,21 @@
 <li>
-<p><strong>Name:</strong> <strong class="name-song"><%= link_to song.name, song %></strong></p>
-<p><strong>Album:</strong> <%= link_to song.album.title, song %></p>
-<p><strong>Lyric:</strong> <%= song.lyric %></p>
-<p><srong><%= link_to "Play", song %></srong></p>
-<% if logged_in? && current_user.admin? %>
-<p class="user">
-  Posted <%= time_ago_in_words(song.created_at) %> ago.
-    | <%= link_to "delete", song, method: :delete, data: { confirm: "You sure?" } %>
-    | <%= link_to "upload", new_song_path %>
+  <div class="info-user">
+    <p><strong>Name:</strong> <strong class="name-song"><%= link_to song.name, song %></strong></p>
+    <p><strong>Album:</strong> <%= link_to song.album.title, song %></p>
+    <p><strong>Lyric:</strong> <%= song.lyric %></p>
+  </div>
+  <div class="play-song">
+    <srong><%= link_to "play", song %></srong>
+  </div>
+  <% if logged_in? && current_user.admin? %>
+    <div class="update-user">
+      <%= link_to "delete", song, method: :delete, data: { confirm: "You sure?" } %>
+    </div>
+    <div class="update-user">
+      <%= link_to "upload", new_song_path %>
+    </div>
+    <div class="admin-see">
+      Posted <%= time_ago_in_words(song.created_at) %> ago.
+    </div>
   <% end %>
-</p>
 </li>
