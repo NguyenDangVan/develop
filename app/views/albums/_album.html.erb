@@ -1,4 +1,4 @@
-<li id="micropost-<%= album.id %>">
+<li >
   <%= link_to image_tag("artists/adam.jpg", size: "100x100"), album.category %>
   <p class="user"><strong>Title:</strong> <%= link_to album.title, album %></p>
   <p class="user"><strong>Categoty:</strong> <%= link_to album.category.name, album.category %></p>
@@ -7,8 +7,7 @@
   <p class="user">
     Posted <%= time_ago_in_words(album.created_at) %> ago.
     <% if logged_in? && current_user.admin? %>
-      <%= link_to "delete", album, method: :delete,
-                                       data: { confirm: "You sure?" } %>
+      <%= link_to "delete", album, method: :delete, data: { confirm: "You sure?" } %>
     <% end %>
   </p>
 </li>

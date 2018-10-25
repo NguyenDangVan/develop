@@ -1,5 +1,5 @@
 <% provide :title, "Albums" %>
-<%= render "layouts/searchmenu" %>
+  <%= render "manage" %>
 <div class="content">
       <div class="container">
         <div class="albums">
@@ -15,9 +15,15 @@
                 <p><strong>Artist:</strong> <%= album.artist.name %> </p>
                 <p><strong>Category:</strong> <%= album.category.name %> </p>
                 <p><strong>Description:</strong> <%= album.description %> </p>
-                <a class="download-album" href="#">Play album</a>
+                <%= link_to "Play album", "#", class: "download-album" %>
+                <% if logged_in? && current_user.admin? %>
+                  <%= link_to "delete", album, method: :delete, class: "download-album", data: { confirm: "You sure?" } %>
+                <% end %>
               </div>
             </div>
+            <% end %>
+            <% if logged_in? && current_user.admin? %>
+              <%= link_to "New Album", new_album_path, class: "new-album" %>
             <% end %>
             <div class="clearfix"> </div>
           </div>

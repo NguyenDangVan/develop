@@ -1,0 +1,19 @@
+<div class="categories c-cate">
+  <div class="container">
+    <div class="categories-left">
+      <ul class="options">
+        <li><%= link_to "All songs", "#" %></li>
+        <li><%= link_to "All artists", artists_path %></li>
+        <li><%= link_to "All categories", categories_path %></li>
+        <li><%= link_to "All albums", albums_path %></li>
+      </ul>
+        </div>
+        <div class="categories-right">
+          <%= search_form_for @q do |f| %>
+            <%= f.text_field :name_cont %>
+            <%= f.submit %>
+          <% end %>
+        </div>
+        <div class="clearfix"> </div>
+      </div>
+    </div>

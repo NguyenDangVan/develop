@@ -1,5 +1,6 @@
 class AlbumsController < ApplicationController
-  #before_action :logged_in_user, only: %i(create destroy)
+  before_action :logged_in_user, except: %i(show index)
+  before_action :admin_user, except: %i(show index)
   before_action :correct_category, only: :destroy
 
   def new
@@ -21,7 +22,11 @@ class AlbumsController < ApplicationController
   end
 
   def index
-    @albums = Album.page(params[:page]).per 3
+    @artists = Artist.all
+    @categories = Category.all
+    @q = Album.ransack(params[:q])
+    #@q = Album.search({search_title: :q})
+    @albums = @q.result.page(params[:page]).per 4
   end
 
   def destroy

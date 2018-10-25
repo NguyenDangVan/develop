@@ -1,0 +1,18 @@
+<div class="categories c-cate">
+  <div class="container">
+    <div class="categories-left">
+      <ul class="options">
+        <% @categories.each do |category| %>
+          <li><%= link_to category.name, "#" %></li>
+        <% end %>
+      </ul>
+          <select class="s-option">
+            <option>select categories</option>
+            <option>Adventure</option>
+            <option>Adventure</option>
+            <option>Adventure</option>
+          </select>
+        </div>
+        <div class="clearfix"> </div>
+      </div>
+    </div>

@@ -2,8 +2,8 @@
 <div class="header top-header">
     <div class="container">
     </div>
-    <%= render "layouts/searchmenu" %>
     <!-- content -->
+    <%= render "layouts/allartists" %>
     <div class="content">
       <div class="container">
       <!-- content-left -->
@@ -14,26 +14,26 @@
           <!-- artical-details-info -->
           <div class="artical-details-info">
             <div class="artical-details-info-left">
-              <% if @artist.id == 2 %>
-                <%= image_tag("artists/adam.jpg") %>
-              <% elsif @artist.id == 1 %>
-                <%= image_tag("artists/edsheeran.jpg") %>
-              <% end %>
+                <%= image_tag("artists/post6.jpg") %>
             </div>
             <div class="artical-details-info-right">
               <p><strong>Name:</strong><%= @artist.name %>,</p>
-              <p><strong>Country:</strong> US,</p>
               <div class="dicription">
                 <p><strong>Info :</strong><%= @artist.info %></p>
               </div>
+              <%= link_to "all songs", "#", class: "download" %>
+              <p></p>
+              <% if logged_in? && current_user.admin? %>
+                <%= link_to "delete", @artist, method: :delete, class: "download", data: { confirm: "You sure?" } %>
+                <p></p>
+                <%= link_to "new", new_artist_path, class: "download" %>
+              <% end %>
             </div>
             <div class="clearfix"> </div>
-
           </div>
           <!-- artical-details-info -->
         </div>
         <!-- related-articals -->
-
         <!-- artical-single-page -->
         <div class="clearfix"> </div>
       </div>

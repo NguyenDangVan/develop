@@ -1,0 +1,27 @@
+    <div class="categories c-cate">
+      <div class="container">
+        <div class="categories-left">
+          <ul class="options">
+            <li><%= link_to "US-UK", albums_path(category_id: 1) %></li>
+            <li><%= link_to "V-Pop", category_path(id: 1) %></li>
+            <li><%= link_to "K-Pop","#" %></li>
+            <li><%= link_to "Rock","#" %></li>
+            <li><%= link_to "EDM","#" %></li>
+            <li><%= link_to "Underground","#" %></li>
+          </ul>
+          <select class="s-option">
+            <option>select categories</option>
+            <option>Adventure</option>
+            <option>Adventure</option>
+            <option>Adventure</option>
+          </select>
+        </div>
+        <div class="categories-right">
+          <%= search_form_for @q do |f| %>
+            <%= f.text_field :title_cont %>
+            <%= f.submit %>
+          <% end %>
+        </div>
+        <div class="clearfix"> </div>
+      </div>
+    </div>
