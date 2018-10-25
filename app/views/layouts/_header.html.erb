@@ -11,9 +11,15 @@
           <span class="menu"> </span>
           <ul>
             <li class="active"><%= link_to "Home", root_url %></li>
-            <li><%= link_to "Album", albums_path %></li>
+            <% if logged_in? && current_user.admin? %>
+              <li><%= link_to "Manage", albums_path %></li>
+            <% elsif logged_in? %>
+              <li><%= link_to "My Playlist", "#" %></li>
+            <% else %>
+              <li><%= link_to "Album", albums_path %></li>
+            <% end %>
             <% if logged_in? %>
-              <li><%= link_to "Users", users_path %></li>
+              <li><%= link_to "Others", users_path %></li>
               <li><%= link_to "Account", "#" %>
                 <ul class="sub-menu">
                   <li><%= link_to "Profile", current_user %></li>

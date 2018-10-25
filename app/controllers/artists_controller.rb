@@ -1,5 +1,7 @@
 class ArtistsController < ApplicationController
   before_action :find_artist, except: %i(create new index)
+  before_action :logged_in_user, except: %i(show index)
+  before_action :admin_user, only: %i(new create destroy)
 
   def new
     @artist = Artist.new
@@ -28,8 +30,15 @@ class ArtistsController < ApplicationController
     end
   end
 
+  def destroy
+    @artist.destroy
+    flash[:success] = "Deleted artist"
+    redirect_to root_url
+  end
+
   def index
-    @artists = Artist.page(params[:page]).per 10
+    @q = Artist.ransack(params[:q])
+    @artists = @q.result.page(params[:page]).per 10
   end
 
   private

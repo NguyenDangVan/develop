@@ -35,6 +35,20 @@ album1 = Album.create!(
   title: "Album_Adam",
   artist: artist2,
   category: category,
-  description: "Adam Levine tên thật là Adam Noah Levine sinh ngày 18/03/1979 là một ca sĩ, nhạc sĩ, nhạc công người Mỹ, thường được biết đến là ca sĩ chính và tay chơi guitar cho ban nhạc pop -rock Maroon 5. Anh cũng là một giám khảo trong chương trình truyền hình gây sốt khắp thế giới \"The Voice\". Cùng NhacCuaTui.Com thưởng thức lại những ca khúc hay nhất của nam ca sĩ điển trai Adam Levine."
+  description: "Adam Levine tên thật là Adam Noah Levine"
+)
+
+album2 = Album.create!(
+  title: "Album_Ed",
+  artist: artist1,
+  category: category,
+  description: "Edward Christopher Sheeran"
+)
+
+album3 = Album.create!(
+  title: "Stars",
+  artist: artist1,
+  category: category,
+  description: "All stars on the sky."
 )
 

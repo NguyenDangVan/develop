@@ -1,4 +1,7 @@
 /*
- *= require_tree .
+ *= require bootstrap
+ *= require style
+ *= require custom
+ *= require owl.carousel
  *= require_self
  */

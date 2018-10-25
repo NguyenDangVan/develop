@@ -1,5 +1,4 @@
 <% provide :title, @album.title %>
-    <%= render "layouts/searchmenu" %>
     <!-- content -->
     <div class="content">
       <div class="container">
@@ -11,11 +10,7 @@
           <!-- artical-details-info -->
           <div class="artical-details-info">
             <div class="artical-details-info-left">
-              <% if @album.id == 1 %>
-                <%= image_tag("artists/adam.jpg") %>
-              <% else %>
-                <%= image_tag("artists/post5.jpg") %>
-              <% end %>
+              <%= image_tag("artists/post5.jpg") %>
             </div>
             <div class="artical-details-info-right">
               <p><strong>Title:</strong><%= @album.title %>,</p>

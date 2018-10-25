@@ -2,7 +2,7 @@
 <% provide :button_text, "create your album" %>
 <h1>Album</h1>
 <div class="row">
-  <div class="sub-category">
+    <div class="col-md-7 col-md-offset-1 new-items"  >
     <%= form_for @album do |f| %>
     <%= render "shared/error_messages_artist" %>
       <%= f.label :title %>

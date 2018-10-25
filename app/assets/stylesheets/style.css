@@ -317,6 +317,7 @@ ul.options li a:hover{
 	position:relative;
 }
 .categories-right input[type="submit"]{
+	width: 88px;
 	background: #747474;
 	color: #FFF;
 	font-size:0.875em;
