@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_10_22_060910) do
+ActiveRecord::Schema.define(version: 2018_10_22_024853) do
 
   create_table "albums", force: :cascade do |t|
     t.string "title"
@@ -19,6 +19,7 @@ ActiveRecord::Schema.define(version: 2018_10_22_060910) do
     t.text "description"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["artist_id", "category_id", "created_at"], name: "index_albums_on_artist_id_and_category_id_and_created_at", unique: true
     t.index ["artist_id"], name: "index_albums_on_artist_id"
     t.index ["category_id"], name: "index_albums_on_category_id"
   end
@@ -87,6 +88,7 @@ ActiveRecord::Schema.define(version: 2018_10_22_060910) do
     t.datetime "activated_at"
     t.string "reset_digest"
     t.datetime "reset_sent_at"
+    t.boolean "admin", default: false
     t.index ["email"], name: "index_users_on_email", unique: true
   end
 

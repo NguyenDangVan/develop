@@ -1,0 +1,6 @@
+<% provide :title, "Artist" %>
+<h1 style="text-align: center;">All Artists</h1>
+<ul class="users">
+  <%= render @artists %>
+</ul>
+<div style="margin-left: 40px;"><%= paginate @artists, theme: "twitter-bootstrap-3" %></div>

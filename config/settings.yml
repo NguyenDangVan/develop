@@ -4,3 +4,4 @@ models:
   maximum_age: 2
   maximum_email: 255
   minimum_password: 6
+  modify_email: /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
