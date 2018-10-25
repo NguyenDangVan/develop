@@ -1,0 +1,84 @@
+<% provide :title, @album.title %>
+    <%= render "layouts/searchmenu" %>
+    <!-- content -->
+    <div class="content">
+      <div class="container">
+      <!-- content-left -->
+      <div class="col-md-8 content-left">
+        <!-- artical-single-page -->
+        <div class="artical-details">
+          <h2><%= link_to @album.title %></h2>
+          <!-- artical-details-info -->
+          <div class="artical-details-info">
+            <div class="artical-details-info-left">
+              <% if @album.id == 1 %>
+                <%= image_tag("artists/adam.jpg") %>
+              <% else %>
+                <%= image_tag("artists/post5.jpg") %>
+              <% end %>
+            </div>
+            <div class="artical-details-info-right">
+              <p><strong>Title:</strong><%= @album.title %>,</p>
+              <p><strong>Cateogry:</strong><%= @album.category.name %>,</p>
+              <p><strong>Artist:</strong><%= @album.artist.name %>,</p>
+              <p><strong>Country:</strong> US,</p>
+              <div class="dicription">
+                <p><strong>Descriptions :</strong><%= @album.description %></p>
+              </div>
+            </div>
+            <div class="clearfix"> </div>
+
+          </div>
+          <!-- artical-details-info -->
+        </div>
+        <!-- related-articals -->
+
+        <!-- artical-single-page -->
+        <div class="clearfix"> </div>
+      </div>
+      <!-- content-left -->
+      <!-- content-right -->
+      <div class="col-md-4 content-right">
+        <div class="recent-add">
+          <!----sreen-gallery-cursual---->
+            <div class="sreen-gallery-cursual">
+               <!-- requried-jsfiles-for owl -->
+              <link href="css/owl.carousel.css" rel="stylesheet">
+                  <script src="js/owl.carousel.js"></script>
+                      <script>
+                  $(document).ready(function() {
+                    $("#owl-demo").owlCarousel({
+                      items : 1,
+                      lazyLoad : true,
+                      autoPlay : true,
+                      navigation : true,
+                      navigationText :  false,
+                      pagination : true,
+                    });
+                  });
+                  </script>
+               <!-- //requried-jsfiles-for owl -->
+               <!-- start content_slider -->
+                   <div id="owl-demo" class="owl-carousel text-center">
+                          <div class="item">
+                            <%= image_tag("artists/post1.jpg", class: "lazyOwl") %>
+                          </div>
+                          <div class="item">
+                            <%= image_tag("artists/post5.jpg", class: "lazyOwl") %>
+                          </div>
+                          <div class="item">
+                            <%= image_tag("artists/post6.jpg", class: "lazyOwl") %>
+                          </div>
+                      </div>
+            <!--//sreen-gallery-cursual---->
+        </div>
+      </div>
+      <div class="clearfix"> </div>
+      <!-- popular-allbums -->
+
+      <!-- popular-allbums -->
+      <!-- content-right -->
+      </div>
+    </div>
+    </div>
+    <!-- content -->

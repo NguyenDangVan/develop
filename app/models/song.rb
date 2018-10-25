@@ -4,5 +4,4 @@ class Song < ApplicationRecord
   has_many :favorite
   validates :name, presence: true
   mount_uploader :audio, AudioUploader
-
 end

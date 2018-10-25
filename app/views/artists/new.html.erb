@@ -1,0 +1,15 @@
+<% provide :title, "Artist" %>
+<% provide :button_text, "add artist" %>
+<h1>Artist</h1>
+<div class="row">
+  <div class="sub-category">
+    <%= form_for @artist do |f| %>
+    <%= render "shared/error_messages_artist" %>
+      <%= f.label :name %>
+      <%= f.text_field :name  %>
+      <%= f.label :info %>
+      <%= f.text_area :info  %>
+      <%= f.submit yield(:button_text) , class: "btn btn-primary" %>
+    <% end %>
+  </div>
+</div>

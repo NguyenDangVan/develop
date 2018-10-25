@@ -8,8 +8,11 @@ Rails.application.routes.draw do
   delete "/logout", to: "sessions#destroy"
   get "/upload", to: "songs#new"
   get "/download/:id", to: "songs#download", as: :song_download
+  get "/details", to: "artists#show"
   resources :users
   resources :account_activations, only: [:edit]
   resources :password_resets,     only: %i(new create edit update)
-  resources :songs
+  resources :categories
+  resources :artists
+  resources :albums
 end
