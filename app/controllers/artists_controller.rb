@@ -34,8 +34,8 @@ class ArtistsController < ApplicationController
 
   def destroy
     @artist.destroy
-    flash[:success] = "Deleted artist"
-    redirect_to root_url
+    flash[:success] = "deleted artist"
+    redirect_to artists_url
   end
 
   def index

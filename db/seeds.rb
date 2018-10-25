@@ -25,8 +25,12 @@ artist1 = Artist.create!(
 )
 
 artist2 = Artist.create!(
-  name: "Adam",
-  info: "Adam Noah Levine (born March 18, 1979) is an American singer, songwriter and actor. He is the lead singer for the pop rock band Maroon 5. Born and raised in Los Angeles, California, Levine began his musical career in 1994"
+  name: "Marron 5",
+  info: "Adam Noah Levine (born March 18, 1979) is an American singer, songwriter and actor. He is the lead singer for the pop rock band Maroon 5. He is a member of Maroon 5 group."
+)
+artist3= Artist.create!(
+  name: "Song Tung MTP",
+  info: "fan Sky"
 )
 
 category1 = Category.create!(
@@ -42,25 +46,42 @@ category3 = Category.create!(
 album1 = Album.create!(
   title: "Album_Adam",
   artist: artist2,
-  category: category,
+  category: category1,
   description: "Adam Levine tên thật là Adam Noah Levine"
 )
 
 album2 = Album.create!(
   title: "Album_Ed",
   artist: artist1,
-  category: category,
+  category: category1,
   description: "Edward Christopher Sheeran"
 )
 
 album3 = Album.create!(
   title: "Stars",
   artist: artist1,
-  category: category,
-  description: "All stars on the sky."
+  category: category2,
+  description: "All stars on the sky............"
+)
+
+album4 = Album.create!(
+  title: "Stars V-Pop",
+  artist: artist3,
+  category: category3,
+  description: "All songs of sky............... Album SonTung"
 )
 song1 = Song.create!(
-  name: "testSong",
-  lyric: "abcdxyz",
+  name: "Girls like you",
+  lyric: "Are you",
   album: album1
+)
+song2 = Song.create!(
+  name: "Sugar",
+  lyric: "Do you love me",
+  album: album1
+)
+song3 = Song.create!(
+  name: "lac troi",
+  lyric: "Cu lac ron tan",
+  album: album4
 )
