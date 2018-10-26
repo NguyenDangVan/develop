@@ -28,8 +28,8 @@ class CategoriesController < ApplicationController
 
   def show
     @category = Category.find_by id: params[:id]
-    @albums = @category.albums.ordered_by_create_at.page(params[:page]). per 3
-    @songs =@category.songs.all
+    @albums = @category.albums.page(params[:page]). per 3
+    @songs = @category.songs.all
   end
 
   def destroy

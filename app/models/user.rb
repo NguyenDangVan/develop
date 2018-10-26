@@ -8,11 +8,11 @@ class User < ApplicationRecord
   validates :name, :email, :age, presence: true
   validates :name, length: {maximum: 30}
   validates :age, numericality: true, length: {maximum: 3}
-  validates :email, length: {maximum: 255},uniqueness: {case_sensitive: false}, format: {with: VALID_EMAIL_REGEX}
+  validates :email, length: {maximum: 255}, uniqueness: {case_sensitive: false}, format: {with: VALID_EMAIL_REGEX}
   has_secure_password
   validates :password, presence: true, length: {minimum: 6}, allow_nil: true
 
-  #scope :search, -> (name){where("name LIKE ?", "%#{name}%")}
+  scope :search_name, -> (name_user) {where("name LIKE ?", "%#{name_user}%")}
 
   def User.digest string
     cost = ActiveModel::SecurePassword.min_cost ? BCrypt::Engine::MIN_COST :
