@@ -1,3 +1,6 @@
+<% if !logged_in? || !current_user.admin? %>
+<%= render "searchalbum" %>
+<% else %>
 <div class="categories c-cate">
   <div class="container">
     <div class="categories-left">
@@ -17,3 +20,4 @@
         <div class="clearfix"> </div>
       </div>
     </div>
+<% end %>

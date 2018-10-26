@@ -25,7 +25,6 @@ class AlbumsController < ApplicationController
     @artists = Artist.all
     @category = Category.find_by id: params[:category_id]
     if @category
-      #@albums = @category.albums.page(params[:page]).per 4
       @q = @category.albums.ransack(params[:q])
       @albums = @q.result.page(params[:page]).per 4
     else

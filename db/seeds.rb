@@ -76,12 +76,12 @@ song1 = Song.create!(
   album: album1
 )
 song2 = Song.create!(
-  name: "Sugar",
-  lyric: "Do you love me",
+  name: "Lac troi",
+  lyric: "...",
   album: album1
 )
 song3 = Song.create!(
-  name: "lac troi",
-  lyric: "Cu lac ron tan",
-  album: album4
+  name: "Suger",
+  lyric: "...............",
+  album: album2
 )

@@ -1,1 +1,4 @@
 en:
+  users:
+    create:
+      pls_check: "Please check your email to activate your account"
