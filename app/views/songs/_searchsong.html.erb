@@ -1,0 +1,19 @@
+<div class="categories c-cate">
+  <div class="container">
+    <div class="categories-left">
+      <ul class="options">
+        <li><%= link_to "US-UK", category_songs_path(1) %></li>
+        <li><%= link_to "K-Pop", category_songs_path(2) %></li>
+        <li><%= link_to "V-Pop", category_songs_path(3) %></li>
+        <li><%= link_to "J-Pop", category_songs_path(4) %></li>
+      </ul>
+    </div>
+    <div class="categories-right">
+      <%= form_tag songs_path, method: :get do %>
+        <%= text_field_tag :search, params[:search], class: "form-control", placeholder: "search name" %>
+        <%= submit_tag "Search", class: "btn btn-primary" %>
+      <% end %>
+    </div>
+    <div class="clearfix"> </div>
+  </div>
+</div>

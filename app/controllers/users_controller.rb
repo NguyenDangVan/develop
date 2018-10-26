@@ -1,7 +1,7 @@
 class UsersController < ApplicationController
   before_action :find_user, except: %i(new create index)
   before_action :logged_in_user, except: %i(new create)
-  before_action :correct_user, only: %i()
+  before_action :correct_user, only: %i(edit update)
   before_action :admin_user, only: :destroy
 
   def new
@@ -9,7 +9,11 @@ class UsersController < ApplicationController
   end
 
   def index
-    @users = User.page(params[:page]).per 10
+    if params[:search]
+      @users = User.search_name(params[:search]).page(params[:page]).per 10
+    else
+      @users = User.page(params[:page]).per 10
+    end
   end
 
   def show; end
@@ -57,7 +61,7 @@ class UsersController < ApplicationController
       @user = User.find_by id: params[:id]
       if @user
         if @user.id == 1
-        redirect_to root_url
+          redirect_to root_url
         else
           return if @user
           flash.now[:danger] = "Not found user"

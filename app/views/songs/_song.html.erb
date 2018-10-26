@@ -8,7 +8,6 @@
   <srong><%= link_to "play", song, class: "play-song" %></srong>
   <% if logged_in? && current_user.admin? %>
     <%= link_to "delete", song, class: "update-user", method: :delete, data: { confirm: "You sure?" } %>
-    <%= link_to "upload", new_song_path, class:"update-user" %>
     <div class="admin-see">
       Posted <%= time_ago_in_words(song.created_at) %> ago.
     </div>
