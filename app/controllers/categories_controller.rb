@@ -15,7 +15,7 @@ class CategoriesController < ApplicationController
     @category = Category.new categories_params
     if @category.save
       flash[:success] = "added category"
-      redirect_to @category
+      redirect_to admin_categories_path
     else
       render :new
     end
@@ -35,8 +35,8 @@ class CategoriesController < ApplicationController
   def destroy
     @category = Category.find_by id: params[:id]
     @category.destroy
-    flash[:success] = "Category deleted"
-    redirect_to categories_url
+    flash[:success] = "category deleted"
+    redirect_to admin_categories_path
   end
 
   private

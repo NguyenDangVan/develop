@@ -10,8 +10,8 @@ class ArtistsController < ApplicationController
   def create
     @artist = Artist.new artist_params
     if @artist.save
-      flash[:success] = "add new artist."
-      redirect_to @artist
+      flash[:success] = "Add new artist."
+      redirect_to admin_artists_path
     else
       render :new
     end
@@ -26,7 +26,7 @@ class ArtistsController < ApplicationController
   def update
     if @artist.update_attributes artist_params
       flash[:success] = "Updated artist"
-      redirect_to @artist
+      redirect_to admin_artists_path
     else
       render :edit
     end
@@ -35,7 +35,7 @@ class ArtistsController < ApplicationController
   def destroy
     @artist.destroy
     flash[:success] = "deleted artist"
-    redirect_to artists_url
+    redirect_to admin_artists_path
   end
 
   def index

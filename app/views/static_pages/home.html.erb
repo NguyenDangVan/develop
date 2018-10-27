@@ -1,50 +1,5 @@
-   <% if logged_in? %>
-
-    <% else %>
-    <div class="banner">
-      <!-- slider -->
-        <!--- img-slider --->
-        <div class="img-slider">
-          <!-- Slideshow 4 -->
-              <div  id="top" class="callbacks_container">
-                <ul class="rslides" id="slider4">
-                  <li>
-                    <%= image_tag("slide1.jpg") %>
-                    <div class="slider-caption">
-                      <div class="slider-caption-inner">
-                         <h1>music<strong class="new-point">Z</strong></h1>
-                       <p>Life is Beautiful </p>
-                       <%= link_to "Sign Up", signup_path, class: "caption-btn" %>
-                     </div>
-                    </div>
-                  </li>
-                  <li>
-                    <%= image_tag("slide3.jpg") %>
-                     <div class="slider-caption">
-                       <div class="slider-caption-inner">
-                         <h1>music<strong class="new-point">Z</strong></h1>
-                       <p>Take my hand </p>
-                       <%= link_to "Sign Up", signup_path, class: "caption-btn" %>
-                     </div>
-                    </div>
-                  </li>
-                  <li>
-                    <%= image_tag("slide1.jpg") %>
-                     <div class="slider-caption">
-                     <div class="slider-caption-inner">
-                         <h1>music<strong class="new-point">Z</strong></h1>
-                       <p>Music make your life is more greater. </p>
-                       <%= link_to "Sign Up", signup_path, class: "caption-btn" %>
-                     </div>
-                    </div>
-                  </li>
-                </ul>
-              </div>
-              <div class="clearfix"> </div>
-          </div>
-            <!-- slider -->
-    </div>
-    <!-- banner -->
+  <% if !logged_in? %>
+      <%= render "layouts/banner" %>
     <% end %>
     <%= render "albums/searchalbum" %>
     <!-- content -->

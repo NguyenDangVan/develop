@@ -1,0 +1,10 @@
+<ul>
+<li><%= link_to "Table user", admin_users_path %></li>
+<li><%= link_to "Table artist", admin_artists_path %></li>
+<li><%= link_to "Table album", admin_albums_path %></li>
+<li><%= link_to "Table song", admin_songs_path %></li>
+<li><%= link_to "Table category", admin_categories_path %></li>
+</ul>
+<p>Time now: <%= Time.now %></p>
+<p>There are: <%= @total_users %></p>
+<%= link_to "Log out", logout_path, method: :delete %>

@@ -1,0 +1,16 @@
+<% provide :title, "Edit song" %>
+<div class="row">
+  <div class="col-md-6 col-md-offset-3">
+    <h1 style="text-align: center;">Update song</h1>
+    <%= form_for @song do |f| %>
+      <%= render "shared/error_messages_song" %>
+      <%= f.label :name %>
+      <%= f.text_field :name, class: "form-control" %>
+      <%= f.label :album %>
+      <%= f.select :album_id, options_from_collection_for_select(Album.all, :id, :title, @song.album_id) %>
+      <%= f.label :lyric %>
+      <%= f.text_area :lyric, class: "form-control" %>
+      <%= f.submit "Save changes", class: "btn btn-primary" %>
+    <% end %>
+  </div>
+</div>

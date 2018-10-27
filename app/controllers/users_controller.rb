@@ -3,7 +3,6 @@ class UsersController < ApplicationController
   before_action :logged_in_user, except: %i(new create)
   before_action :correct_user, only: %i(edit update)
   before_action :admin_user, only: :destroy
-
   def new
     @user = User.new
   end
@@ -41,9 +40,13 @@ class UsersController < ApplicationController
   end
 
   def destroy
-    @user.destroy
-    flash[:success] = "User deleted."
-    redirect_to users_url
+    if @user.destroy
+      flash[:success] = "Delete successfull"
+      redirect_to admin_users_path
+    else
+      flash[:danger] = "Delete unsuccessfull"
+      redirect_to admin_users_path
+    end
   end
 
   private
@@ -54,7 +57,7 @@ class UsersController < ApplicationController
 
     def correct_user
       @user = User.find_by id: params[:id]
-      redirect_to root_url unless current_user? @user
+      redirect_to root_url unless current_user?(@user) ||  current_user.admin?
     end
 
     def find_user

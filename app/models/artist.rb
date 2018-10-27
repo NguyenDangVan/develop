@@ -4,5 +4,5 @@ class Artist < ApplicationRecord
   validates :name, presence: true, length: {maximum: 30}
   validates :info, presence: true
 
-  scope :search_artist, -> (name_artist) {where("name LIKE ?", "%#{name_artist}%")}
+  scope :search_artist_name, -> (name_artist) {where("name LIKE ?", "%#{name_artist}%")}
 end
