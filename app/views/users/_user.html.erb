@@ -3,6 +3,7 @@
   <div class="info-user">
     <p>Name:<%= link_to user.name, user %></p>
     <p>Email:<%= user.email %></p>
+    <p>Age:<%= user.age %></p>
   </div>
   <div class ="update-user">
     <% if current_user.admin? && !current_user?(user) %> <%= link_to "update", edit_user_path(user.id) %>

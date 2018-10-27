@@ -1,13 +1,16 @@
 <li>
-<p><strong>Name:</strong> <strong class="name-song"><%= link_to song.name, song %></strong></p>
-<p><strong>Album:</strong> <%= link_to song.album.title, song %></p>
-<p><strong>Lyric:</strong> <%= song.lyric %></p>
-<p><srong><%= link_to "Play", song %></srong></p>
-<% if logged_in? && current_user.admin? %>
-<p class="user">
-  Posted <%= time_ago_in_words(song.created_at) %> ago.
-    | <%= link_to "delete", song, method: :delete, data: { confirm: "You sure?" } %>
-    | <%= link_to "upload", new_song_path %>
+  <div class="info-user">
+    <p><strong>Name:</strong> <strong class="name-song"><%= link_to song.name, song %></strong></p>
+    <p><strong>Album:</strong> <%= link_to song.album.title, "#" %></p>
+    <p><strong>Artist:</strong> <%= link_to song.album.artist.name, "#" %></p>
+    <p><strong>Cateogry:</strong> <%= link_to song.album.category.name, "#" %></p>
+  </div>
+  <srong><%= link_to "play", song, class: "play-song" %></srong>
+  <% if logged_in? && current_user.admin? %>
+    <%= link_to "delete", song, class: "update-user", method: :delete, data: { confirm: "You sure?" } %>
+    <%= link_to "upload", new_song_path, class:"update-user" %>
+    <div class="admin-see">
+      Posted <%= time_ago_in_words(song.created_at) %> ago.
+    </div>
   <% end %>
-</p>
 </li>

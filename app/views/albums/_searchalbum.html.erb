@@ -2,17 +2,11 @@
   <div class="container">
     <div class="categories-left">
       <ul class="options">
-        <% @categories.each do |category| %>
-          <li><%= link_to category.name, "#" %></li>
-        <% end %>
+        <li><%= link_to "US-UK", category_songs_path(1) %></li>
+        <li><%= link_to "K-Pop", category_songs_path(2) %></li>
+        <li><%= link_to "V-Pop", category_songs_path(3) %></li>
       </ul>
-          <select class="s-option">
-            <option>select categories</option>
-            <option>Adventure</option>
-            <option>Adventure</option>
-            <option>Adventure</option>
-          </select>
-        </div>
-        <div class="clearfix"> </div>
-      </div>
     </div>
+    <div class="clearfix"> </div>
+  </div>
+</div>

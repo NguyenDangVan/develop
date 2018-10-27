@@ -1,6 +1,6 @@
 <li>
   <div class="info-user">
-    <p><strong>Category:<strong><%= link_to category.name, category %></p>
+    <p><strong>Category:<strong> <%= link_to category.name, category %></p>
   </div>
   <% if logged_in? && current_user.admin? %>
   <div class ="update-user">

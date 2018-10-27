@@ -23,10 +23,14 @@ class AlbumsController < ApplicationController
 
   def index
     @artists = Artist.all
-    @categories = Category.all
-    @q = Album.ransack(params[:q])
-    #@q = Album.search({search_title: :q})
-    @albums = @q.result.page(params[:page]).per 4
+    @category = Category.find_by id: params[:category_id]
+    if @category
+      @q = @category.albums.ransack(params[:q])
+      @albums = @q.result.page(params[:page]).per 4
+    else
+      @q = Album.ransack(params[:q])
+      @albums = @q.result.page(params[:page]).per 4
+    end
   end
 
   def destroy

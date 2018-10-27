@@ -49,10 +49,11 @@
     <%= render "albums/searchalbum" %>
     <!-- content -->
     <div class="content">
+      <div class="title">All Artists</div>
       <div class="container">
       <!-- content-left -->
       <div class="col-md-8 content-left">
-        <%= @artists.each do |artist| %>
+        <% @artists.each do |artist| %>
         <div class="artical">
           <div class="col-md-4 artical-left">
             <%= link_to image_tag("artists/post6.jpg"), details_path(id: artist.id)%>
