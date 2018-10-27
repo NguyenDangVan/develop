@@ -1,16 +1,16 @@
 <div class="row">
-<div class="col-md-6 col-md-offset-3 player">
-<h3><b><%= @song.name %></b></h3>
-<%= audio_tag @song.audio, class: "audio-play", controls: "true" %>
-<%= link_to song_download_path(@song) do %>
-  Download
-  <%= image_tag "download.png"%>
-<% end %>
-<h3> Lyrics: </h3>
-<% if @song.lyric? %>
-  <div class="lyric"><%= @song.lyric %></div>
-<% else %>
-  <div class="lyric"> Lyric has not been updated yet </div>
-<% end %>
-</div>
+  <div class="col-md-6 col-md-offset-3 player">
+    <h3><b><%= @song.name %></b></h3>
+    <%= audio_tag @song.audio, class: "audio-play", controls: "true" %>
+    <%= link_to song_download_path(@song) do %>
+      Download
+      <%= image_tag "download.png"%>
+    <% end %>
+    <h3> Lyrics: </h3>
+    <% if @song.lyric? %>
+      <div class="lyric"><%= @song.lyric %></div>
+    <% else %>
+      <div class="lyric"> Lyric has not been updated yet </div>
+    <% end %>
+  </div>
 </div>

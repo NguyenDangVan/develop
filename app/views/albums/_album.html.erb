@@ -4,10 +4,4 @@
   <p class="user"><strong>Categoty:</strong> <%= link_to album.category.name, album.category %></p>
   <p class="user"><strong>Artist:</strong> <%= link_to album.artist.name, album.artist %></p>
   <p class="content" style="height: 100px;"><strong>Description:</strong> <%= album.description %></p>
-  <p class="user">
-    Posted <%= time_ago_in_words(album.created_at) %> ago.
-    <% if logged_in? && current_user.admin? %>
-      <%= link_to "delete", album, method: :delete, data: { confirm: "You sure?" } %>
-    <% end %>
-  </p>
 </li>

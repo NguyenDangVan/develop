@@ -5,8 +5,4 @@
     <p>Email: <%= user.email %></p>
     <p>Age: <%= user.age %></p>
   </div>
-  <% if current_user.admin? && !current_user?(user) %>
-    <%= link_to "edit", edit_user_path(user.id), class: "update-user" %>
-    <%= link_to "delete", user, class: "update-user", method: :delete, data: {confirm: "You sure?"} %>
-  <% end %>
 </li>

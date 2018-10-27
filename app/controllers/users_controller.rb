@@ -1,7 +1,7 @@
 class UsersController < ApplicationController
   before_action :find_user, except: %i(new create index)
   before_action :logged_in_user, except: %i(new create)
-  before_action :correct_user, only: %i(edit update)
+  #before_action :correct_user, only: %i(show edit update)
   before_action :admin_user, only: :destroy
   def new
     @user = User.new
@@ -57,7 +57,7 @@ class UsersController < ApplicationController
 
     def correct_user
       @user = User.find_by id: params[:id]
-      redirect_to root_url unless current_user?(@user) ||  current_user.admin?
+      redirect_to root_url unless current_user?(@user) ||current_user.admin?
     end
 
     def find_user
