@@ -1,0 +1,18 @@
+<% provide :title, "Edit album" %>
+<div class="row">
+  <div class="col-md-6 col-md-offset-3">
+    <h1 style="text-align: center;">Update album</h1>
+    <%= form_for @album do |f| %>
+      <%= render "shared/error_messages_album" %>
+      <%= f.label :title %>
+      <%= f.text_field :title, class: "form-control" %>
+      <%= f.label :artist %>
+      <%= f.select :artist_id, options_from_collection_for_select(Artist.all, :id, :name, @album.artist_id) %>
+      <%= f.label :category %>
+      <%= f.select :category_id, options_from_collection_for_select(Category.all, :id, :name, @album.category_id) %>
+      <%= f.label :description %>
+      <%= f.text_area :description, class: "form-control" %>
+      <%= f.submit "Save changes", class: "btn btn-primary" %>
+    <% end %>
+  </div>
+</div>

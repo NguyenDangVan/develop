@@ -1,3 +1,4 @@
+
 Rails.application.routes.draw do
   get "password_resets/new"
   get "password_resets/edit"
@@ -10,7 +11,17 @@ Rails.application.routes.draw do
   get "/download/:id", to: "songs#download", as: :song_download
   get "/details", to: "artists#show"
   get "/song_album/:id", to: "albums#song_album", as: :song_album
+
   resources :users
+  namespace :admin do
+    resources :categories, only: :index
+    resources :songs, only: :index
+    resources :users, only: :index
+    resources :artists, only: :index
+    resources :albums, only: :index
+    resources :dashboards, only: :index
+    root "dashboards#index"
+  end
   resources :account_activations, only: :edit
   resources :password_resets, only: %i(new create edit update)
   resources :categories do

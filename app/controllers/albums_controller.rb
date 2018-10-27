@@ -1,4 +1,5 @@
 class AlbumsController < ApplicationController
+  before_action :find_album, except: %i(create new index)
   before_action :logged_in_user, except: %i(show index song_album)
   before_action :admin_user, except: %i(show index song_album)
   before_action :correct_category, only: :destroy
@@ -11,15 +12,24 @@ class AlbumsController < ApplicationController
     @album = Album.new album_params
     if @album.save
       flash[:success] = "Created new album"
-      redirect_to @album
+      redirect_to admin_albums_path
     else
       render :new
     end
   end
 
-  def show
-    @album = Album.find_by id: params[:id]
+  def edit; end
+
+  def update
+    if @album.update_attributes album_params
+      flash[:success] = "Updated album"
+      redirect_to admin_albums_path
+    else
+      render :edit
+    end
   end
+
+  def show; end
 
   def index
     @artists = Artist.all
@@ -40,7 +50,6 @@ class AlbumsController < ApplicationController
   end
 
   def song_album
-    @album = Album.find_by id: params[:id]
     @songs = @album.songs.page(params[:page]). per 3
   end
 
@@ -53,5 +62,12 @@ class AlbumsController < ApplicationController
     def correct_category
       @album = Album.find_by id: params[:id]
       redirect_to root_url if @album.nil?
+    end
+
+    def find_album
+      @album = Album.find_by id: params[:id]
+      return if @album
+      flash[:danger] = "Not found album"
+      redirect_to root_url
     end
 end

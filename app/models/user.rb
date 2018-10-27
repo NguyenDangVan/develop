@@ -12,11 +12,11 @@ class User < ApplicationRecord
   has_secure_password
   validates :password, presence: true, length: {minimum: 6}, allow_nil: true
 
-  scope :search_name, -> (name_user) {where("name LIKE ?", "%#{name_user}%")}
+  scope :search_user_name, -> (name_user) {where("name LIKE ?", "%#{name_user}%")}
 
   def User.digest string
     cost = ActiveModel::SecurePassword.min_cost ? BCrypt::Engine::MIN_COST :
-                                                  BCrypt::Engine.cost
+    BCrypt::Engine.cost
     BCrypt::Password.create string, cost: cost
   end
 
