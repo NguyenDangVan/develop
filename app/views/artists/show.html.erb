@@ -21,7 +21,7 @@
               <div class="dicription">
                 <p><strong>Info :</strong><%= @artist.info %></p>
               </div>
-              <%= link_to "all songs", artist_songs_path(@artist), class: "download" %>
+              <%= link_to "all songs >>", artist_songs_path(@artist), class: "download" %>
               <p></p>
               <% if logged_in? && current_user.admin? %>
                 <%= link_to "delete", @artist, method: :delete, class: "download", data: { confirm: "You sure?" } %>

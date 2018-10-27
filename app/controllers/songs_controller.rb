@@ -1,5 +1,7 @@
 class SongsController < ApplicationController
   before_action :logged_in_user, only: :create
+  before_action :find_song, only: %i(show download destroy)
+
   def new
     @song = Song.new
   end
@@ -32,21 +34,34 @@ class SongsController < ApplicationController
     end
   end
 
-  def show
-    @song = Song.find_by id: params[:id]
-  end
+  def show; end
 
   def download
-   @song = Song.find_by id: params[:id]
     file_path = @song.audio
     if @song.audio?
       send_file "#{Rails.root}/public/#{file_path}", :x_sendfile => true
     else
-       redirect_to @song
+      redirect_to @song
+    end
+  end
+
+  def destroy
+    if @song.destroy
+      flash[:success] = "deleted song"
+      redirect_to songs_path
+    else
+      redirect_to songs_path, flash[:danger] = "There was an error with delete song"
     end
   end
 
   private
+
+    def find_song
+      @song = Song.find_by id: params[:id]
+      return if @song
+      flash[:danger] = "Not found song"
+      redirect_to songs_path
+    end
 
     def song_params
       params.require(:song).permit(:audio, :name, :lyric, :album_id)

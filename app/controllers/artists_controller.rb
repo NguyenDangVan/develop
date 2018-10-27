@@ -39,8 +39,11 @@ class ArtistsController < ApplicationController
   end
 
   def index
-    @q = Artist.ransack(params[:q])
-    @artists = @q.result.page(params[:page]).per 5
+    if params[:search]
+      @artists = Artist.search_artist(params[:search]).page(params[:page]).per 5
+    else
+      @artists = Artist.page(params[:page]).per 5
+    end
   end
 
   private
