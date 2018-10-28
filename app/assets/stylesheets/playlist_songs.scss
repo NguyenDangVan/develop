@@ -1,3 +1,30 @@
-// Place all the styles related to the PlaylistSongs controller here.
-// They will automatically be included in application.css.
-// You can use Sass (SCSS) here: http://sass-lang.com/
+/* show songs in playlist */
+li.play-list{
+  font-size: 1.5em;
+}
+.song-in-playlist{
+  background-color: rgba(231, 76, 59, 0.8);
+  width: 100%;
+  border-radius: 5px;
+  padding-left: 10px;
+}
+.active a{
+  color: #ffffff;
+  text-decoration: none;
+}
+#audio{
+  width: 105%;
+}
+ul#playlist{
+  height: 250px;
+  overflow-y: auto;
+}
+li.active div{
+  background-color: black;
+}
+div.song-in-playlist:hover{
+  background-color: #DBCECA;
+}
+div.song-in-playlist > a:hover{
+  text-decoration: none;
+}

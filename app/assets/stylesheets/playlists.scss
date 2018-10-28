@@ -1,9 +1,5 @@
-ul{
-  list-style-type: none;
-}
-li.play-list{
-  font-size: 1.5em;
-}
-li.play-list:hover{
+/* show playlist in user */
+li#playlist > span > b > a:hover, .new-playlist > a:hover, .pagination > span > a:hover{
   color: red;
+  text-decoration: none;
 }

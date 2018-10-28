@@ -1,6 +1,5 @@
-$(document).ready(function(){
-  var check = false;
-  $(".add-to-pls").click(function(){
+ var check = false;
+$(document).on("click", ".add-to-pls", function(){
     if (check == false) {
       $(".list-pls").show();
       check = true;
@@ -8,5 +7,4 @@ $(document).ready(function(){
       $(".list-pls").hide();
       check = false;
     }
-  });
 });

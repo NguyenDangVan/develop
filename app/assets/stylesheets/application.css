@@ -5,5 +5,6 @@
  *= require owl.carousel
  *= require_self
  *= require playlists
+ *= require playlist_songs
  *= require songs
- */
+*/

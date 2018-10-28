@@ -1,7 +1,12 @@
-<li id="playlist-<%= playlist.id %>">
-  <%= link_to gravatar_for(playlist.user, size: 20), @user %>
-  <span><b><%= link_to playlist.title, user_playlist_path(current_user, playlist.id) %></b></span>
+<li id="playlist">
+  <span><b><%= link_to playlist.title, user_playlist_path(@user, playlist.id) %></b></span>
   <span class="timestamp">
     Posted <%= time_ago_in_words(playlist.created_at) %> ago.
   </span>
+  <% if current_user?(@user) %>
+      <%= link_to user_playlist_path(@user, playlist.id), method: :delete,
+        data: {confirm: "Delete #{playlist.title}. You sure?"} do %>
+        <%= image_tag "icon/delete-playlist-song.png", size: "20x20" %>
+      <% end %>
+  <% end %>
 </li>

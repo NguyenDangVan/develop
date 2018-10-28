@@ -7,13 +7,13 @@
     </div>
     <div class="download">
       <%= link_to song_download_path(@song), target: :_blank do %>
-      <%= image_tag "download.png", size: "20x20"%>
+      <%= image_tag "icon/download.png", size: "20x20"%>
       Download
       <% end %>
     </div>
     <div>
       <p class="add-to-pls">
-        <%= image_tag "add-song.png", size: "20x20" %>
+        <%= image_tag "icon/add-song.png", size: "20x20" %>
         Add to my playlist
       </p>
       <% if logged_in? %>
