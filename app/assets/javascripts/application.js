@@ -4,6 +4,7 @@
 //= require jquery
 //= require jquery.min
 //= require main
+//= require owl.carousel
 //= require responsiveslides.min
 //= require bootstrap
 //= require load_paginate
