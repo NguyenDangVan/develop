@@ -1,0 +1,15 @@
+//= require admin/jquery
+//= require admin/jquery.min
+//= require admin/jquery.slim
+//= require admin/jquery.slim.min
+//= require admin/all
+//= require admin/all.min
+//= require admin/bootstrap.bundle.min
+//= require admin/bootstrap
+//= require admin/brands.min
+//= require admin/fontawesome.min
+//= require admin/regular
+//= require admin/regular.min
+//= require admin/sb-admin.min
+//= require admin/solid.min
+//= require admin/v4-shims.min

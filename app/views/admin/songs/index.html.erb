@@ -1,54 +1,38 @@
-<% provide :title, "Dashboard all songs" %>
-<%= form_tag admin_songs_path, method: :get do %>
-  <div class="categories c-cate">
-    <div class="container">
-      <div class="categories-right">
-        <%= text_field_tag :search, params[:search], class: "form-controll" %>
-        <%= submit_tag "Search", class: "btn btn-primary" %>
-      </div>
-      <div class="clearfix"> </div>
-    </div>
+<div class="card mb-3 my-table" style="width: 100%;">
+  <div class="card-header">
+    <i class="fas fa-table"></i>
+    Data Users
   </div>
-<% end %>
-<div class="categories c-cate">
-  <div class="container">
-    <div class="categories-right">
-      <%= link_to "back to dashboard", admin_root_url, class: "btn btn-primary" %>
-    </div>
-  </div>
-</div>
-<div class="row">
-  <div class="col">
-    <div class="card-header border-bottom">
-      <h6 class="m-0">All Songs</h6>
-    </div>
-    <table class="table mb-0">
-      <thead class="bg-light">
-        <tr>
-          <th>Name</th>
-          <th>Album</th>
-          <th>Artist</th>
-          <th>Category</th>
-          <th>Lyric</th>
-          <th>Edit</th>
-          <th>Delete</th>
-        </tr>
-      </thead>
-      <tbody>
-        <% @songs.each do |song| %>
+  <div class="card-body">
+    <div class="table-responsive">
+      <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+        <thead>
           <tr>
-            <td><%= song.name %></td>
-            <td><%= song.album.title %></td>
-            <td><%= song.album.artist.name %></td>
-            <td><%= song.album.category.name %></td>
-            <td class="td-descrip"><%= song.lyric %></td>
-            <td><%= link_to "Edit", edit_song_path(song) %></td>
-            <td><%= link_to "Delete", song, method: :delete, data: {confirm: "Delete song?"} %></td>
+            <th>Name</th>
+            <th>Album</th>
+            <th>Artist</th>
+            <th>Category</th>
+            <th>Lyric</th>
+            <th>Edit</th>
+            <th>Delete</th>
           </tr>
-        <% end %>
-      </tbody>
+        </thead>
+        <tbody>
+          <% @songs.each do |song| %>
+            <tr>
+              <td><%= song.name %></td>
+              <td><%= song.album.title %></td>
+              <td><%= song.album.artist.name %></td>
+              <td><%= song.album.category.name %></td>
+              <td class="td-descrip"><%= song.lyric %></td>
+              <td><%= link_to "Edit", edit_song_path(song) %></td>
+              <td><%= link_to "Delete", song, method: :delete, data: {confirm: "Delete song?"} %></td>
+            </tr>
+          <% end %>
+        </tbody>
     </table>
-    <%= paginate @songs, theme: "twitter-bootstrap-3" %>
   </div>
 </div>
+<%= paginate @songs, theme: "twitter-bootstrap-3" %>
 <%= link_to "Upload song", new_song_path, class: "btn btn-primary" %>
+<div class="card-footer small text-muted">Updated yesterday at 11:59 PM</div>

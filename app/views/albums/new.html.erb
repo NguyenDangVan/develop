@@ -1,10 +1,10 @@
 <% provide :title, "Album" %>
 <% provide :button_text, "create your album" %>
-<h1>Album</h1>
+<center><h1>Album</h1></center>
 <div class="row">
     <div class="col-md-7 col-md-offset-1 new-items"  >
     <%= form_for @album do |f| %>
-    <%= render "shared/error_messages_artist" %>
+    <%= render "shared/error_messages_album" %>
       <%= f.label :title %>
       <%= f.text_field :title %>
       <%= f.label :artist %>
