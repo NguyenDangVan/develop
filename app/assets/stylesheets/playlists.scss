@@ -1,0 +1,5 @@
+/* show playlist in user */
+li#playlist > span > b > a:hover, .new-playlist > a:hover, .pagination > span > a:hover{
+  color: red;
+  text-decoration: none;
+}

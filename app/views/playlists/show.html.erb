@@ -1,0 +1,37 @@
+<% content_for :javascript_includes do %>
+  <%= javascript_include_tag "playlist.js" %>
+<% end %>
+<div class="row list">
+  <div class="col-md-8 col-md-offset-1">
+    <h2><b><%= @playlist.title %></b></h2>
+    <h5>Update at <%= @playlist.user.updated_at %></h5>
+    <% if @playlist.songs.empty? %>
+      <h3>No songs in this playlist</h3>
+    <% else %>
+    <audio controls="true" id="audio" >
+      <source src= "<%= @playlist.songs.first.audio %>", type="audio/mp3">
+    </audio>
+    <ul id="playlist">
+      <% @playlist.songs.each do |song| %>
+        <li class="play-list" >
+          <div class="song-in-playlist">
+            <a href="<%= song.audio %>" class="song" >
+              <%= song.name %> - <%= song.album.artist.name %>
+            </a>
+          </div>
+          <%= link_to song_download_path(song.id), target: :_blank do %>
+            <%= image_tag "icon/download.png", size: "20x20" %>
+          <% end %>
+          <% if current_user?(@user) %>
+              <%= link_to playlist_song_path(playlist_id: @playlist.id, song_id: song.id), method: :delete, data: {confirm: "Delete #{song.name} ?" } do %>
+                <%= image_tag "icon/delete-playlist-song.png", size: "30x30" %>
+              <% end %>
+          <% end %>
+        </li>
+      <% end %>
+    </ul>
+    <h5>Create at <%= @playlist.user.created_at %></h5>
+    <span><%= @playlist.description %></span>
+    <% end %>
+  </div>
+</div>

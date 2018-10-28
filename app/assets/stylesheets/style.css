@@ -62,10 +62,14 @@ span.menu{
 }
 .top-nav ul li.active a{
 	color:#e74c3c;
+	width: 100%;
 }
 .top-nav ul li:nth-child(5) a{
 	border: 1px solid #EEE;
 	border-bottom:none;
+}
+.user-name{
+	font-size: 20px;
 }
 /*----slider----*/
 .benner{

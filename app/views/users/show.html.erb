@@ -2,10 +2,23 @@
 <div class="row">
   <aside class="col-md-4">
     <section class="user_info">
-      <h1>
-        <%= gravatar_for @user %>
-        <%= @user.name %>
-      </h1>
+      <%= gravatar_for @user %>
     </section>
+    <div class="name"><%= @user.name %></div>
   </aside>
+  <div class="col-md-8 new-playlist">
+    <%= link_to new_user_playlist_path(params[:id]) do %>
+      <%= image_tag "icon/add-playlist.png", size: "30x30" %>
+      <span>New playlist</span>
+    <% end %>
+    <% if @user.playlists.any? %>
+      <h3>Playlists (<%= @user.playlists.count %>)</h3>
+      <ol class="play_lists">
+        <%= render @playlists %>
+      </ol>
+      <%= paginate @playlists, theme: "twitter-bootstrap-3" %>
+    <% else %>
+      <h4> You have no playlists </h4>
+    <% end %>
+  </div>
 </div>

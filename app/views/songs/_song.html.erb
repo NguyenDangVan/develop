@@ -5,11 +5,5 @@
     <p><strong>Artist:</strong> <%= link_to song.album.artist.name, "#" %></p>
     <p><strong>Cateogry:</strong> <%= link_to song.album.category.name, "#" %></p>
   </div>
-  <srong><%= link_to "play", song, class: "play-song" %></srong>
-  <% if logged_in? && current_user.admin? %>
-    <%= link_to "delete", song, class: "update-user", method: :delete, data: { confirm: "You sure?" } %>
-    <div class="admin-see">
-      Posted <%= time_ago_in_words(song.created_at) %> ago.
-    </div>
-  <% end %>
+  <strong><%= link_to "play", song, class: "play-song" %></strong>
 </li>

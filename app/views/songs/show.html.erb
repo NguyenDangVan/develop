@@ -1,11 +1,36 @@
 <div class="row">
-  <div class="col-md-6 col-md-offset-3 player">
-    <h3><b><%= @song.name %></b></h3>
-    <%= audio_tag @song.audio, class: "audio-play", controls: "true" %>
-    <%= link_to song_download_path(@song) do %>
+  <div class="col-md-8 player">
+    <h1><b><%= @song.name %></b></h1>
+    <h5> Upload at <%= @song.updated_at %></h5>
+    <div>
+      <%= audio_tag @song.audio, class: "audio-play-song", controls: "true", loop: "true" %>
+    </div>
+    <div class="download">
+      <%= link_to song_download_path(@song), target: :_blank do %>
+      <%= image_tag "icon/download.png", size: "20x20"%>
       Download
-      <%= image_tag "download.png"%>
-    <% end %>
+      <% end %>
+    </div>
+    <div>
+      <p class="add-to-pls">
+        <%= image_tag "icon/add-song.png", size: "20x20" %>
+        Add to my playlist
+      </p>
+      <% if logged_in? %>
+        <ul class="list-pls">
+          <% current_user.playlists.each do |list| %>
+            <li><div class="list-play"><%= list.title %>
+              <%= form_for @playlist_song do |f| %>
+                <%= f.hidden_field :playlist_id, value: list.id %>
+                <%= f.hidden_field :song_id, value: @song.id %>
+                <%= f.submit :Add, class: "add-playlist" %>
+              <% end %>
+            </div>
+            </li>
+          <% end %>
+        </ul>
+      <% end %>
+    </div>
     <h3> Lyrics: </h3>
     <% if @song.lyric? %>
       <div class="lyric"><%= @song.lyric %></div>

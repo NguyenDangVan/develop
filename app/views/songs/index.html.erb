@@ -3,10 +3,5 @@
 <h1">All Songs</h1>
 <ul class="users">
   <%= render @songs %>
-  <li>
-    <% if logged_in? && current_user.admin? %>
-      <%= link_to "upload", new_song_path, class:"update-user" %>
-    <% end %>
-  </li>
 </ul>
 <div style="margin-left: 40px;"><%= paginate @songs, theme: "twitter-bootstrap-3" %></div>

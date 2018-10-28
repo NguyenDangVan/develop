@@ -15,7 +15,14 @@ class UsersController < ApplicationController
     end
   end
 
-  def show; end
+  def show
+    @user = User.find_by id: params[:id]
+    if !@user
+      flash[:danger] = "Not found user"
+      redirect_to root_url
+    end
+    @playlists = @user.playlists.page(params[:page]).per 10
+  end
 
   def create
     @user = User.new user_params

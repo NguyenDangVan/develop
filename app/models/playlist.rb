@@ -1,4 +1,8 @@
 class Playlist < ApplicationRecord
   belongs_to :user
-  has_many :playlist_songs
+  default_scope -> { order(created_at: :desc) }
+  has_many :playlist_songs, dependent: :destroy
+  has_many :songs, through: :playlist_songs
+  validates :title, presence: true
+  validates :user_id, presence: true
 end
