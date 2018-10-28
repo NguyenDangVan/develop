@@ -40,9 +40,9 @@ class ArtistsController < ApplicationController
 
   def index
     if params[:search]
-      @artists = Artist.search_artist(params[:search]).page(params[:page]).per 5
+      @artists = Artist.search_artist_name(params[:search]).page(params[:page]).per 5
     else
-      @artists = Artist.page(params[:page]).per 5
+      @artists = Artist.page(params[:page]).per 3
     end
   end
 

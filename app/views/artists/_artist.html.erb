@@ -6,15 +6,4 @@
     <p><strong>Name:</strong> <%= link_to artist.name, artist %></p>
     <p><strong>Info:</strong> <%= artist.info %></p>
   </div>
-  <% if logged_in? && current_user.admin? %>
-  <div class="update-user">
-    <%= link_to "delete", artist, method: :delete, data: { confirm: "You sure?" } %>
-  </div>
-  <div class="update-user">
-    <%= link_to "new", new_artist_path %>
-  </div>
-  <div class="admin-see">
-    Posted <%= time_ago_in_words(artist.created_at) %> ago.
-  </div>
-  <% end %>
 </li>

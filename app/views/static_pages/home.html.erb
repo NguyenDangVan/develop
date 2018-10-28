@@ -1,12 +1,10 @@
-  <% if !logged_in? %>
-      <%= render "layouts/banner" %>
-    <% end %>
-    <%= render "albums/searchalbum" %>
-    <!-- content -->
-    <div class="content">
-      <div class="title">All Artists</div>
-      <div class="container">
-      <!-- content-left -->
+<% if !logged_in? %>
+  <%= render "layouts/banner" %>
+<% end %>
+  <%= render "albums/searchalbum" %>
+  <div class="content">
+    <div class="title">All Artists</div>
+    <div class="container">
       <div class="col-md-8 content-left">
         <% @artists.each do |artist| %>
         <div class="artical">
@@ -19,44 +17,34 @@
               <div class="clearfix"> </div>
             </div>
             <div class="clearfix"> </div>
-            <!-- artical-info -->
             <div class="artical-info">
               <p><strong>Name:</strong><%= artist.name %></p>
               <p><strong>Info:</strong><%= artist.info %></p>
             </div>
-            <!-- artical-info -->
           </div>
           <div class="clearfix"> </div>
         </div>
         <% end %>
-        <!-- artical-end -->
         <div class="clearfix"> </div>
-        <!-- pagenate -->
         <div><%= paginate @artists, theme: "twitter-bootstrap-3" %></div>
-        <!-- pagenate -->
       </div>
-      <!-- content-left -->
-      <!-- content-right -->
       <div class="col-md-4 content-right">
         <div class="recent-add">
-          <!----sreen-gallery-cursual---->
-            <div class="sreen-gallery-cursual">
-               <!-- start content_slider -->
-                   <div id="owl-demo" class="owl-carousel text-center">
-                          <div class="item">
-                            <%= image_tag("artists/post3.jpg") %>
-                          </div>
-                          <div class="item">
-                            <%= image_tag("artists/post5.jpg") %>
-                          </div>
-                          <div class="item">
-                            <%= image_tag("artists/post6.jpg") %>
-                          </div>
-                      </div>
-            <!--//sreen-gallery-cursual---->
+          <div class="sreen-gallery-cursual">
+              <div id="owl-demo" class="owl-carousel text-center">
+                <div class="item">
+                  <%= image_tag("artists/post3.jpg") %>
+                </div>
+                <div class="item">
+                  <%= image_tag("artists/post5.jpg") %>
+                </div>
+                <div class="item">
+                  <%= image_tag("artists/post6.jpg") %>
+                </div>
+              </div>
+          </div>
         </div>
-      </div>
       <div class="clearfix"> </div>
-      </div>
     </div>
-    </div>
+  </div>
+</div>

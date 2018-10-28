@@ -1,9 +1,10 @@
 class Admin::BaseController < ApplicationController
+  layout "admin"
   before_action :logged_in_user
-  before_action :check_admin_user
+  before_action :require_admin
 
-  def check_admin_user
-    redirect_to admin_root_url unless current_user.admin?
+  def require_admin
+    redirect_to root_path unless current_user.admin?
   end
 
   def index

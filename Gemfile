@@ -4,7 +4,6 @@ git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 ruby "2.5.1"
 
 gem "rails", "~> 5.2.1"
-gem "sqlite3"
 gem "puma", "~> 3.11"
 gem "bcrypt", "3.1.12"
 gem "ffaker"
@@ -22,10 +21,6 @@ gem "turbolinks", "~> 5"
 gem "jbuilder", "~> 2.5"
 gem "bootsnap", ">= 1.1.0", require: false
 gem "jquery-rails"
-gem "carrierwave"
-gem "mini_magick"
-gem "carrierwave-ffmpeg"
-gem "ffaker"
 
 group :development, :test do
   gem "sqlite3"
@@ -49,5 +44,3 @@ group :production do
   gem "pg", "0.18.4"
   gem "fog", "1.42"
 end
-
-gem "tzinfo-data", platforms: [:mingw, :mswin, :x64_mingw, :jruby]

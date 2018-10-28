@@ -1,33 +1,27 @@
 <% provide :title, "Albums" %>
   <%= render "manage" %>
 <div class="content">
-      <div class="container">
-        <div class="albums">
-          <h1>albums</h1>
-          <div class="album-grids">
-            <% @albums.each do |album| %>
-            <div class="album-grid">
-              <div class="album-grid-pic">
-                <%= image_tag("artists/adam.jpg", size: "100x200") %>
-              </div>
-              <div class="album-grid-info">
-                <p><strong>Title:</strong> <%= album.title %> </p>
-                <p><strong>Artist:</strong> <%= album.artist.name %> </p>
-                <p><strong>Category:</strong> <%= album.category.name %> </p>
-                <p><strong>Description:</strong> <%= album.description %> </p>
-                <%= link_to "Play album", song_album_path(album), class: "download-album" %>
-                <% if logged_in? && current_user.admin? %>
-                  <%= link_to "delete", album, method: :delete, class: "download-album", data: { confirm: "You sure?" } %>
-                <% end %>
-              </div>
-            </div>
-            <% end %>
-            <div class="clearfix"> </div>
-          </div>
-          <%= paginate @albums, theme: "twitter-bootstrap-3" %>
+  <div class="container">
+    <div class="albums">
+      <h1>albums</h1>
+    <div class="album-grids">
+    <% @albums.each do |album| %>
+      <div class="album-grid">
+        <div class="album-grid-pic">
+          <%= image_tag("artists/adam.jpg", size: "100x200") %>
+        </div>
+        <div class="album-grid-info">
+          <p><strong>Title:</strong> <%= album.title %> </p>
+          <p><strong>Artist:</strong> <%= album.artist.name %> </p>
+          <p><strong>Category:</strong> <%= album.category.name %> </p>
+          <p><strong>Description:</strong> <%= album.description %> </p>
+          <%= link_to "Play album", song_album_path(album), class: "download-album" %>
         </div>
       </div>
-      <% if logged_in? && current_user.admin? %>
-              <%= link_to "New Album", new_album_path, class: "new-album" %>
             <% end %>
+    <div class="clearfix"> </div>
     </div>
+    <%= paginate @albums, theme: "twitter-bootstrap-3" %>
+    </div>
+  </div>
+</div>
