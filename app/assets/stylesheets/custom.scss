@@ -170,8 +170,9 @@ input {
 .td-edit{
   width: 100px;
 }
-.card mb-3 my-table {
-
+.card mb-3 my-table{
+  width: 100%;
+}
 /* page 404 */
 .image404{
   width: 100%;
@@ -181,4 +182,9 @@ input {
 .new-playlist{
   margin-top: 25px;
   font-size: 1.25em;
+}
+
+/* drop-down menu */
+.dropdown-menu-user{
+  width: 100%;
 }

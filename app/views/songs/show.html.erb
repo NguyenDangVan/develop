@@ -3,7 +3,7 @@
     <h1><b><%= @song.name %></b></h1>
     <h5> Upload at <%= @song.updated_at %></h5>
     <div>
-      <%= audio_tag @song.audio, class: "play-song", controls: "true", loop: "true" %>
+      <%= audio_tag @song.audio, class: "audio-play-song", controls: "true", loop: "true" %>
     </div>
     <div class="download">
       <%= link_to song_download_path(@song), target: :_blank do %>

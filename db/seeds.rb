@@ -8,22 +8,23 @@ User.create! name: "admin1101",
              activated: true
 
 
-User.create!
+User.create!(
   name: "man1",
   email: "man1@yahoo.com",
   age: 21,
   password: "123456",
   password_confirmation: "123456",
   activated: true
+)
 
-User.create!
+User.create!(
   name: "man2",
   email: "man2@yahoo.com",
   age: 21,
   password: "123456",
   password_confirmation: "123456",
   activated: true
-
+)
 
 20.times do |n|
   name  = FFaker::Name.name
