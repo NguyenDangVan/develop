@@ -3,10 +3,10 @@ class PlaylistsController < ApplicationController
 
   def show
     @playlist = current_user.playlists.find_by id: params[:id]
+    @user = User.find_by id: params[:id]
     if @playlist
       return
     else
-      @user = User.find_by id: params[:id]
       @playlist = @user.playlists.find_by id: params[:id]
       return if @playlist
       flash[:danger] = "Not found this playlist"

@@ -12,6 +12,9 @@ $gray-medium-light: #eaeaea;
 ul{
   list-style-type: none;
 }
+a:hover{
+  text-decoration: none;
+}
 /* sidebar */
 aside {
   section.user_info {
@@ -68,12 +71,6 @@ input {
   .form-control {
     color: red;
   }
-}
-.col-md-offset-3 {
-  margin-left: 32%;
-}
-.col-md-6 {
-  width: 35%;
 }
 
 /* Users index */
