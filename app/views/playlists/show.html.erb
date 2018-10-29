@@ -11,6 +11,15 @@
     <audio controls="true" id="audio" >
       <source src= "<%= @playlist.songs.first.audio %>", type="audio/mp3">
     </audio>
+    <!-- <button id="only-song">
+      only-song
+    </button> -->
+    <button id="previous-song">
+      <%= image_tag "icon/previous-song.png", size: "20x20" %>
+    </button>
+    <button id="next-song">
+      <%= image_tag "icon/next-song.png", size: "20x20" %>
+    </button>
     <ul id="playlist">
       <% @playlist.songs.each do |song| %>
         <li class="play-list" >
