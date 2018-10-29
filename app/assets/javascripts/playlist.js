@@ -1,16 +1,16 @@
-$(document).ready(function () {
+$(document).ready(function(){
   init();
   function init(){
-    var current = 0;
     var audio = $("#audio");
     var playlist = $("#playlist");
-    var songs = playlist.find("li a .song");
-    var len = songs.length - 1;
+    var songs = playlist.find("li div a.song");
+    var current = 0;
+    var len = songs.length;
     audio[0].volume = .50;
     playlist.on("click", ".song-in-playlist", function(e){
       e.preventDefault();
       link = $(this).find("a.song");
-      current = link.parent().index();
+      current = link.parent().parent().index();
       run(link, audio[0]);
     });
     audio[0].addEventListener('ended',function(e){

@@ -1,5 +1,5 @@
 .player{
-  margin-left: 10%;
+  margin-left: 15%;
 }
 .audio-play-song{
   width: 90%;
@@ -16,10 +16,11 @@
   position: relative;
 }
 .add-playlist{
-  background-color: green;
+  background-color: #1bca1b;
   color: yellow;
+  border-radius: 5px;
 }
-.list-pls{
+ul.list-pls{
   display: none;
 }
 audio{

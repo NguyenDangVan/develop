@@ -11,27 +11,37 @@
       Download
       <% end %>
     </div>
-    <div>
-      <p class="add-to-pls">
-        <%= image_tag "icon/add-song.png", size: "20x20" %>
-        Add to my playlist
-      </p>
-      <% if logged_in? %>
-        <ul class="list-pls">
-          <% current_user.playlists.each do |list| %>
-            <li><div class="list-play"><%= list.title %>
-              <%= form_for @playlist_song do |f| %>
-                <%= f.hidden_field :playlist_id, value: list.id %>
-                <%= f.hidden_field :song_id, value: @song.id %>
-                <%= f.submit :Add, class: "add-playlist" %>
-              <% end %>
-            </div>
-            </li>
-          <% end %>
-        </ul>
+  <% if logged_in?  %>
+    <% if current_user.playlists.empty? %>
+      <p> You have no playlist </p>
+      <%= link_to new_user_playlist_path(params[:id]) do %>
+      <%= image_tag "icon/add-playlist.png", size: "25x25" %>
+        <span>New playlist</span>
       <% end %>
     </div>
-    <%= render "favorite_form" if logged_in? %>
+    <%= render "favorite_form" %>
+  <% else %>
+      <div>
+        <p class="add-to-pls">
+          <%= image_tag "icon/add-song.png", size: "20x20" %>
+          Add to my playlist
+        </p>
+          <ul class="list-pls">
+            <% current_user.playlists.each do |list| %>
+              <li><div class="list-play"><%= list.title %>
+                <%= form_for @playlist_song do |f| %>
+                  <%= f.hidden_field :playlist_id, value: list.id %>
+                  <%= f.hidden_field :song_id, value: @song.id %>
+                  <%= f.submit :Add, class: "add-playlist" %>
+                <% end %>
+              </div>
+              </li>
+            <% end %>
+          </ul>
+      </div>
+    <% end %>
+  <% end %>
+
     <h3> Lyrics: </h3>
     <% if @song.lyric? %>
       <div class="lyric"><%= @song.lyric %></div>
