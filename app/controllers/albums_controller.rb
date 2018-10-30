@@ -36,10 +36,10 @@ class AlbumsController < ApplicationController
     @category = Category.find_by id: params[:category_id]
     if @category
       @q = @category.albums.ransack(params[:q])
-      @albums = @q.result.page(params[:page]).per 4
+      @albums = @q.result.page(params[:page]).per 8
     else
       @q = Album.ransack(params[:q])
-      @albums = @q.result.page(params[:page]).per 4
+      @albums = @q.result.page(params[:page]).per 8
     end
   end
 

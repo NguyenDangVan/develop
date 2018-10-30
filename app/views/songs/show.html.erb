@@ -31,6 +31,7 @@
         </ul>
       <% end %>
     </div>
+    <%= render "favorite_form" if logged_in? %>
     <h3> Lyrics: </h3>
     <% if @song.lyric? %>
       <div class="lyric"><%= @song.lyric %></div>
