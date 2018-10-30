@@ -2,9 +2,10 @@ class User < ApplicationRecord
   attr_accessor :remember_token, :activation_token, :reset_token
   before_save :downcase_email
   before_create :create_activation_digest
-  has_many :favorite
-  VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
+  has_many :favorite_for_song, class_name: "Favorite", dependent: :destroy
+  has_many :favorite_songs, through: :favorite_for_song, source: :song, dependent: :destroy
   has_many :playlists, dependent: :destroy
+  VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
   validates :name, :email, :age, presence: true
   validates :name, length: {maximum: 30}
   validates :age, numericality: true, length: {maximum: 3}
@@ -41,6 +42,18 @@ class User < ApplicationRecord
 
   def activate
     update activated: true, activated_at: Time.zone.now
+  end
+
+  def favorite song
+    favorite_songs << song
+  end
+
+  def unfavorite song
+    favorite_songs.delete(song)
+  end
+
+  def favorited? song
+    favorite_songs.include? song
   end
 
   def send_activation_email

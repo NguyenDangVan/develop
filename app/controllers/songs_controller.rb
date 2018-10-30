@@ -18,7 +18,6 @@ class SongsController < ApplicationController
     end
   end
 
-
   def index
     @artist = Artist.find_by id: params[:artist_id]
     @category = Category.find_by id: params[:category_id]

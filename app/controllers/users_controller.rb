@@ -3,6 +3,7 @@ class UsersController < ApplicationController
   before_action :logged_in_user, except: %i(new create)
   #before_action :correct_user, only: %i(show edit update)
   before_action :admin_user, only: :destroy
+
   def new
     @user = User.new
   end
@@ -54,6 +55,13 @@ class UsersController < ApplicationController
       flash[:danger] = "Delete unsuccessfull"
       redirect_to admin_users_path
     end
+  end
+
+  def favorite_songs
+    @title = "My favourite"
+    @user = User.find_by id: params[:id]
+    @users = @user.favorite_songs.page(params[:page]).per 10
+    render "show_favorite"
   end
 
   private

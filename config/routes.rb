@@ -1,4 +1,7 @@
 Rails.application.routes.draw do
+  get 'favorites/destroy'
+  get 'favorites/create'
+  get 'favorites/no-assets'
   get "password_resets/new"
   get "password_resets/edit"
   root "static_pages#home"
@@ -31,8 +34,12 @@ Rails.application.routes.draw do
   end
   get "/not_found", to: "static_pages#not_found"
   resources :users do
+    member do
+      get :favorite_songs
+    end
     resources :playlists
   end
+  resources :favorites, only: %i(create destroy)
   resources :playlist_songs
   resources :albums
   resources :songs
