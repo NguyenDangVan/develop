@@ -1,7 +1,12 @@
-<li >
-  <%= link_to image_tag("artists/adam.jpg", size: "100x100"), album.category %>
-  <p class="user"><strong>Title:</strong> <%= link_to album.title, album %></p>
-  <p class="user"><strong>Categoty:</strong> <%= link_to album.category.name, album.category %></p>
-  <p class="user"><strong>Artist:</strong> <%= link_to album.artist.name, album.artist %></p>
-  <p class="content" style="height: 100px;"><strong>Description:</strong> <%= album.description %></p>
-</li>
+<div class="album-grid">
+  <div class="album-grid-pic">
+    <%= image_tag("artists/post2.jpg") %>
+  </div>
+  <div class="album-grid-info">
+    <p><strong>Title:</strong> <%= album.title %> </p>
+    <p><strong>Artist:</strong> <%= album.artist.name %> </p>
+    <p><strong>Category:</strong> <%= album.category.name %> </p>
+    <p><strong>Description:</strong> <%= album.description %> </p>
+    <%= link_to "Play album", song_album_path(album), class: "download-album" %>
+  </div>
+</div>

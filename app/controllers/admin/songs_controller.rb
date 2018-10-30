@@ -7,4 +7,20 @@ class Admin::SongsController < Admin::BaseController
       @songs = Song.page(params[:page]).per 10
     end
   end
+
+  def destroy
+    @song = Song.find_by id: params[:id]
+    if @song.lyric
+      @song.lyric = nil
+    else
+      flash[:danger] = "Lyric is nill"
+    end
+  end
+
+  def add
+    @song = Song.find_by id: params[:id]
+    if @song.lyric.nil
+      redirect_to new_song_path
+    end
+  end
 end

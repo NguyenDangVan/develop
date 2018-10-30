@@ -24,7 +24,16 @@
               <td><%= song.album.title %></td>
               <td><%= song.album.artist.name %></td>
               <td><%= song.album.category.name %></td>
-              <td class="td-descrip"><%= song.lyric %></td>
+              <td class="td-descrip">
+                <%= song.lyric %>
+                <div class="btn btn-basic" style="float: right; margin: 0 2px;">
+                  <%= link_to "Remove", "#" %>
+                </div>
+
+                <div class="btn btn-basic" style="float: right">
+                  <%= link_to "Add", new_song_path %>
+                </div>
+                </td>
               <td><%= link_to "Edit", edit_song_path(song) %></td>
               <td><%= link_to "Delete", song, method: :delete, data: {confirm: "Delete song?"} %></td>
             </tr>

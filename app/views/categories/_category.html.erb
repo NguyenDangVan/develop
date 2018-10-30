@@ -2,12 +2,4 @@
   <div class="info-user">
     <p><strong>Category:<strong> <%= link_to category.name, category %></p>
   </div>
-  <% if logged_in? && current_user.admin? %>
-  <div class ="update-user">
-     <%= link_to "delete", category, method: :delete, data: { confirm: "You sure?" } %>
-  </div>
-  <div class ="update-user">
-     <%= link_to "new", new_category_path %>
-  </div>
-  <% end %>
 </li>
