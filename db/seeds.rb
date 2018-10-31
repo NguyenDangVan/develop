@@ -93,31 +93,32 @@ album5 = Album.create!(
   category: category4,
   description: "Japan song"
 )
+lyric = Lyric.create! content: ".................."
 
 song1 = Song.create!(
   name: "Girls like you",
-  lyric: "Are you",
+  lyric_id: lyric,
   album: album1
 )
 song2 = Song.create!(
   name: "Lac troi",
-  lyric: "...",
+  lyric_id: lyric,
   album: album1
 )
 song3 = Song.create!(
   name: "Suger",
-  lyric: "...............",
+  lyric_id: lyric,
   album: album2
 )
 song4 = Song.create!(
   name: "haruharu",
-  lyric: "...............",
+  lyric_id: lyric,
   album: album3
 )
 
 testsong = Song.create!(
   name: "testSong",
-  lyric: "abcdxyz",
+  lyric_id: lyric,
   album: album1
   )
 testplaylist1 = Playlist.create!(

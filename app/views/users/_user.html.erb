@@ -1,5 +1,7 @@
 <li>
-  <%= gravatar_for user, size: 100 %>
+  <%= link_to user do %>
+    <%= gravatar_for user, size: 100 %>
+  <% end %>
   <div class="info-user">
     <p>Name: <%= link_to user.name, user %></p>
     <p>Email: <%= user.email %></p>

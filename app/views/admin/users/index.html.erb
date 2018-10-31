@@ -24,7 +24,9 @@
             <td><%= user.age %></td>
             <td><%= user.created_at %></td>
             <td><%= link_to "Edit", edit_user_path(user.id) %></td>
-            <td><%= link_to "Delete", user, method: :delete, data: {confirm: "Delete user?"} %></td>
+            <td>
+              <%= link_to "Delele", user_path(user), method: :delete, data: {confirm: "Delete user?"} %>
+            </td>
           </tr>
         <% end %>
         </tbody>

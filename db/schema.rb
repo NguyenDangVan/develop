@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_10_25_100943) do
+ActiveRecord::Schema.define(version: 2018_10_31_053248) do
 
   create_table "albums", force: :cascade do |t|
     t.string "title"
@@ -48,6 +48,12 @@ ActiveRecord::Schema.define(version: 2018_10_25_100943) do
     t.index ["user_id"], name: "index_favorites_on_user_id"
   end
 
+  create_table "lyrics", force: :cascade do |t|
+    t.string "content"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "playlist_songs", force: :cascade do |t|
     t.integer "playlist_id"
     t.integer "song_id"
@@ -72,11 +78,12 @@ ActiveRecord::Schema.define(version: 2018_10_25_100943) do
   create_table "songs", force: :cascade do |t|
     t.string "name"
     t.integer "album_id"
-    t.text "lyric"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "audio"
+    t.integer "lyric_id"
     t.index ["album_id"], name: "index_songs_on_album_id"
+    t.index ["lyric_id"], name: "index_songs_on_lyric_id"
   end
 
   create_table "users", force: :cascade do |t|
