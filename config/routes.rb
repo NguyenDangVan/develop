@@ -36,4 +36,5 @@ Rails.application.routes.draw do
   resources :playlist_songs
   resources :albums
   resources :songs
+  resources :comments
 end

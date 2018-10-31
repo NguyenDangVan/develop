@@ -1,29 +1,73 @@
 .player{
   margin-left: 15%;
 }
-.audio-play-song{
+.audio-play-song, .cmt{
   width: 90%;
 }
 .lyric{
   position: relative;
-  width: 150%;
+  width: 90%;
 }
 .download{
   font-size: 1.5em;
+  margin-top: 10px;
+  margin-bottom: 15px;
 }
 #new_playlist_song{
   width: 10%;
   position: relative;
 }
 .add-playlist{
-  background-color: #1bca1b;
+  background-color: #1bca1bbd;
   color: yellow;
   border-radius: 5px;
 }
-ul.list-pls{
+ul.list-pls, .hide-cmt, .hide-lyric{
   display: none;
 }
 audio{
-  border-radius: 20px;
+  border-radius: 25px;
   border: solid 2px red;
+}
+
+/* comment */
+.cmt{
+  margin-top: 20px;
+}
+.btn-cmt{
+  width: 20%;
+  border-radius: 5px;
+  background-color: #ff9232;
+}
+.btn-cmt:hover{
+  color: #ffffff;
+  background-color: #f73600;
+}
+textarea#comment_body{
+  background-image: linear-gradient(to left,#d9edf7, #eee);
+  color: #000000;
+  border-radius: 10px;
+}
+.show-cmt{
+  font-weight: bold;
+  font-size: 1.25em;
+}
+.list-cmt{
+  margin-bottom: 5px;
+  padding-left: 5px;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  border: 1px solid #f88657;
+  box-shadow: 8px 6px #ceb6b6;
+  border-radius: 5px;
+  width: 90%;
+}
+.list-cmt-child{
+  background-color: #dcedf5;
+}
+.edit-cmt{
+  display: none;
+}
+.btn-edit-cmt, .btn-del-cmt{
+  margin-left: 10px;
 }

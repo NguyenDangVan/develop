@@ -48,6 +48,9 @@ class SongsController < ApplicationController
 
   def show
     @playlist_song = PlaylistSong.new
+    @comment = Comment.new
+    @comment5 = @song.comments.first(5)
+    @comment6_to_last = @song.comments[5..-1]
     return if @song
     flash[:danger] = "Not found this song"
     redirect_to not_found_path

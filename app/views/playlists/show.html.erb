@@ -4,7 +4,6 @@
 <div class="row list">
   <div class="col-md-8 col-md-offset-1">
     <h2><b><%= @playlist.title %></b></h2>
-    <h5>Update at <%= @playlist.user.updated_at %></h5>
     <% if @playlist.songs.empty? %>
       <h3>No songs in this playlist</h3>
     <% else %>
@@ -33,14 +32,17 @@
           <% end %>
           <% if current_user?(@user) %>
               <%= link_to playlist_song_path(playlist_id: @playlist.id, song_id: song.id), method: :delete, data: {confirm: "Delete #{song.name} ?" } do %>
-                <%= image_tag "icon/delete-playlist-song.png", size: "30x30" %>
+                <%= image_tag "icon/delete-playlist-song.png", size: "25x25" %>
               <% end %>
           <% end %>
         </li>
       <% end %>
     </ul>
-    <h5>Create at <%= @playlist.user.created_at %></h5>
+    <h5>Create at <%= time_ago_in_words(@playlist.user.created_at) %> ago.</h5>
     <span><%= @playlist.description %></span>
     <% end %>
+
+    <!-- <div>Comments</div> -->
+
   </div>
 </div>

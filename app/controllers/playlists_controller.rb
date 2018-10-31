@@ -46,4 +46,8 @@ class PlaylistsController < ApplicationController
       flash[:danger] = "Please log in."
       redirect_to login_url
     end
+
+    def to_key
+id ? id : nil
+end
 end

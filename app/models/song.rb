@@ -3,6 +3,7 @@ class Song < ApplicationRecord
   has_many :playlist, through: :playlist_song
   has_many :playlist_song
   has_many :favorite
+  has_many :comments
   validates :name, presence: true, length: {maximum: 30}
   validates :album_id, presence: true
   mount_uploader :audio, AudioUploader

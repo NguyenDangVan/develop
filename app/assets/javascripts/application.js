@@ -2,7 +2,7 @@
 //= require activestorage
 //= require turbolinks
 //= require jquery
-//= require jquery.min
+//= require jquery_ujs
 //= require main
 //= require responsiveslides.min
 //= require song

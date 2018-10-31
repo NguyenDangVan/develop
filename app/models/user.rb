@@ -11,6 +11,7 @@ class User < ApplicationRecord
   validates :email, length: {maximum: 255}, uniqueness: {case_sensitive: false}, format: {with: VALID_EMAIL_REGEX}
   has_secure_password
   validates :password, presence: true, length: {minimum: 6}, allow_nil: true
+  has_many :comments, through: :like_cmts, dependent: :destroy
 
   scope :search_user_name, -> (name_user) {where("name LIKE ?", "%#{name_user}%")}
 
