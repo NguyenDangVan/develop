@@ -1,7 +1,7 @@
 <div class="row">
   <div class="col-md-8 player">
-    <h1><b><%= @song.name %></b></h1>
-    <h5> Upload at <%= @song.updated_at %></h5>
+    <h1><b><%= @song.name %> - <%= @song.album.artist.name %></b></h1>
+    <h5> Upload at <%= time_ago_in_words(@song.updated_at) %> ago.</h5>
     <div>
       <%= audio_tag @song.audio, class: "audio-play-song", controls: "true", loop: "true" %>
     </div>
@@ -44,9 +44,38 @@
 
     <h3> Lyrics: </h3>
     <% if @song.lyric? %>
-      <div class="lyric"><%= @song.lyric %></div>
+      <div class="lyric"><%= @song.lyric[0..240] %></div>
+      <div class="hide-lyric"><%= @song.lyric[241..-1] %></div>
+      <p class="show-lyric">More</p>
     <% else %>
-      <div class="lyric"> Lyric has not been updated yet </div>
+      <div class="lyric">Lyric has not been updated yet</div>
     <% end %>
+
+    <!-- comment -->
+    <div class="cmt"><span class="show-cmt">Comments:</span>
+      <!-- create comment -->
+      <% if logged_in? %>
+        </br>
+        <%= form_for @comment, remote: true do |f| %>
+          <div class="field">
+            <%= f.hidden_field :user_id, value: current_user.id %>
+            <%= f.hidden_field :song_id, value: @song.id %>
+            <%= f.text_area :body, placeholder: "Compose new comment...", class: "form-control" %>
+          </div>
+          <%= f.submit "Comment", class: "btn-cmt" %>
+        <% end %>
+      <% end %>
+    </div>
+        <!-- view comment -->
+        <ul class="parent-list-cmt">
+        <%= render partial: "comments/comment", collection: @comment5 %>
+        </ul>
+        <% unless (@comment6_to_last.nil?) %>
+          <p class="show-cmt"> More ... </p>
+          <ul class="hide-cmt">
+            <%= render partial: "comments/comment", collection: @comment6_to_last %>
+          </ul>
+        <% end %>
+      </div>
   </div>
 </div>

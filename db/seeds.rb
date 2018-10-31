@@ -96,6 +96,7 @@ album5 = Album.create!(
 
 song1 = Song.create!(
   name: "Girls like you",
+  lyric: "Từ góc nhìn chuyên môn, một số stylist cho rằng mặc váy rách như trên đến nơi công cộng quá phản cảm. Trang phục phải phù hợp với địa điểm, hoàn cảnh và người mặc cùng yếu tố thẩm mỹ nữa. Mà bộ trang phục này hoàn toàn không phù hợp với bất cứ tiêu chí nào. Không phù hợp với hoàn cảnh, địa điểm, cũng như phom dáng của người mặc, làm lộ các điểm nhạy cảm của cơ thể một cách vô duyên. Về yếu tố thẩm mỹ thì đường cut- out ở vị trí không tinh tế, không hề tạo ra yếu tố gợi cảm chỉ đơn thuần làm phô lộ cơ thể, stylist An Mi nói. ",
   album: album1
 )
 song2 = Song.create!(
