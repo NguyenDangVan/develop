@@ -1,7 +1,6 @@
 Rails.application.routes.draw do
-  get 'favorites/destroy'
-  get 'favorites/create'
-  get 'favorites/no-assets'
+  get "favorites/destroy"
+  get "favorites/create"
   get "password_resets/new"
   get "password_resets/edit"
   root "static_pages#home"

@@ -2,6 +2,7 @@ class SongsController < ApplicationController
   before_action :logged_in_user, only: :create
   before_action :find_song, except: %i(create new index)
   before_action :admin_user, only: %i(edit update destroy)
+  before_action :all_categories
 
   def new
     @song = Song.new
@@ -10,7 +11,6 @@ class SongsController < ApplicationController
   def create
     @song = Song.new song_params
     if @song.save
-      flash[:success] = "upload successfull"
       redirect_to admin_songs_path
     else
       flash.now[:danger] = "upload not successfull"

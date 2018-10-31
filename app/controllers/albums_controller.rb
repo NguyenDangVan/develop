@@ -32,14 +32,11 @@ class AlbumsController < ApplicationController
   def show; end
 
   def index
-    @artists = Artist.all
-    @category = Category.find_by id: params[:category_id]
-    if @category
-      @q = @category.albums.ransack(params[:q])
-      @albums = @q.result.page(params[:page]).per 8
+    @categories = Category.all
+    if params[:search]
+      @albums = Album.search_title(params[:search]).page(params[:page]).per 8
     else
-      @q = Album.ransack(params[:q])
-      @albums = @q.result.page(params[:page]).per 8
+      @albums = Album.page(params[:page]).per 8
     end
   end
 

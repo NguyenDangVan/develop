@@ -10,4 +10,8 @@ class ApplicationController < ActionController::Base
       flash.now[:danger] = "Please log in."
       redirect_to login_url
     end
+
+    def all_categories
+      @categories = Category.all
+    end
 end

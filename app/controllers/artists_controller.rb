@@ -2,6 +2,7 @@ class ArtistsController < ApplicationController
   before_action :find_artist, except: %i(create new index)
   before_action :logged_in_user, except: %i(show index)
   before_action :admin_user, only: %i(new create destroy)
+  before_action :all_categories
 
   def new
     @artist = Artist.new

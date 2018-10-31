@@ -1,8 +1,13 @@
 <% provide :title, @artist.name %>
 <div class="header top-header">
+  <div class="categories c-cate">
     <div class="container">
+      <div class="categories-left">
+        <%= render "static_pages/categories_left" %>
+      </div>
+      <div class="clearfix"> </div>
     </div>
-    <%= render "layouts/allartists" %>
+  </div>
     <div class="content">
       <div class="container">
       <div class="col-md-8 content-left">
@@ -13,17 +18,14 @@
                 <%= image_tag("artists/post6.jpg") %>
             </div>
             <div class="artical-details-info-right">
-              <p><strong>Name:</strong><%= @artist.name %>,</p>
+              <p><strong>Name:</strong> <%= @artist.name %>,</p>
+              <p><strong>Genre:</strong> <%= @artist.name %>,</p>
+              <p><strong>Country:</strong> <%= @artist.name %>,</p>
               <div class="dicription">
-                <p><strong>Info :</strong><%= @artist.info %></p>
+                <p><strong>Infomation :</strong> <%= @artist.info %></p>
               </div>
               <%= link_to "all songs >>", artist_songs_path(@artist), class: "download" %>
               <p></p>
-              <% if logged_in? && current_user.admin? %>
-                <%= link_to "delete", @artist, method: :delete, class: "download", data: { confirm: "You sure?" } %>
-                <p></p>
-                <%= link_to "new", new_artist_path, class: "download" %>
-              <% end %>
             </div>
             <div class="clearfix"> </div>
           </div>

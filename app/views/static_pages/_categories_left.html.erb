@@ -1,0 +1,20 @@
+<ul class="options">
+  <li><%= link_to "US-UK", category_songs_path(1) %></li>
+  <li><%= link_to "K-Pop", category_songs_path(2) %></li>
+  <li><%= link_to "V-Pop", category_songs_path(3) %></li>
+  <li><%= link_to "J-Pop", category_songs_path(4) %></li>
+  <li><%= link_to "Fantasy", "#" %></li>
+  <li><%= link_to "EDM", "#" %></li>
+</ul>
+<select class="s-option">
+  <option>select categories</option>
+  <% if @categories.count > 6 %>
+  <%= @categories.each do |f| %>
+  <option><%= link_to f.name, category_songs_path(f.id) %></option>
+  <% end %>
+  <% else %>
+  <option>Adventure</option>
+  <option>Adventure</option>
+  <option>Adventure</option>
+  <% end %>
+</select>

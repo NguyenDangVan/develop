@@ -6,11 +6,25 @@
         <li><%= link_to "K-Pop", category_songs_path(2) %></li>
         <li><%= link_to "V-Pop", category_songs_path(3) %></li>
         <li><%= link_to "J-Pop", category_songs_path(4) %></li>
+        <li><%= link_to "Fantasy", "#" %></li>
+        <li><%= link_to "EDM", "#" %></li>
       </ul>
+      <select class="s-option">
+        <option>select categories</option>
+        <% if @categories.count > 6 %>
+          <%= @categories.each do |f| %>
+            <option><%= link_to f.name, category_songs_path(f.id) %></option>
+          <% end %>
+        <% else %>
+          <option>Adventure</option>
+          <option>Adventure</option>
+          <option>Adventure</option>
+        <% end %>
+      </select>
     </div>
     <div class="categories-right">
-      <%= form_tag songs_path, method: :get do %>
-        <%= text_field_tag :search, params[:search], class: "form-control", placeholder: "search name" %>
+      <%= form_tag albums_path, method: :get do %>
+        <%= text_field_tag :search, params[:search], class: "form-control", placeholder: "search title" %>
         <%= submit_tag "Search", class: "btn btn-primary" %>
       <% end %>
     </div>
