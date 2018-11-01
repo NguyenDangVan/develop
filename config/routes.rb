@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  get 'lyrics/new'
   get "favorites/destroy"
   get "favorites/create"
   get "password_resets/new"
@@ -15,7 +16,9 @@ Rails.application.routes.draw do
 
   namespace :admin do
     resources :categories, only: :index
-    resources :songs, only: :index
+    resources :songs do
+      resources :lyrics, only: %i(new create destroy)
+    end
     resources :users, only: :index
     resources :artists, only: :index
     resources :albums, only: :index
@@ -41,5 +44,8 @@ Rails.application.routes.draw do
   resources :favorites, only: %i(create destroy)
   resources :playlist_songs
   resources :albums
-  resources :songs
+  resources :songs do
+    resources :lyrics, only: %i(new create destroy)
+  end
+  resources :lyrics
 end

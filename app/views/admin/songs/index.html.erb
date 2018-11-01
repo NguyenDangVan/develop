@@ -1,7 +1,7 @@
 <div class="card mb-3 my-table" style="width: 100%;">
   <div class="card-header">
     <i class="fas fa-table"></i>
-    Data Users
+    Data Songs
   </div>
   <div class="card-body">
     <div class="table-responsive">
@@ -24,16 +24,20 @@
               <td><%= song.album.title %></td>
               <td><%= song.album.artist.name %></td>
               <td><%= song.album.category.name %></td>
-              <td class="td-descrip">
-                <%= song.lyric %>
-                <div class="btn btn-basic" style="float: right; margin: 0 2px;">
-                  <%= link_to "Remove", "#" %>
-                </div>
-
+              <td class="td-descrip" style="width: 60%;">
+                <% @lyrics.each do |lyric| %>
+                  <% if song.id == lyric.song_id %>
+                    <%= lyric.content %>
+                    <div class="btn btn-basic" style="float: right; margin: 0 2px;">
+                      <%= link_to "Remove", admin_song_lyric_path(song.id, lyric.id), method: :delete, data: {cofirm: "Remove this lyric?"} %>
+                    </div>
+                    <hr>
+                  <% end %>
+                <% end %>
                 <div class="btn btn-basic" style="float: right">
-                  <%= link_to "Add", new_song_path %>
+                  <%= link_to "Add", new_song_lyric_path(song.id) %>
                 </div>
-                </td>
+              </td>
               <td><%= link_to "Edit", edit_song_path(song) %></td>
               <td><%= link_to "Delete", song, method: :delete, data: {confirm: "Delete song?"} %></td>
             </tr>

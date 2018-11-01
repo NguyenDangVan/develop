@@ -93,34 +93,38 @@ album5 = Album.create!(
   category: category4,
   description: "Japan song"
 )
-lyric = Lyric.create! content: ".................."
 
 song1 = Song.create!(
   name: "Girls like you",
-  lyric_id: lyric,
   album: album1
 )
 song2 = Song.create!(
   name: "Lac troi",
-  lyric_id: lyric,
   album: album1
 )
 song3 = Song.create!(
   name: "Suger",
-  lyric_id: lyric,
   album: album2
 )
 song4 = Song.create!(
   name: "haruharu",
-  lyric_id: lyric,
   album: album3
 )
 
 testsong = Song.create!(
   name: "testSong",
-  lyric_id: lyric,
   album: album1
-  )
+)
+
+lyric = Lyric.create!(
+  content: "..................",
+  song: song1
+)
+lyric1 = Lyric.create!(
+  content: "..................",
+  song: song2
+)
+
 testplaylist1 = Playlist.create!(
   title: "testPlaylist1",
   user: User.find(1),
