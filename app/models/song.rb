@@ -9,6 +9,7 @@ class Song < ApplicationRecord
   has_many :comments
   validates :name, presence: true, length: {maximum: 30}
   validates :album_id, presence: true
+  validates :audio, presence: true
   mount_uploader :audio, AudioUploader
 
   scope :search_song, -> (name_song) {where("name LIKE ?", "%#{name_song}%")}
