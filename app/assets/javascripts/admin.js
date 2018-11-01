@@ -1,5 +1,6 @@
 //= require admin/jquery
 //= require admin/jquery.min
+//= require jquery_ujs
 //= require admin/jquery.slim
 //= require admin/jquery.slim.min
 //= require admin/all

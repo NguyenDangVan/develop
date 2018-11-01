@@ -96,30 +96,35 @@ album5 = Album.create!(
 
 song1 = Song.create!(
   name: "Girls like you",
-  lyric: "Are you",
   album: album1
 )
 song2 = Song.create!(
   name: "Lac troi",
-  lyric: "...",
   album: album1
 )
 song3 = Song.create!(
   name: "Suger",
-  lyric: "...............",
   album: album2
 )
 song4 = Song.create!(
   name: "haruharu",
-  lyric: "...............",
   album: album3
 )
 
 testsong = Song.create!(
   name: "testSong",
-  lyric: "abcdxyz",
   album: album1
-  )
+)
+
+lyric = Lyric.create!(
+  content: "..................",
+  song: song1
+)
+lyric1 = Lyric.create!(
+  content: "..................",
+  song: song2
+)
+
 testplaylist1 = Playlist.create!(
   title: "testPlaylist1",
   user: User.find(1),
