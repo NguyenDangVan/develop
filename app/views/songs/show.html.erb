@@ -40,7 +40,7 @@
       </div>
     <% end %>
   <% end %>
-<%= render "favorite_form" if logged_in? %>
+  <%= render "favorite_form" if logged_in? %>
     <h3> Lyrics: </h3>
     <% @lyrics.each do |lyric| %>
     <% if lyric.song_id == @song.id %>
@@ -52,7 +52,6 @@
     <% if @song.lyrics.count == 0 %>
       <div class="lyric">Lyric has not been updated yet</div>
     <% end %>
-
     <!-- comment -->
     <div class="cmt"><span class="show-cmt">Comments:</span>
       <!-- create comment -->
@@ -68,8 +67,6 @@
           <%= f.submit "Comment", class: "btn-cmt" %>
         <% end %>
       <% end %>
-
-
         <!-- view comment -->
         <ul class="parent-list-cmt">
         <%= render partial: "comments/comment", collection: @comment5 %>
@@ -80,7 +77,6 @@
             <%= render partial: "comments/comment", collection: @comment6_to_last %>
           </ul>
         <% end %>
-
       </div>
   </div>
 </div>

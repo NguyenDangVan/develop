@@ -1,6 +1,9 @@
 <% provide :title, "Songs" %>
 <%= render "songs/searchsong" %>
-<ul class="users">
+<ul class="users" style="width: 60%; float: left;">
   <%= render @songs %>
 </ul>
-<div style="margin-left: 40px;"><%= paginate @songs, theme: "twitter-bootstrap-3" %></div>
+<div style="float: right; width: 40%;">
+  <%= render "static_pages/popular_album" %>
+</div>
+<div style="margin-left: 40px; clear: both;"><%= paginate @songs, theme: "twitter-bootstrap-3" %></div>

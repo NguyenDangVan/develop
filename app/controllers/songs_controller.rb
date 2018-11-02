@@ -22,14 +22,14 @@ class SongsController < ApplicationController
     @artist = Artist.find_by id: params[:artist_id]
     @category = Category.find_by id: params[:category_id]
     if params[:search]
-      @songs = Song.search_song(params[:search]).page(params[:page]).per 5
+      @songs = Song.search_song(params[:search]).page(params[:page]).per 4
     else
       if @category
-        @songs = @category.songs.page(params[:page]).per 5
+        @songs = @category.songs.page(params[:page]).per 4
       elsif @artist
-        @songs = @artist.songs.page(params[:page]).per 5
+        @songs = @artist.songs.page(params[:page]).per 4
       else
-        @songs = Song.page(params[:page]).per 5
+        @songs = Song.page(params[:page]).per 4
       end
     end
   end
