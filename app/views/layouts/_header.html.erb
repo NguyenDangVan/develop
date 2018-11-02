@@ -15,6 +15,7 @@
             </a>
             <ul class="dropdown-menu">
               <li class="dropdown-menu-user"><%= link_to "My Playlist", current_user %></li>
+              <li class="dropdown-menu-user"><%= link_to "My Favourite", favorite_songs_user_path(current_user) %></li>
               <li class="dropdown-menu-user"><%= link_to "Settings", edit_user_path(current_user) %></li>
               <li class="divider"></li>
               <li class="dropdown-menu-user">

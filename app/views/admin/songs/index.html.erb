@@ -29,7 +29,7 @@
                   <% if song.id == lyric.song_id %>
                     <%= lyric.content %>
                     <div class="btn btn-basic" style="float: right; margin: 0 2px;">
-                      <%= link_to "Remove", admin_song_lyric_path(song.id, lyric.id), method: :delete, data: {cofirm: "Remove this lyric?"} %>
+                      <%= link_to "Remove", admin_song_lyric_path(song.id, lyric.id), method: :delete, data: {confirm: "Remove this lyric?"} %>
                     </div>
                     <hr>
                   <% end %>

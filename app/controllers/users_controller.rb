@@ -1,7 +1,7 @@
 class UsersController < ApplicationController
   before_action :find_user, except: %i(new create index)
   before_action :logged_in_user, except: %i(new create)
-  #before_action :correct_user, only: %i(show edit update)
+  before_action :correct_user, only: [:update, :edit]
   before_action :admin_user, only: :destroy
 
   def new
@@ -60,7 +60,7 @@ class UsersController < ApplicationController
   def favorite_songs
     @title = "My favourite"
     @user = User.find_by id: params[:id]
-    @users = @user.favorite_songs.page(params[:page]).per 10
+    @user_songs = @user.favorite_songs.page(params[:page]).per 10
     render "show_favorite"
   end
 
@@ -72,7 +72,7 @@ class UsersController < ApplicationController
 
     def correct_user
       @user = User.find_by id: params[:id]
-      redirect_to root_url unless current_user?(@user) ||current_user.admin?
+      redirect_to root_url unless current_user?(@user) || current_user.admin
     end
 
     def find_user

@@ -1,15 +1,17 @@
 <% provide :title, @title %>
-<div class="col-md-8">
-  <h3><%= @title %></h3>
+
+  <h2><strong><%= @title %></strong></h2>
   User_id : <%= @user.id %>
   There are : <%= @user.favorite_songs.count %> songs
-  <ul class="users">
-    <% if @users.any? %>
-      <% @users.each do |user| %>
-        <%= render user %>
-        <!-- ren ra nut unfavorite -->
+  <ul class="users" style="width: 60%; float: left;">
+    <% if @user_songs.any? %>
+      <% @user_songs.each do |user_songs| %>
+        <%= render user_songs %>
       <% end %>
     <% end %>
-    <%= paginate @users %>
+    <%= paginate @user_songs %>
   </ul>
+  <div style="float: right; width: 40%;">
+  <%= render "static_pages/popular_song" %>
 </div>
+
