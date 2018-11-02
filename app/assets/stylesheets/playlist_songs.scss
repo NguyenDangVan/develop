@@ -25,6 +25,13 @@ li.active div{
 div.song-in-playlist:hover{
   background-color: #DBCECA;
 }
-div.song-in-playlist > a:hover{
-  text-decoration: none;
+button#next-song, button#previous-song {
+  background-color: #565556;
+  border-radius: 5px;
+  margin-left: 6.5%;
+  margin-bottom: 5px;
+}
+.cmt-playlist{
+  margin-left: 5%;
+  width: 100%;
 }

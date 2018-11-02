@@ -96,24 +96,29 @@ album5 = Album.create!(
 
 song1 = Song.create!(
   name: "Girls like you",
+  audio: "dddasda",
   album: album1
 )
 song2 = Song.create!(
   name: "Lac troi",
-  album: album1
+  album: album1,
+  audio: "dddasda"
 )
 song3 = Song.create!(
   name: "Suger",
-  album: album2
+  album: album2,
+  audio: "dddasda"
 )
 song4 = Song.create!(
   name: "haruharu",
-  album: album3
+  album: album3,
+  audio: "dddasda"
 )
 
 testsong = Song.create!(
   name: "testSong",
-  album: album1
+  album: album1,
+  audio: "dddasda"
 )
 
 lyric = Lyric.create!(

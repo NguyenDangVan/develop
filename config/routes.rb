@@ -48,4 +48,5 @@ Rails.application.routes.draw do
     resources :lyrics, only: %i(new create destroy)
   end
   resources :lyrics
+  resources :comments
 end

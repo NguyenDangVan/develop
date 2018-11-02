@@ -1,0 +1,22 @@
+<li class="list-cmt cmt-<%= comment.id %>">
+<%= gravatar_for(comment.user, size: 40) %>
+  <div class="list-cmt-child">
+    <strong><%= comment.user.name %></strong>: post <%= time_ago_in_words(comment.created_at) %> ago.
+  </div>
+  <p class="comment-content"><%= comment.body %></p>
+  <% if current_user?(comment.user) %>
+    <span class="btn-edit-cmt"><%= image_tag "icon/edit-cmt.png", size: "15x15" %> Edit</span>
+    <span class="btn-del-cmt"><%= link_to comment_path(comment), remote: true, method: :delete, data: { confirm: 'Delete this comment?' } do %>
+        <%= image_tag "icon/del-cmt.png", size: "15x15" %> Delete
+      <% end %></span>
+      <div class="edit-cmt">
+      <%= form_for comment, remote: true do |f| %>
+            <div class="field">
+              <%= f.hidden_field :user_id, value: current_user.id %>
+              <%= f.text_area :body, placeholder: "Edit comment...", class: "form-control" %>
+              <%= f.submit "Edit", class: "btn-cmt" %>
+            </div>
+          <% end %>
+      </div>
+  <% end %>
+</li>

@@ -6,6 +6,7 @@ class Song < ApplicationRecord
   accepts_nested_attributes_for :lyrics
   has_many :favorites_from_user, class_name: Favorite.name, dependent: :destroy
   has_many :users_favorited, through: :favorites_from_user, source: :user
+  has_many :comments, as: :commentable
   validates :name, presence: true, length: {maximum: 30}
   validates :album_id, presence: true
   mount_uploader :audio, AudioUploader

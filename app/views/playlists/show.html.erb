@@ -4,13 +4,18 @@
 <div class="row list">
   <div class="col-md-8 col-md-offset-1">
     <h2><b><%= @playlist.title %></b></h2>
-    <h5>Update at <%= @playlist.user.updated_at %></h5>
     <% if @playlist.songs.empty? %>
       <h3>No songs in this playlist</h3>
     <% else %>
     <audio controls="true" id="audio" >
       <source src= "<%= @playlist.songs.first.audio %>", type="audio/mp3">
     </audio>
+    <button id="previous-song">
+      <%= image_tag "icon/previous-song.png", size: "20x20" %>
+    </button>
+    <button id="next-song">
+      <%= image_tag "icon/next-song.png", size: "20x20" %>
+    </button>
     <ul id="playlist">
       <% @playlist.songs.each do |song| %>
         <li class="play-list" >
@@ -22,16 +27,51 @@
           <%= link_to song_download_path(song.id), target: :_blank do %>
             <%= image_tag "icon/download.png", size: "20x20" %>
           <% end %>
+          <%= link_to song_path(song), target: :_blank do%>
+            <%= image_tag "icon/open-new-tab.jpeg", size: "25x25" %>
+          <% end %>
           <% if current_user?(@user) %>
               <%= link_to playlist_song_path(playlist_id: @playlist.id, song_id: song.id), method: :delete, data: {confirm: "Delete #{song.name} ?" } do %>
-                <%= image_tag "icon/delete-playlist-song.png", size: "30x30" %>
+                <%= image_tag "icon/delete-playlist-song.png", size: "25x25" %>
               <% end %>
           <% end %>
         </li>
       <% end %>
     </ul>
-    <h5>Create at <%= @playlist.user.created_at %></h5>
-    <span><%= @playlist.description %></span>
+    <h5>Create at <%= time_ago_in_words(@playlist.user.created_at) %> ago.</h5>
+    <% if @playlist.description %>
+      <div><b>Description:</b></div>
+      <span><%= @playlist.description[0..240] %></span>
+      <span class="hide-description"><%= @playlist.description[241..-1] %></span>
+      <div class="show-description">More</div>
     <% end %>
+    <!-- Comment -->
+    <div class="cmt cmt-playlist"><span class="show-cmt">Comments:</span>
+      <!-- create comment -->
+      <% if logged_in? %>
+        </br>
+        <%= form_for @comment, remote: true do |f| %>
+          <div class="field">
+            <%= f.hidden_field :user_id, value: current_user.id %>
+            <%= f.hidden_field :commentable_id, value: @playlist.id %>
+            <%= f.hidden_field :commentable_type, value: @playlist.class.name %>
+            <%= f.text_area :body, placeholder: "Compose new comment...", class: "form-control" %>
+          </div>
+          <%= f.submit "Comment", class: "btn-cmt" %>
+        <% end %>
+      <% end %>
+
+      <!-- view comment -->
+      <ul class="parent-list-cmt">
+        <%= render partial: "comments/comment", collection: @comment5 %>
+      </ul>
+      <% unless (@comment6_to_last.nil?) %>
+        <p class="show-cmt"> More ... </p>
+        <ul class="hide-cmt">
+          <%= render partial: "comments/comment", collection: @comment6_to_last %>
+        </ul>
+        <% end %>
+      <% end %>
+    </div>
   </div>
 </div>

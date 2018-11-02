@@ -2,13 +2,14 @@ class PlaylistsController < ApplicationController
   before_action :logged_in_user, only: [:create, :show, :new, :destroy]
 
   def show
-    @playlist = current_user.playlists.find_by id: params[:id]
-    if @playlist
-      return
+    @user = User.find_by id: params[:user_id]
+    @playlist = @user.playlists.find_by id: params[:id]
+    @comment5 = @playlist.comments.first(5)
+    @comment6_to_last = @playlist.comments[5..-1]
+    if @user.playlists.exists?(id: params[:id])
+      @comment = Comment.new
+
     else
-      @user = User.find_by id: params[:id]
-      @playlist = @user.playlists.find_by id: params[:id]
-      return if @playlist
       flash[:danger] = "Not found this playlist"
       redirect_to not_found_path
     end
@@ -46,4 +47,8 @@ class PlaylistsController < ApplicationController
       flash[:danger] = "Please log in."
       redirect_to login_url
     end
+
+    def to_key
+id ? id : nil
+end
 end
