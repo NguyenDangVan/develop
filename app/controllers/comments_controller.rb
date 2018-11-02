@@ -13,7 +13,7 @@ class CommentsController < ApplicationController
       end
     else
       flash[:danger] = "Your comment was not successfully added"
-      redirect_to song_path(@comment.song_id)
+      redirect_to song_path(@comment.commentable_id)
     end
 
   end
@@ -41,7 +41,7 @@ class CommentsController < ApplicationController
   private
 
     def comment_params
-      params.require(:comment).permit(:body, :user_id, :song_id)
+      params.require(:comment).permit(:body, :user_id, :commentable_id, :commentable_type)
     end
 
     def find_cmt

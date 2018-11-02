@@ -59,13 +59,15 @@
         <%= form_for @comment, remote: true do |f| %>
           <div class="field">
             <%= f.hidden_field :user_id, value: current_user.id %>
-            <%= f.hidden_field :song_id, value: @song.id %>
+            <%= f.hidden_field :commentable_id, value: @song.id %>
+            <%= f.hidden_field :commentable_type, value: @song.class.name %>
             <%= f.text_area :body, placeholder: "Compose new comment...", class: "form-control" %>
           </div>
           <%= f.submit "Comment", class: "btn-cmt" %>
         <% end %>
       <% end %>
     </div>
+
         <!-- view comment -->
         <ul class="parent-list-cmt">
         <%= render partial: "comments/comment", collection: @comment5 %>
@@ -76,6 +78,7 @@
             <%= render partial: "comments/comment", collection: @comment6_to_last %>
           </ul>
         <% end %>
+
       </div>
   </div>
 </div>

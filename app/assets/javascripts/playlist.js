@@ -1,19 +1,16 @@
 $(document).ready(function(){
-
   var audio = $("#audio");
   var playlist = $("#playlist");
   var songs = playlist.find("li div a.song");
   var len = songs.length;
   var current = 0;
+
   audio[0].volume = .50;
-  // var reg = /mp3$/;
 
   function run(link, player){
-  //  if (reg.test(link) == false ) {
-      player.src = link.attr("href");
-      par = link.parent().parent();
-      par.addClass("active").siblings().removeClass("active");
-   // }
+    player.src = link.attr("href");
+    par = link.parent().parent();
+    par.addClass("active").siblings().removeClass("active");
     player.load();
     player.play();
   }
@@ -28,14 +25,6 @@ $(document).ready(function(){
     }
     run($(link),audio[0]);
   }
-
-  // function only_song(){
-  //   audio[0].addEventListener('ended',function(e){
-  //     link = audio[0].src;
-  //     audio[0].load;
-  //     run(link,audio[0]);
-  //   });
-  // }
 
   init();
   function init(){
@@ -57,10 +46,21 @@ $(document).ready(function(){
 
   $("button#previous-song").click(function(){
     current = current - 2;
-    console.log(current);
     if (current < 0){
       current = -1;
     }
     next_song();
   });
+
+});
+
+var check_description = false;
+$(document).on("click", ".show-description",function(){
+    if (check_description == false) {
+      $(".hide-description").show();
+      check_description = true;
+    } else {
+      $(".hide-description").hide();
+      check_description = false;
+    }
 });

@@ -10,9 +10,6 @@
     <audio controls="true" id="audio" >
       <source src= "<%= @playlist.songs.first.audio %>", type="audio/mp3">
     </audio>
-    <!-- <button id="only-song">
-      only-song
-    </button> -->
     <button id="previous-song">
       <%= image_tag "icon/previous-song.png", size: "20x20" %>
     </button>
@@ -30,6 +27,9 @@
           <%= link_to song_download_path(song.id), target: :_blank do %>
             <%= image_tag "icon/download.png", size: "20x20" %>
           <% end %>
+          <%= link_to song_path(song), target: :_blank do%>
+            <%= image_tag "icon/open-new-tab.jpeg", size: "25x25" %>
+          <% end %>
           <% if current_user?(@user) %>
               <%= link_to playlist_song_path(playlist_id: @playlist.id, song_id: song.id), method: :delete, data: {confirm: "Delete #{song.name} ?" } do %>
                 <%= image_tag "icon/delete-playlist-song.png", size: "25x25" %>
@@ -39,10 +39,36 @@
       <% end %>
     </ul>
     <h5>Create at <%= time_ago_in_words(@playlist.user.created_at) %> ago.</h5>
-    <span><%= @playlist.description %></span>
+    <div><b>Description:</b></div>
+    <span><%= @playlist.description[0..240] %></span>
+    <span class="hide-description"><%= @playlist.description[241..-1] %></span>
+    <div class="show-description">More</div>
+    <!-- Comment -->
+    <div class="cmt"><span class="show-cmt">Comments:</span>
+      <!-- create comment -->
+      <% if logged_in? %>
+        </br>
+        <%= form_for @comment, remote: true do |f| %>
+          <div class="field">
+            <%= f.hidden_field :user_id, value: current_user.id %>
+            <%= f.hidden_field :commentable_id, value: @playlist.id %>
+            <%= f.hidden_field :commentable_type, value: @playlist.class.name %>
+            <%= f.text_area :body, placeholder: "Compose new comment...", class: "form-control" %>
+          </div>
+          <%= f.submit "Comment", class: "btn-cmt" %>
+        <% end %>
+      <% end %>
+    </div>
+    <!-- view comment -->
+    <ul class="parent-list-cmt">
+      <%= render partial: "comments/comment", collection: @comment5 %>
+    </ul>
+    <% unless (@comment6_to_last.nil?) %>
+      <p class="show-cmt"> More ... </p>
+      <ul class="hide-cmt">
+        <%= render partial: "comments/comment", collection: @comment6_to_last %>
+      </ul>
+      <% end %>
     <% end %>
-
-    <!-- <div>Comments</div> -->
-
   </div>
 </div>

@@ -4,8 +4,11 @@ class PlaylistsController < ApplicationController
   def show
     @user = User.find_by id: params[:user_id]
     @playlist = @user.playlists.find_by id: params[:id]
+    @comment5 = @playlist.comments.first(5)
+    @comment6_to_last = @playlist.comments[5..-1]
     if @user.playlists.exists?(id: params[:id])
-      return
+      @comment = Comment.new
+
     else
       flash[:danger] = "Not found this playlist"
       redirect_to not_found_path
