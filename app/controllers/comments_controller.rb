@@ -15,7 +15,6 @@ class CommentsController < ApplicationController
       flash[:danger] = "Your comment was not successfully added"
       redirect_to song_path(@comment.commentable_id)
     end
-
   end
 
   def destroy

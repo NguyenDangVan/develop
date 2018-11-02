@@ -19,7 +19,6 @@
         <span>New playlist</span>
       <% end %>
     </div>
-    <%= render "favorite_form" %>
   <% else %>
       <div>
         <p class="add-to-pls">
@@ -41,13 +40,16 @@
       </div>
     <% end %>
   <% end %>
-
+<%= render "favorite_form" if logged_in? %>
     <h3> Lyrics: </h3>
-    <% if @song.lyric? %>
-      <div class="lyric"><%= @song.lyric[0..240] %></div>
-      <div class="hide-lyric"><%= @song.lyric[241..-1] %></div>
+    <% @lyrics.each do |lyric| %>
+    <% if lyric.song_id == @song.id %>
+      <div class="lyric"><%= lyric.content[0..240] %></div>
+      <div class="hide-lyric"><%= lyric.content[241..-1] %></div>
       <p class="show-lyric">More</p>
-    <% else %>
+      <% end %>
+    <% end %>
+    <% if @song.lyrics.count == 0 %>
       <div class="lyric">Lyric has not been updated yet</div>
     <% end %>
 
@@ -66,7 +68,7 @@
           <%= f.submit "Comment", class: "btn-cmt" %>
         <% end %>
       <% end %>
-    </div>
+
 
         <!-- view comment -->
         <ul class="parent-list-cmt">

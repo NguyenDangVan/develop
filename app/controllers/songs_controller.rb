@@ -47,6 +47,7 @@ class SongsController < ApplicationController
 
   def show
     @playlist_song = PlaylistSong.new
+    @lyrics = Lyric.all
     @comment = Comment.new
     @comment5 = @song.comments.first(5)
     @comment6_to_last = @song.comments[5..-1]

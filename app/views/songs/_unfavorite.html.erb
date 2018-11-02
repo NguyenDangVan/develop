@@ -1,4 +1,6 @@
 <%= form_for(current_user.favorite_for_song.find_by(song_id: @song.id),
   html: {method: :delete}, remote: true) do |f| %>
-  <%= f.submit "Remove from your favourite", class: "btn" %>
+  <%= button_tag(type: "submit", class: "") do %>
+    <i><%= image_tag "icon/remove-song.jpg", size: "20x20" %></i>Remove your favorite
+  <% end %>
 <% end %>

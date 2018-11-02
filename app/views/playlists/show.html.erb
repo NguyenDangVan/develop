@@ -39,12 +39,14 @@
       <% end %>
     </ul>
     <h5>Create at <%= time_ago_in_words(@playlist.user.created_at) %> ago.</h5>
-    <div><b>Description:</b></div>
-    <span><%= @playlist.description[0..240] %></span>
-    <span class="hide-description"><%= @playlist.description[241..-1] %></span>
-    <div class="show-description">More</div>
+    <% if @playlist.description %>
+      <div><b>Description:</b></div>
+      <span><%= @playlist.description[0..240] %></span>
+      <span class="hide-description"><%= @playlist.description[241..-1] %></span>
+      <div class="show-description">More</div>
+    <% end %>
     <!-- Comment -->
-    <div class="cmt"><span class="show-cmt">Comments:</span>
+    <div class="cmt cmt-playlist"><span class="show-cmt">Comments:</span>
       <!-- create comment -->
       <% if logged_in? %>
         </br>
@@ -58,17 +60,18 @@
           <%= f.submit "Comment", class: "btn-cmt" %>
         <% end %>
       <% end %>
-    </div>
-    <!-- view comment -->
-    <ul class="parent-list-cmt">
-      <%= render partial: "comments/comment", collection: @comment5 %>
-    </ul>
-    <% unless (@comment6_to_last.nil?) %>
-      <p class="show-cmt"> More ... </p>
-      <ul class="hide-cmt">
-        <%= render partial: "comments/comment", collection: @comment6_to_last %>
+
+      <!-- view comment -->
+      <ul class="parent-list-cmt">
+        <%= render partial: "comments/comment", collection: @comment5 %>
       </ul>
+      <% unless (@comment6_to_last.nil?) %>
+        <p class="show-cmt"> More ... </p>
+        <ul class="hide-cmt">
+          <%= render partial: "comments/comment", collection: @comment6_to_last %>
+        </ul>
+        <% end %>
       <% end %>
-    <% end %>
+    </div>
   </div>
 </div>
