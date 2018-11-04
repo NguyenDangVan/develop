@@ -11,7 +11,8 @@
           </a>
           <div class="dropdown-menu" aria-labelledby="pagesDropdown">
             <h6 class="dropdown-header">Login Screens:</h6>
-            <%= link_to "Log in", login_path, class: "dropdown-item" %>
+            <%= link_to "Log in", logout_path, class: "dropdown-item",
+              method: :delete %>
             <%= link_to "Sign up", signup_path, class: "dropdown-item" %>
             <%= link_to "Forgot Password", password_resets_new_path, class: "dropdown-item" %>
             <div class="dropdown-divider"></div>

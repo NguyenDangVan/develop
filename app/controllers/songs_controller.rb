@@ -6,6 +6,7 @@ class SongsController < ApplicationController
 
   def new
     @song = Song.new
+    @song.lyrics.new
   end
 
   def create
@@ -13,6 +14,7 @@ class SongsController < ApplicationController
     if @song.save
       redirect_to admin_songs_path
     else
+      @song.lyrics || @song.lyrics.new
       flash.now[:danger] = "upload not successfull"
       render :new
     end
@@ -86,6 +88,7 @@ class SongsController < ApplicationController
     end
 
     def song_params
-      params.require(:song).permit(:audio, :name, :album_id)
+      params.require(:song).permit :audio, :name, :album_id,
+        lyrics_attributes: [:content]
     end
 end
