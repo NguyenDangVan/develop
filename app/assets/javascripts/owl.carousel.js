@@ -725,7 +725,6 @@ if ( typeof Object.create !== "function" ) {
 			var base = this;
 			return {
 				"-webkit-transition": "all "+ speed +"ms ease",
-				"-moz-transition": "all "+ speed +"ms ease",
 				"-o-transition": "all "+ speed +"ms ease",
 				"transition": "all "+ speed +"ms ease"
 			};
