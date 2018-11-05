@@ -48,13 +48,14 @@ class UsersController < ApplicationController
   end
 
   def destroy
-    if @user.destroy
-      flash[:success] = "Delete successfull"
-      redirect_to admin_users_path
+    if @user.admin?
+      flash.now[:success] = "You can't delete admin"
+    elsif @user.destroy
+      flash.now[:success] = "Delete successfull"
     else
-      flash[:danger] = "Delete unsuccessfull"
-      redirect_to admin_users_path
+      flash.now[:danger] = "Delete unsuccessfull"
     end
+    redirect_to admin_users_path
   end
 
   def favorite_songs
@@ -77,17 +78,8 @@ class UsersController < ApplicationController
 
     def find_user
       @user = User.find_by id: params[:id]
-      if @user
-        if @user.id == 1
-          redirect_to root_url
-        else
-          return if @user
-          flash.now[:danger] = "Not found user"
-          redirect_to users_url
-        end
-      else
-        flash[:danger] = "Not found user"
-        redirect_to root_url
-      end
+      return if @user
+      flash[:danger] = "Not found user"
+      redirect_to root_url
     end
 end
