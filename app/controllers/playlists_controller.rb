@@ -8,7 +8,6 @@ class PlaylistsController < ApplicationController
     @comment6_to_last = @playlist.comments[5..-1]
     if @user.playlists.exists?(id: params[:id])
       @comment = Comment.new
-
     else
       flash[:danger] = "Not found this playlist"
       redirect_to not_found_path

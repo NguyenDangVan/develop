@@ -2,3 +2,14 @@ en:
   users:
     create:
       pls_check: "Please check your email to activate your account"
+
+  account_activations:
+    edit:
+      acc_activated: "Account activated!"
+      invalid_acc_link: "Invalid activation link"
+
+  albums:
+    create:
+      new_album: "Created new album"
+    update:
+      updated_album: "Updated album"

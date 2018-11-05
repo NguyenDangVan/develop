@@ -25,6 +25,10 @@ class SessionsController < ApplicationController
 
   def destroy
     log_out if logged_in?
-    redirect_to root_url
+    if @check_current_user.admin
+      redirect_to login_path
+    else
+      redirect_to root_url
+    end
   end
 end

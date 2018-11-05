@@ -3,6 +3,7 @@
 //= require turbolinks
 //= require jquery
 //= require jquery_ujs
+//= require messages
 //= require bootstrap
 //= require owl.carousel
 //= require main

@@ -1,7 +1,8 @@
 enabled_locales: ["en", "ja"]
-models:
-  maxsize_name: 30
-  maximum_age: 2
+user:
+  max_name_size: 30
+  maximum_age: 3
   maximum_email: 255
   minimum_password: 6
-  modify_email: /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
+album:
+  maxsize_title: 50
