@@ -23,8 +23,8 @@
               <td><%= album.artist.name %></td>
               <td><%= album.category.name %></td>
               <td class="td-descrip"><%= album.description %></td>
-              <td><%= link_to "Edit", edit_album_path(album) %></td>
-              <td><%= link_to "Delete", album, method: :delete, data: {confirm: "Delete album?"} %></td>
+              <td><%= link_to "Edit", edit_album_path(album), id: "edit" %></td>
+              <td><%= link_to "Delete", album, method: :delete, data: {confirm: "Delete album?"}, id: "delete" %></td>
             </tr>
           <% end %>
         </tbody>
@@ -32,6 +32,6 @@
   </div>
 </div>
 <%= paginate @albums, theme: "twitter-bootstrap-3" %>
-<%= link_to "New album", new_album_path, class: "btn btn-primary" %>
+<%= link_to "New album", new_album_path, class: "btn btn-primary", id: "new" %>
 <div class="card-footer small text-muted">Updated yesterday at 11:59 PM</div>
 </div>

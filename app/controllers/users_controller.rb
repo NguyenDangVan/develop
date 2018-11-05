@@ -48,13 +48,14 @@ class UsersController < ApplicationController
   end
 
   def destroy
-    if @user.destroy
+    if @user.admin?
+      flash.now[:success] = "You can't delete admin"
+    elsif @user.destroy
       flash.now[:success] = "Delete successfull"
-      redirect_to admin_users_path
     else
       flash.now[:danger] = "Delete unsuccessfull"
-      redirect_to admin_users_path
     end
+    redirect_to admin_users_path
   end
 
   def favorite_songs

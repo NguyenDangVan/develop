@@ -11,7 +11,7 @@ class AlbumsController < ApplicationController
   def create
     @album = Album.new album_params
     if @album.save
-      flash[:success] = "Created new album"
+      flash.now[:success] = t ".new_album"
       redirect_to admin_albums_path
     else
       render :new
@@ -22,7 +22,7 @@ class AlbumsController < ApplicationController
 
   def update
     if @album.update_attributes album_params
-      flash[:success] = "Updated album"
+      flash.now[:success] = t ".updated_album"
       redirect_to admin_albums_path
     else
       render :edit
@@ -41,8 +41,9 @@ class AlbumsController < ApplicationController
   end
 
   def destroy
-    @album.destroy
-    flash[:success] = "Album deleted"
+    if @album.destroy
+      flash[:success] = "Deleted album"
+    end
     redirect_to request.referrer || root_url
   end
 
