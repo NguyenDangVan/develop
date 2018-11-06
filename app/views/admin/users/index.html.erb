@@ -1,7 +1,7 @@
-<div class="card mb-3 my-table" style="width: 100%;">
+<div class="card mb-3">
   <div class="card-header">
     <i class="fas fa-table"></i>
-    Data Users
+    Data Table Users
   </div>
   <div class="card-body">
     <div class="table-responsive">
@@ -30,9 +30,12 @@
           </tr>
         <% end %>
         </tbody>
-    </table>
+      </table>
+    </div>
   </div>
+  <%= paginate @users, theme: "twitter-bootstrap-3", class: "paginater-kaminari" %>
+  <div class="card-footer small text-muted">Updated yesterday at 11:59 PM</div>
 </div>
-<%= paginate @users, theme: "twitter-bootstrap-3" %>
-<div class="card-footer small text-muted">Updated yesterday at 11:59 PM</div>
-</div>
+<p class="small text-center text-muted my-5">
+  <em>More table examples coming soon...</em>
+</p>

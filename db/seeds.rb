@@ -1,4 +1,3 @@
-
 User.create! name: "admin1101",
              email: "admin@gmail.com",
              age: 21,
@@ -6,7 +5,6 @@ User.create! name: "admin1101",
              password_confirmation: "123456",
              admin: true,
              activated: true
-
 
 User.create!(
   name: "man1",

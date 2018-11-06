@@ -14,4 +14,3 @@
 //= require admin/sb-admin.min
 //= require admin/solid.min
 //= require admin/v4-shims.min
-//= require messages

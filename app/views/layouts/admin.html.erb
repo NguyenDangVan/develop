@@ -16,8 +16,18 @@
     <%= render "layouts/headeradmin" %>
     <div id="wrapper">
       <%= render "layouts/menu-left" %>
-      <%= yield %>
+      <div id="content-wrapper">
+        <div class="container-fluid">
+          <ol class="breadcrumb">
+            <li class="breadcrumb-item">
+              <a href="#">Dashboard</a>
+            </li>
+            <li class="breadcrumb-item active">Overview</li>
+          </ol>
+          <%= yield %>
+        </div>
       </div>
+      <%= render "layouts/footeradmin" %>
     </div>
     <a class="scroll-to-top rounded" href="#page-top">
       <i class="fas fa-angle-up"></i>

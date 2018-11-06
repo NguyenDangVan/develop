@@ -1,6 +1,7 @@
 <%= form_for(current_user.favorite_for_song.find_by(song_id: @song.id),
   html: {method: :delete}, remote: true) do |f| %>
-  <%= button_tag(type: "submit", class: "") do %>
-    <i><%= image_tag "icon/remove-song.jpg", size: "20x20" %></i>Remove your favorite
+  <%= button_tag(type: "submit", class: "btn btn-light") do %>
+    <%= image_tag "icon/heart.png", class: "add-favourite" %> <%= current_user.favorite_songs.count %>
   <% end %>
+  (<%= link_to "go to my favourite", favorite_songs_user_path(current_user), class: "add-favourite" %>)
 <% end %>

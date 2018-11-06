@@ -1,0 +1,3 @@
+.paginater-kaminari {
+  @include 'bootstrap.css';
+}

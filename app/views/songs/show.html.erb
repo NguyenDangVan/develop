@@ -5,78 +5,79 @@
     <div>
       <%= audio_tag @song.audio, class: "audio-play-song", controls: "true", loop: "true" %>
     </div>
-    <div class="download">
-      <%= link_to song_download_path(@song), target: :_blank do %>
-      <%= image_tag "icon/download.png", size: "20x20"%>
-      Download
-      <% end %>
+    <div class="download-favourite">
+      <div class="download">
+        <%= link_to song_download_path(@song), target: :_blank do %>
+          <%= image_tag "icon/download.png", size: "20x20"%>
+          Download
+        <% end %>
+      </div>
+      <%= render "favorite_form" if logged_in? %>
     </div>
-  <% if logged_in?  %>
-    <% if current_user.playlists.empty? %>
-      <p> You have no playlist </p>
-      <%= link_to new_user_playlist_path(params[:id]) do %>
-      <%= image_tag "icon/add-playlist.png", size: "25x25" %>
-        <span>New playlist</span>
-      <% end %>
-    </div>
-  <% else %>
-      <div>
-        <p class="add-to-pls">
-          <%= image_tag "icon/add-song.png", size: "20x20" %>
-          Add to my playlist
-        </p>
+    <% if logged_in?  %>
+      <% if current_user.playlists.empty? %>
+        <p> You have no playlist </p>
+        <%= link_to new_user_playlist_path(params[:id]) do %>
+          <%= image_tag "icon/add-playlist.png", size: "25x25" %>
+          <span>New playlist</span>
+        <% end %>
+      <% else %>
+        <div>
+          <p class="add-to-pls">
+            <%= image_tag "icon/add-song.png", size: "20x20" %>
+            Add to my playlist
+          </p>
           <ul class="list-pls">
             <% current_user.playlists.each do |list| %>
-              <li><div class="list-play"><%= list.title %>
+              <li>
+                <div class="list-play"><%= list.title %>
                 <%= form_for @playlist_song do |f| %>
                   <%= f.hidden_field :playlist_id, value: list.id %>
                   <%= f.hidden_field :song_id, value: @song.id %>
                   <%= f.submit :Add, class: "add-playlist" %>
                 <% end %>
-              </div>
+                </div>
               </li>
             <% end %>
           </ul>
-      </div>
+        </div>
+      <% end %>
     <% end %>
-  <% end %>
-  <%= render "favorite_form" if logged_in? %>
-    <h3> Lyrics: </h3>
-    <% @lyrics.each do |lyric| %>
+
+  <h3> Lyrics: </h3>
+  <% @lyrics.each do |lyric| %>
     <% if lyric.song_id == @song.id %>
       <div class="lyric"><%= lyric.content[0..240] %></div>
       <div class="hide-lyric"><%= lyric.content[241..-1] %></div>
       <p class="show-lyric">More</p>
+    <% end %>
+  <% end %>
+  <% if @song.lyrics.count == 0 %>
+    <div class="lyric">Lyric has not been updated yet</div>
+  <% end %>
+  <div class="cmt"><span class="show-cmt">Comments:</span>
+    <% if logged_in? %>
+      </br>
+      <%= form_for @comment, remote: true do |f| %>
+        <div class="field">
+          <%= f.hidden_field :user_id, value: current_user.id %>
+          <%= f.hidden_field :commentable_id, value: @song.id %>
+          <%= f.hidden_field :commentable_type, value: @song.class.name %>
+          <%= f.text_area :body, placeholder: "Compose new comment...", class: "form-control" %>
+        </div>
+        <%= f.submit "Comment", class: "btn-cmt" %>
       <% end %>
     <% end %>
-    <% if @song.lyrics.count == 0 %>
-      <div class="lyric">Lyric has not been updated yet</div>
-    <% end %>
-    <!-- comment -->
-    <div class="cmt"><span class="show-cmt">Comments:</span>
-      <!-- create comment -->
-      <% if logged_in? %>
-        </br>
-        <%= form_for @comment, remote: true do |f| %>
-          <div class="field">
-            <%= f.hidden_field :user_id, value: current_user.id %>
-            <%= f.hidden_field :commentable_id, value: @song.id %>
-            <%= f.hidden_field :commentable_type, value: @song.class.name %>
-            <%= f.text_area :body, placeholder: "Compose new comment...", class: "form-control" %>
-          </div>
-          <%= f.submit "Comment", class: "btn-cmt" %>
-        <% end %>
-      <% end %>
-        <!-- view comment -->
-        <ul class="parent-list-cmt">
-        <%= render partial: "comments/comment", collection: @comment5 %>
-        </ul>
-        <% unless (@comment6_to_last.nil?) %>
-          <p class="show-cmt"> More ... </p>
-          <ul class="hide-cmt">
-            <%= render partial: "comments/comment", collection: @comment6_to_last %>
-          </ul>
-        <% end %>
-      </div>
-  </div>
+  <ul class="parent-list-cmt">
+    <%= render partial: "comments/comment", collection: @comment5 %>
+  </ul>
+  <% unless (@comment6_to_last.nil?) %>
+  <p class="show-cmt"> More ... </p>
+  <ul class="hide-cmt">
+    <%= render partial: "comments/comment", collection: @comment6_to_last %>
+  </ul>
+  <% end %>
+</div>
+</div>
+</div>
 </div>
