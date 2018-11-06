@@ -6,19 +6,30 @@
   <div class="card-body">
     <div class="table-responsive">
       <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+        <div class="row">
+          <div class="col-sm-12 col-md-6">
+            <div id="dataTable_filter" class="dataTables_filter">
+              <label>
+                <%= search_form_for [:admin, @q] do |f| %>
+                  <%= f.search_field :name_cont, class: "form-control form-control-sm", placeholder: "Search ..."%>
+                <% end %>
+              </label>
+            </div>
+          </div>
+        </div>
         <thead>
           <tr>
-          <th>Artist Name</th>
-          <th>Info</th>
-          <th>Edit</th>
-          <th>Delete</th>
+          <th><%= sort_link(@q, :name) do %>Artist Name<% end %></th>
+          <th><%= sort_link(@q, :info) do %>Info<% end %></th>
+          <th><%= link_to "Edit" %></th>
+          <th><%= link_to "Delete" %></th>
         </tr>
         </thead>
         <tbody>
           <% @artists.each do |artist| %>
           <tr>
             <td><%= artist.name %></td>
-            <td class="td-info"><%= artist.info %></td>
+            <td><%= artist.info %></td>
             <td><%= link_to "Edit", edit_artist_path(artist) %></td>
             <td><%= link_to "Delete", artist, method: :delete, data: {confirm: "Delete artist?"} %></td>
           </tr>
@@ -27,38 +38,6 @@
     </table>
   </div>
 </div>
-<h2>Modal Example</h2>
-  <!-- Trigger the modal with a button -->
-  <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal">Open Modal</button>
-<div class="modal fade" id="myModal" role="dialog">
-    <div class="modal-dialog modal-lg">
-      <!-- Modal content-->
-      <div class="modal-content">
-        <div class="modal-header">
-          <h4 class="modal-title">Modal Header</h4>
-        </div>
-        <div class="modal-body">
-          <div class="table-responsive">
-          <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
-            <tbody>
-              <% @artists.each do |artist| %>
-              <tr>
-                <td><%= artist.name %></td>
-                <td class="td-info"><%= artist.info %></td>
-                <td><%= link_to "Edit", edit_artist_path(artist) %></td>
-                <td><%= link_to "Delete", artist, method: :delete, data: {confirm: "Delete artist?"} %></td>
-              </tr>
-            <% end %>
-            </tbody>
-          </table>
-          </div>
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-        </div>
-      </div>
-    </div>
-  </div>
 <%= paginate @artists, remote: true, theme: "twitter-bootstrap-3" %>
 <%= link_to "New artist", new_artist_path, class: "btn btn-primary" %>
 <div class="card-footer small text-muted">Updated yesterday at 11:59 PM</div>

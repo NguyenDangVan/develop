@@ -1,10 +1,18 @@
 class Admin::UsersController < Admin::BaseController
 
   def index
-    if params[:search]
-      @users = User.search_user_name(params[:search]).page(params[:page]).per 15
-    else
-      @users = User.page(params[:page]).per 15
+    @q = User.ransack(params[:q])
+    @users = @q.result(distinct: true).page(params[:page]).per 10
+  end
+
+  def search
+    @users = User.ransack(name_cont: params[:q]).result(distinct: true).limit(5)
+
+    respond_to do |format|
+      format.html {}
+      format.json {
+        @users = @users.limit(10)
+      }
     end
   end
 

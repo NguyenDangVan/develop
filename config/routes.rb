@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
   mount Ckeditor::Engine => '/ckeditor'
   get 'lyrics/new'
+  get "search", to: "admin/users#search"
   get "favorites/destroy"
   get "favorites/create"
   get "password_resets/new"

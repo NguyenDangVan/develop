@@ -1,6 +1,6 @@
 /*
  *= require admin/all.min
- *= require kaminari
+ *= require easy-autocomplete
  *= require admin/bootstrap-grid.min
  *= require admin/bootstrap-reboot.min
  *= require admin/bootstrap.min
@@ -10,7 +10,5 @@
  *= require admin/regular.min
  *= require admin/sb-admin.min
  *= require admin/solid.min
- *= require admin/svg-with-js.min
  *= require admin/v4-shims.min
- *= require_self
 */

@@ -1,6 +1,9 @@
 //= require admin/jquery
-//= require admin/jquery.min
+//= retuire jquery.easy-autocomplete
 //= require jquery_ujs
+//= require jquery-ui
+//= require search
+//= require admin/jquery.min
 //= require admin/jquery.slim
 //= require admin/jquery.slim.min
 //= require admin/all

@@ -6,3 +6,9 @@ user:
   minimum_password: 6
 album:
   maxsize_title: 50
+
+show_limit:
+  show_5: 5
+  show_10: 10
+  show_20: 20
+  show_30: 30
