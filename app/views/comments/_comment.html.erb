@@ -4,19 +4,34 @@
     <strong><%= comment.user.name %></strong>: post <%= time_ago_in_words(comment.created_at) %> ago.
   </div>
   <p class="comment-content"><%= comment.body %></p>
-  <% if current_user?(comment.user) %>
-    <span class="btn-edit-cmt"><%= image_tag "icon/edit-cmt.png", size: "15x15" %> Edit</span>
-    <span class="btn-del-cmt"><%= link_to comment_path(comment), remote: true, method: :delete, data: { confirm: 'Delete this comment?' } do %>
-        <%= image_tag "icon/del-cmt.png", size: "15x15" %> Delete
-      <% end %></span>
-      <div class="edit-cmt">
-      <%= form_for comment, remote: true do |f| %>
-            <div class="field">
-              <%= f.hidden_field :user_id, value: current_user.id %>
-              <%= f.text_area :body, placeholder: "Edit comment...", class: "form-control" %>
-              <%= f.submit "Edit", class: "btn-cmt" %>
-            </div>
-          <% end %>
-      </div>
-  <% end %>
+  <!-- reply -->
+  <span class="btn-reply"> Reply</span>
+    <div class="hide-reply">
+      <%= form_for @comment, remote: true do |f| %>
+          <div class="field">
+            <%= f.hidden_field :user_id, value: current_user.id %>
+            <%= f.hidden_field :parent_id, value: comment.id %>
+            <%= f.hidden_field :commentable_id, value: params[:id] %>
+            <%= f.hidden_field :commentable_type, value: @song.class.name %>
+            <%= f.text_area :body, placeholder: "Compose new reply...", class: "form-control" %>
+          </div>
+          <%= f.submit "Reply", class: "btn-cmt" %>
+        <% end %>
+    </div>
+
+
+    <% if current_user?(comment.user) %>
+      <span class="btn-edit-cmt"><%= image_tag "icon/edit-cmt.png", size: "15x15" %> Edit</span>
+      <span class="btn-del-cmt"><%= link_to comment_path(comment), remote: true, method: :delete, data: { confirm: 'Delete this comment?' } do %>
+          <%= image_tag "icon/del-cmt.png", size: "15x15" %> Delete
+        <% end %></span>
+        <div class="edit-cmt">
+        <%= form_for comment, remote: true do |f| %>
+              <div class="field">
+                <%= f.text_area :body, placeholder: "Edit comment...", class: "form-control" %>
+                <%= f.submit "Edit", class: "btn-cmt" %>
+              </div>
+            <% end %>
+        </div>
+    <% end %>
 </li>

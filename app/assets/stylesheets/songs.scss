@@ -1,5 +1,8 @@
 .player{
-  margin-left: 15%;
+  margin-left: 10%;
+  border-left: 1px solid #ececec;
+  border-right: 1px solid #ececec;
+  padding-bottom: 20px;
 }
 .audio-play-song, .cmt{
   width: 90%;
@@ -22,7 +25,7 @@
   color: yellow;
   border-radius: 5px;
 }
-ul.list-pls, .hide-cmt, .hide-lyric{
+ul.list-pls, .hide-cmt, .hide-lyric, .btn-hide, .hide-reply{
   display: none;
 }
 audio{
@@ -60,7 +63,6 @@ textarea#comment_body{
   border: 1px solid #f88657;
   box-shadow: 8px 6px #ceb6b6;
   border-radius: 5px;
-
 }
 .list-cmt-child{
   background-color: #dcedf5;
@@ -70,4 +72,56 @@ textarea#comment_body{
 }
 .btn-edit-cmt, .btn-del-cmt{
   margin-left: 10px;
+}
+.replies {margin-left: 50px;}
+/*.replies .replies {margin-left: 0;}*/
+/* lyric */
+.show-lyric, .btn-hide{
+  text-align: center;
+  color: red;
+}
+
+/* bang xep hang */
+.rank{
+  height: 50px;
+  padding: 12px 5px;
+  border:  1px solid  green;
+  background-image: linear-gradient(to left, #f7df35, #87e242b3);
+  margin-bottom: 5px;
+  border-radius: 10px;
+  margin-left: 0px;
+}
+.rank-listen{
+  float: right;
+}
+.charts{
+  margin-top: 20px;
+  font-size: 2rem;
+  height: auto;
+}
+.rank:hover{
+  background-image: linear-gradient(to right, #f7df35, #35f7ca );
+  /*animation-duration: 4s;
+  animation-name: example;*/
+}
+/*@keyframes example {
+    0%   {background-color: #bc42e2b3;}
+    25%  {background-color: green;}
+    50%  {background-color: gray;}
+    100% {background-color: #f7df35;}
+}*/
+.song-top{
+  margin-top: 20px;
+  padding-left: 0px;
+}
+
+.count-listen{
+  text-align: right;
+  margin-right: 70px;
+  color: #3DC43D;
+}
+.count-download{
+  float: right;
+  margin-right: 70px;
+  font-size: 0.75em;
 }

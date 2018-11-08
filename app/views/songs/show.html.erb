@@ -1,15 +1,23 @@
 <div class="row">
-  <div class="col-md-8 player">
+  <div class="col-md-6 player">
     <h1><b><%= @song.name %> - <%= @song.album.artist.name %></b></h1>
     <h5> Upload at <%= time_ago_in_words(@song.updated_at) %> ago.</h5>
     <div>
       <%= audio_tag @song.audio, class: "audio-play-song", controls: "true", loop: "true" %>
+    </div>
+    <div class="count-listen">
+      <%= image_tag "icon/headphone.png", size: "20x20" %>
+      <%= @song.impressionist_count(filter: :id) %>
     </div>
     <div class="download">
       <%= link_to song_download_path(@song), target: :_blank do %>
       <%= image_tag "icon/download.png", size: "20x20"%>
       Download
       <% end %>
+
+      <span class="count-download">Downloaded:
+        <%= @song.impressions_count %>
+      </span>
     </div>
   <% if logged_in?  %>
     <% if current_user.playlists.empty? %>
@@ -46,7 +54,8 @@
     <% if lyric.song_id == @song.id %>
       <div class="lyric"><%= lyric.content[0..240] %></div>
       <div class="hide-lyric"><%= lyric.content[241..-1] %></div>
-      <p class="show-lyric">More</p>
+      <div class="btn-hide">Click to hide</div>
+      <p class="show-lyric">Click to show more</p>
       <% end %>
     <% end %>
     <% if @song.lyrics.count == 0 %>
@@ -57,10 +66,14 @@
       <!-- create comment -->
       <% if logged_in? %>
         </br>
+        <% if @comment.parent %>
+          <%= render 'comment', comment: @comment.parent, from_reply_form: true %>
+        <% end %>
         <%= form_for @comment, remote: true do |f| %>
           <div class="field">
             <%= f.hidden_field :user_id, value: current_user.id %>
-            <%= f.hidden_field :commentable_id, value: @song.id %>
+            <%= f.hidden_field :parent_id, value: @comment.id %>
+            <%= f.hidden_field :commentable_id, value: params[:id] %>
             <%= f.hidden_field :commentable_type, value: @song.class.name %>
             <%= f.text_area :body, placeholder: "Compose new comment...", class: "form-control" %>
           </div>
@@ -69,14 +82,32 @@
       <% end %>
         <!-- view comment -->
         <ul class="parent-list-cmt">
-        <%= render partial: "comments/comment", collection: @comment5 %>
+          <%= comments_tree_for @comments %>
         </ul>
+
+        <!--
         <% unless (@comment6_to_last.nil?) %>
           <p class="show-cmt"> More ... </p>
           <ul class="hide-cmt">
             <%= render partial: "comments/comment", collection: @comment6_to_last %>
           </ul>
         <% end %>
+        -->
       </div>
+  </div>
+  <div class="col-md-4 charts">
+    <span><b>Bảng xếp hạng:</b></span>
+    <ul class="song-top">
+      <% @songs.each do |s| %>
+      <%= link_to song_path(s.id) do %>
+      <li class="rank">
+        <%= s.name %>
+        <span class="rank-listen">
+          <%= s.impressionist_count(filter: :id) %>
+        </span>
+      </li>
+      <% end %>
+      <% end %>
+    </ul>
   </div>
 </div>

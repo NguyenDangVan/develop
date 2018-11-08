@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_11_01_085414) do
+ActiveRecord::Schema.define(version: 2018_11_07_013059) do
 
   create_table "albums", force: :cascade do |t|
     t.string "title"
@@ -37,6 +37,14 @@ ActiveRecord::Schema.define(version: 2018_11_01_085414) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "comment_hierarchies", force: :cascade do |t|
+    t.integer "ancestor_id", null: false
+    t.integer "descendant_id", null: false
+    t.integer "generations", null: false
+    t.index ["ancestor_id", "descendant_id", "generations"], name: "comment_anc_desc_udx", unique: true
+    t.index ["descendant_id"], name: "comment_desc_idx"
+  end
+
   create_table "comments", force: :cascade do |t|
     t.text "body"
     t.integer "user_id"
@@ -44,6 +52,7 @@ ActiveRecord::Schema.define(version: 2018_11_01_085414) do
     t.datetime "updated_at", null: false
     t.integer "commentable_id"
     t.string "commentable_type"
+    t.integer "parent_id"
     t.index ["user_id"], name: "index_comments_on_user_id"
   end
 
@@ -56,6 +65,32 @@ ActiveRecord::Schema.define(version: 2018_11_01_085414) do
     t.index ["song_id"], name: "index_favorites_on_song_id"
     t.index ["user_id", "song_id"], name: "index_favorites_on_user_id_and_song_id", unique: true
     t.index ["user_id"], name: "index_favorites_on_user_id"
+  end
+
+  create_table "impressions", force: :cascade do |t|
+    t.string "impressionable_type"
+    t.integer "impressionable_id"
+    t.integer "user_id"
+    t.string "controller_name"
+    t.string "action_name"
+    t.string "view_name"
+    t.string "request_hash"
+    t.string "ip_address"
+    t.string "session_hash"
+    t.text "message"
+    t.text "referrer"
+    t.text "params"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["controller_name", "action_name", "ip_address"], name: "controlleraction_ip_index"
+    t.index ["controller_name", "action_name", "request_hash"], name: "controlleraction_request_index"
+    t.index ["controller_name", "action_name", "session_hash"], name: "controlleraction_session_index"
+    t.index ["impressionable_type", "impressionable_id", "ip_address"], name: "poly_ip_index"
+    t.index ["impressionable_type", "impressionable_id", "params"], name: "poly_params_request_index"
+    t.index ["impressionable_type", "impressionable_id", "request_hash"], name: "poly_request_index"
+    t.index ["impressionable_type", "impressionable_id", "session_hash"], name: "poly_session_index"
+    t.index ["impressionable_type", "message", "impressionable_id"], name: "impressionable_type_message_index"
+    t.index ["user_id"], name: "index_impressions_on_user_id"
   end
 
   create_table "lyrics", force: :cascade do |t|
@@ -94,6 +129,7 @@ ActiveRecord::Schema.define(version: 2018_11_01_085414) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "audio"
+    t.integer "impressions_count", default: 0
     t.index ["album_id"], name: "index_songs_on_album_id"
   end
 
