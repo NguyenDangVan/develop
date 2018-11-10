@@ -18,6 +18,13 @@ a:hover{
 .container{
   width: 80%;
 }
+.row{
+  background-color: #ececec66;
+}
+audio{
+  border-radius: 25px;
+  border: solid 2px #2660d8;
+}
 /* sidebar */
 aside {
   section.user_info {
@@ -187,4 +194,52 @@ input {
 /* drop-down menu */
 .dropdown-menu-user{
   width: 100%;
+}
+
+/* share-button */
+.social-share-button .ssb-icon {
+  background-position: center center !important;
+  background-repeat: no-repeat !important;
+  background-size: 44px 46px !important;
+  display: inline-block !important;
+  height: 35px !important;
+  width: 35px !important;
+  border-radius: 5px;
+}
+.social-share-button {
+  float: right;
+  margin-top: 5px;
+  margin-right: 8px;
+}
+
+/* bang xep hang */
+.rank{
+  height: auto;
+  padding: 5px;
+  border:  1px solid #95b8ea;
+  margin-bottom: 5px;
+  border-radius: 10px;
+  margin-left: 0px;
+}
+.rank-listen{
+  float: right;
+}
+.charts{
+  margin-top: 20px;
+  font-size: 2rem;
+  height: auto;
+}
+.rank:hover{
+  background-image: linear-gradient(to right, #dbedf6, #33a2f2 );
+}
+.song-top{
+  padding-left: 0px;
+}
+.bxh{
+  color: #2660d8;
+  font-size: 1.5em;
+}
+.artist-name{
+  font-size: 1.5rem;
+  color: #b7bfb7;
 }

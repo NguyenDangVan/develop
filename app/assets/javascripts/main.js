@@ -24,4 +24,8 @@ $(document).ready(function() {
     pagination : true,
   });
 });
-
+$(document).on("turbolinks:load", function(){
+  if (window.location.href.includes("/songs/")) {
+    $("body audio")[0].play();
+  }
+});

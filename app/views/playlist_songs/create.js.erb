@@ -1,0 +1,6 @@
+<% if @playlist_song.present? %>
+  alert('success');
+  $(".list-play-<%= @playlist.id %>").html('<%= j render partial: "songs/remove_to_playlist_form", locals: {list: @playlist} %>');
+<% else %>
+  alert('failed');
+<% end %>

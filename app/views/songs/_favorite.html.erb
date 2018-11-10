@@ -1,6 +1,6 @@
 <%= form_for(current_user.favorite_for_song.build, remote: true) do |f| %>
   <div><%= hidden_field_tag :song_id, @song.id %></div>
   <%= button_tag(type: "submit", class: "") do %>
-    <i><%= image_tag "icon/add-song.png", size: "20x20" %></i>Add to your favorite
+    <i><%= image_tag "icon/favorite.png", size: "20x20" %></i> Add to your favorite
   <% end %>
 <% end %>

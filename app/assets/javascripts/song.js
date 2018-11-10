@@ -45,8 +45,10 @@ $(document).on("click", ".btn-reply", function(){
   if (check_reply == false) {
       $(this).parent().find(".hide-reply").show();
       check_reply = true;
+      $(this).parent().next(".replies").show();
     } else {
       $(this).parent().find(".hide-reply").hide();
       check_reply = false;
+      $(this).parent().next(".replies").hide();
     }
 });

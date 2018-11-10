@@ -24,6 +24,7 @@ gem "jquery-rails"
 gem "carrierwave-ffmpeg"
 gem "closure_tree"
 gem "impressionist"
+gem "social-share-button"
 
 group :development, :test do
   gem "sqlite3"

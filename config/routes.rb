@@ -42,7 +42,8 @@ Rails.application.routes.draw do
     resources :playlists
   end
   resources :favorites, only: %i(create destroy)
-  resources :playlist_songs
+  resources :playlist_songs, only: %i(create destroy)
+  delete "/playlist_songs", to: "playlist_songs#destroy"
   resources :albums
   resources :songs do
     resources :lyrics, only: %i(new create destroy)

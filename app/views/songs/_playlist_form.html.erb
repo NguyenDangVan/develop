@@ -1,0 +1,12 @@
+<% current_user.playlists.each do |list| %>
+<li>
+  <%= list.title %>
+  <div class="list-play-<%= list.id %>">
+    <% if list.songs.find_by id: @song.id %>
+      <%= render partial: "remove_to_playlist_form", locals: {list: list} %>
+    <% else %>
+      <%= render partial: "add_to_playlist_form", locals: {list: list} %>
+    <% end %>
+  </div>
+</li>
+<% end %>

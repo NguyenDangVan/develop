@@ -5,20 +5,28 @@
   </div>
   <p class="comment-content"><%= comment.body %></p>
   <!-- reply -->
-  <span class="btn-reply"> Reply</span>
+  <% if logged_in? %>
+    <span class="btn-reply">
+      (<%= Comment.where(parent_id: comment.id).size %>)
+      Reply
+    </span>
     <div class="hide-reply">
-      <%= form_for @comment, remote: true do |f| %>
-          <div class="field">
-            <%= f.hidden_field :user_id, value: current_user.id %>
-            <%= f.hidden_field :parent_id, value: comment.id %>
-            <%= f.hidden_field :commentable_id, value: params[:id] %>
-            <%= f.hidden_field :commentable_type, value: @song.class.name %>
-            <%= f.text_area :body, placeholder: "Compose new reply...", class: "form-control" %>
-          </div>
-          <%= f.submit "Reply", class: "btn-cmt" %>
+      <%= form_for @comment do |f| %>
+      <div class="field">
+        <%= f.hidden_field :user_id, value: current_user.id %>
+        <%= f.hidden_field :parent_id, value: comment.id %>
+        <%= f.hidden_field :commentable_id, value: params[:id] %>
+        <% if @song.nil? %>
+          <%= f.hidden_field :commentable_type, value: @playlist.class.name %>
+        <% else %>
+          <%= f.hidden_field :commentable_type, value: @song.class.name %>
         <% end %>
+        <%= f.text_area :body, placeholder: "Compose new reply...", class: "form-control" %>
+      </div>
+      <%= f.submit "Reply", class: "btn-cmt" %>
+      <% end %>
     </div>
-
+  <% end %>
 
     <% if current_user?(comment.user) %>
       <span class="btn-edit-cmt"><%= image_tag "icon/edit-cmt.png", size: "15x15" %> Edit</span>

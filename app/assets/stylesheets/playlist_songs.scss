@@ -3,8 +3,8 @@ li.play-list{
   font-size: 1.5em;
 }
 .song-in-playlist{
-  background-color: rgba(231, 76, 59, 0.8);
-  width: 100%;
+  background-color: #75c7f57a;
+  width: 85%;
   border-radius: 5px;
   padding-left: 10px;
 }
@@ -13,14 +13,14 @@ li.play-list{
   text-decoration: none;
 }
 #audio{
-  width: 105%;
+  width: 90%;
 }
 ul#playlist{
   height: 250px;
   overflow-y: auto;
 }
 li.active div{
-  background-color: black;
+  background-color: #000000a3;
 }
 div.song-in-playlist:hover{
   background-color: #DBCECA;
@@ -33,5 +33,5 @@ button#next-song, button#previous-song {
 }
 .cmt-playlist{
   margin-left: 5%;
-  width: 100%;
+  width: 80% !important;
 }

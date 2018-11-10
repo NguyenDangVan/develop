@@ -4,8 +4,8 @@ class PlaylistsController < ApplicationController
   def show
     @user = User.find_by id: params[:user_id]
     @playlist = @user.playlists.find_by id: params[:id]
-    @comment5 = @playlist.comments.first(5)
-    @comment6_to_last = @playlist.comments[5..-1]
+    @comments = @playlist.comments.where(parent_id: nil)
+    @songs = Song.all.rank_song
     if @user.playlists.exists?(id: params[:id])
       @comment = Comment.new
     else

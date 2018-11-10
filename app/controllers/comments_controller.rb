@@ -12,14 +12,13 @@ class CommentsController < ApplicationController
     else
       @comment = Comment.new comment_params
     end
-
     if @comment.save
       flash[:success] = "Successfully"
-      redirect_to song_path(@comment.commentable_id)
     else
       flash[:danger] = "Unsuccessfully"
-      redirect_to song_path(@comment.commentable_id)
     end
+    redirect_to song_path(@comment.commentable_id) if @comment.commentable_type == "Song"
+    redirect_to user_playlist_path(current_user.id, @comment.commentable_id) if @comment.commentable_type == "Playlist"
   end
 
   def destroy

@@ -1,0 +1,5 @@
+<%= form_for @playlist_song, remote: true do |f| %>
+<%= f.hidden_field :playlist_id, value: list.id %>
+<%= f.hidden_field :song_id, value: @song.id %>
+<%= f.submit :Add, class: "add-playlist" %>
+<% end %>

@@ -3,12 +3,12 @@ class PlaylistSongsController < ApplicationController
 
   def create
     @playlist_song = PlaylistSong.new param_playlist_song
-    if @playlist_song.save
-      flash[:success] = "add successful"
-    else
-      flash[:danger] = "add unsuccesful"
+    @song = Song.find_by id: param_playlist_song[:song_id]
+    @playlist = Playlist.find_by id: param_playlist_song[:playlist_id]
+    @playlist_song.save
+    respond_to do |format|
+      format.js
     end
-    redirect_to song_path(@playlist_song.song_id)
   end
 
   def destroy
@@ -23,7 +23,8 @@ class PlaylistSongsController < ApplicationController
   end
 
   private
-    def param_playlist_song
-      params.require(:playlist_song).permit(:song_id, :playlist_id)
-    end
+
+  def param_playlist_song
+    params.require(:playlist_song).permit(:song_id, :playlist_id)
+  end
 end

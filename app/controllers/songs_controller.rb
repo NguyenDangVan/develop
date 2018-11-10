@@ -52,10 +52,11 @@ class SongsController < ApplicationController
     @playlist_song = PlaylistSong.new
     @lyrics = Lyric.all
     @comment = Comment.new
-    # @comment5 = @song.comments.first(5)
-    # @comment6_to_last = @song.comments[5..-1]
-    @comments = @song.comments.where(parent_id: nil)
+    @comment5 = @song.comments.where(parent_id: nil).first(5)
+    @comment6_to_last = @song.comments[5..-1]
+    @comments = @song.comments
     @songs = Song.all.rank_song
+    @suggest_song = @song.album.artist.songs.shuffle[0..4]
   end
 
   def download
