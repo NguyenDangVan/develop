@@ -46,8 +46,13 @@
     <h3> Lyrics: </h3>
     <% @lyrics.each do |lyric| %>
       <% if lyric.song_id == @song.id %>
-        <div class="lyric"><%= lyric.content[0..240] %></div>
-        <div class="hide-lyric"><%= lyric.content[241..-1] %></div>
+        <span class="lyric">
+          <%= lyric.content.split("<br />")[0..4].join("<br />").html_safe %>
+        </span>
+        <br>
+        <span class="hide-lyric">
+          <%= lyric.content.split("<br />")[5..-1].join("<br />").html_safe %>
+        </span>
         <div class="btn-hide">Click to hide</div>
         <% unless lyric.content[241..-1].nil? %>
           <p class="show-lyric">Click to show more</p>

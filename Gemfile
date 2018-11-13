@@ -25,6 +25,7 @@ gem "carrierwave-ffmpeg"
 gem "closure_tree"
 gem "impressionist"
 gem "social-share-button"
+gem "ckeditor"
 
 group :development, :test do
   gem "sqlite3"
