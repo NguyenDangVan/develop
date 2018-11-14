@@ -1,0 +1,15 @@
+<span class="bxh"><b>Top album:</b></span>
+<ul class="song-top">
+  <% @albums.each do |s| %>
+  <%= link_to song_album_path(s.id) do %>
+  <li class="rank">
+    <%= s.title %>
+    <br>
+    <span class="artist-name"><%= s.artist.name %></span>
+    <span class="rank-listen">
+      <%= s.impressionist_count %>
+    </span>
+  </li>
+  <% end %>
+  <% end %>
+</ul>

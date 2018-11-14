@@ -35,9 +35,9 @@ class AlbumsController < ApplicationController
   def index
     @categories = Category.all
     if params[:search]
-      @albums = Album.search_title(params[:search]).page(params[:page]).per 8
+      @albums = Album.ordered_by_create_at.search_title(params[:search]).page(params[:page]).per 8
     else
-      @albums = Album.page(params[:page]).per 8
+      @albums = Album.ordered_by_create_at.page(params[:page]).per 8
     end
   end
 
@@ -49,7 +49,7 @@ class AlbumsController < ApplicationController
   end
 
   def song_album
-    @songs = Song.all.rank_song
+    @albums = Album.rank_album
   end
 
   private

@@ -7,4 +7,5 @@ class Album < ApplicationRecord
   is_impressionable
   scope :ordered_by_create_at, -> {order created_at: :desc}
   scope :search_title, -> (t) {where "title LIKE ?", "%#{t}%"}
+  scope :rank_album, -> {order("(SELECT COUNT(DISTINCT impressions.id) FROM impressions WHERE impressions.impressionable_id = albums.id AND impressions.impressionable_type = 'Album') DESC LIMIT 5")}
 end

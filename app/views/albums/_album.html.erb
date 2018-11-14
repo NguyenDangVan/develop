@@ -1,6 +1,6 @@
 <div class="album-grid">
   <div class="album-grid-pic">
-    <%= image_tag("artists/post2.jpg") %>
+    <%= image_tag("artists/post#{@albums.index(album)+1}.jpg") %>
   </div>
   <div class="album-grid-info">
     <p class="index-title"><strong> <%= album.title %> </strong>
