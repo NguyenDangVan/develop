@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_11_13_152513) do
+ActiveRecord::Schema.define(version: 2018_11_14_134751) do
 
   create_table "albums", force: :cascade do |t|
     t.string "title"
@@ -159,6 +159,8 @@ ActiveRecord::Schema.define(version: 2018_11_13_152513) do
     t.boolean "admin", default: false
     t.string "reset_digest"
     t.datetime "reset_sent_at"
+    t.string "provider"
+    t.string "uid"
     t.index ["email"], name: "index_users_on_email", unique: true
   end
 

@@ -1,4 +1,11 @@
 Rails.application.routes.draw do
+  devise_for :users,
+    controllers:{omniauth_callbacks: "users/omniauth_callbacks"}
+  as :user do
+    get "signin" => "devise/sessions#new"
+    post "signin" => "devise/sessions#create"
+    delete "signout" => "devise/sessions#destroy"
+  end
   mount Ckeditor::Engine => "/ckeditor"
   require "sidekiq/web"
   mount Sidekiq::Web => "/sidekiq"
