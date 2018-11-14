@@ -1,3 +1,20 @@
+<%= provide :title, "Songs" %>
+<div class="card mb-3">
+  <div class="card-header">
+    <i class="fas fa-chart-area"></i>
+  Age Chart</div>
+  <div class="card-body">
+    <%= column_chart @songs.group(:created_at).count, colors: ["silver", "silver"],
+    title: "Songs of month",
+    colors: ['lightblue'],
+    library: {
+    tooltip: {
+      pointFormat: 'Times Created at: <b>{point.y}</b>'
+    }
+  } %>
+  </div>
+  <div class="card-footer small text-muted">Updated yesterday at 11:59 PM</div>
+</div>
 <div class="card mb-3 my-table" style="width: 100%;">
   <div class="card-header">
     <i class="fas fa-table"></i>

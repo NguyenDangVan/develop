@@ -9,7 +9,7 @@ class User < ApplicationRecord
   VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
   validates :name, :email, :age, presence: true
   validates :name, length: {maximum: Settings.user.max_name_size}
-  validates :age, numericality: true,
+  validates :age, numericality: true, :inclusion => 15..80,
     length: {maximum: Settings.user.maximum_age}
   validates :email, length: {maximum: Settings.user.maximum_email},
     uniqueness: {case_sensitive: false},

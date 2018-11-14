@@ -1,6 +1,9 @@
 //= require admin/jquery
 //= retuire jquery.easy-autocomplete
 //= require jquery_ujs
+//= require Chart.bundle
+//= require chartkick
+//= require highcharts
 //= require jquery-ui
 //= require search
 //= require admin/jquery.min

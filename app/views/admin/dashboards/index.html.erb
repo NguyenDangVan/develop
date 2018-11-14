@@ -64,6 +64,17 @@
     </div>
   </div>
 </div>
+<!-- chart -->
+<div class="card mb-3">
+  <div class="card-header">
+    <i class="fas fa-chart-area"></i>
+  Age Chart</div>
+  <div class="card-body">
+    <%= column_chart @users_chart.group(:age).count, colors: ["silver", "silver"] %>
+  </div>
+  <div class="card-footer small text-muted">Updated yesterday at 11:59 PM</div>
+</div>
+<!-- end chart -->
 <div class="card mb-3">
   <div class="card-header">
     <i class="fas fa-table"></i>
@@ -77,7 +88,7 @@
             <div id="dataTable_filter" class="dataTables_filter">
               <label>
                 <%= search_form_for [:admin, @q] do |f| %>
-                  <%= f.search_field :name_cont, class: "form-control form-control-sm", id: "tags", placeholder: "Search ..."%>
+                <%= f.search_field :name_or_age_cont, class: "form-control form-control-sm", id: "tags", placeholder: "Search ..."%>
                 <% end %>
               </label>
             </div>
@@ -105,14 +116,14 @@
               <%= link_to "Delele", user_path(user), method: :delete, data: {confirm: "Delete user?"} %>
             </td>
           </tr>
-        <% end %>
+          <% end %>
         </tbody>
       </table>
     </div>
   </div>
   <%= paginate @users, theme: "twitter-bootstrap-3" %>
   <div class="card-footer small text-muted">Updated yesterday at 11:59 PM</div>
-  </div>
-  <p class="small text-center text-muted my-5">
-    <em>More table examples coming soon...</em>
-  </p>
+</div>
+<p class="small text-center text-muted my-5">
+  <em>More table examples coming soon...</em>
+</p>

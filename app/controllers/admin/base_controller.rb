@@ -19,4 +19,5 @@ class Admin::BaseController < ApplicationController
   def search_all
     @q = User.ransack(params[:q])
   end
+
 end

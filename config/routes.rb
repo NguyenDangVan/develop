@@ -1,7 +1,8 @@
 Rails.application.routes.draw do
-  mount Ckeditor::Engine => '/ckeditor'
-  get 'lyrics/new'
-  get "search", to: "admin/users#search"
+  mount Ckeditor::Engine => "/ckeditor"
+  require "sidekiq/web"
+  mount Sidekiq::Web => "/sidekiq"
+  get "lyrics/new"
   get "favorites/destroy"
   get "favorites/create"
   get "password_resets/new"
@@ -25,6 +26,7 @@ Rails.application.routes.draw do
     resources :artists, only: :index
     resources :albums, only: :index
     resources :dashboards, only: :index
+    resources :charts, only: :index
     root "dashboards#index"
   end
   resources :account_activations, only: :edit
@@ -50,7 +52,6 @@ Rails.application.routes.draw do
   resources :songs do
     resources :lyrics, only: %i(new create destroy)
   end
-  resources :lyrics
 
   get "/comments/new(:parents_id)", to: "comments#new", as: :new_comment
   resources :comments

@@ -9,7 +9,7 @@ User.create! name: "admin1101",
 User.create!(
   name: "man1",
   email: "man1@yahoo.com",
-  age: 21,
+  age: 19,
   password: "123456",
   password_confirmation: "123456",
   activated: true
@@ -18,7 +18,7 @@ User.create!(
 User.create!(
   name: "man2",
   email: "man2@yahoo.com",
-  age: 21,
+  age: 20,
   password: "123456",
   password_confirmation: "123456",
   activated: true
@@ -27,7 +27,7 @@ User.create!(
 20.times do |n|
   name  = FFaker::Name.name
   email = "din-#{n+1}@gmail.com"
-  age = 21
+  age = FFaker::Random.rand(15..80)
   password = "password"
   User.create! name: name,
                email: email,
