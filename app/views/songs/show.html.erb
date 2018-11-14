@@ -3,7 +3,11 @@
 <% end %>
 <div class="row">
   <div class="col-md-7 player">
-    <h1><b><%= @song.name %></b> - <%= @song.album.artist.name %></h1>
+    <h1>
+      <b><%= @song.name %></b>
+      -
+      <%= link_to @song.album.artist.name, artist_path(@song.album.artist.id) %>
+    </h1>
     <h5> Upload at <%= time_ago_in_words(@song.updated_at) %> ago.</h5>
     <div>
       <%= audio_tag @song.audio, class: "audio-play-song", controls: "true", loop: "true" %>
@@ -43,6 +47,7 @@
     <% end %>
   <% end %>
   <%= render "favorite_form" if logged_in? %>
+  <% unless @song.lyrics.count == 0 %>
     <h3> Lyrics: </h3>
     <% @lyrics.each do |lyric| %>
       <% if lyric.song_id == @song.id %>
@@ -50,16 +55,16 @@
           <%= lyric.content.split("<br />")[0..4].join("<br />").html_safe %>
         </span>
         <br>
-        <span class="hide-lyric">
-          <%= lyric.content.split("<br />")[5..-1].join("<br />").html_safe %>
-        </span>
-        <div class="btn-hide">Click to hide</div>
-        <% unless lyric.content[241..-1].nil? %>
-          <p class="show-lyric">Click to show more</p>
+        <% unless lyric.content.split("<br />")[5..-1].nil? %>
+          <span class="hide-lyric">
+            <%= lyric.content.split("<br />")[5..-1].join("<br />").html_safe %>
+            <p class="show-lyric">Click to show more</p>
+          </span>
         <% end %>
+        <div class="btn-hide">Click to hide</div>
       <% end %>
-    <% end %>
-    <% if @song.lyrics.count == 0 %>
+      <% end %>
+    <% else %>
       <div class="lyric">Lyric has not been updated yet</div>
     <% end %>
     <!-- comment -->

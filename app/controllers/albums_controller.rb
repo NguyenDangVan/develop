@@ -3,6 +3,7 @@ class AlbumsController < ApplicationController
   before_action :logged_in_user, except: %i(show index song_album)
   before_action :admin_user, except: %i(show index song_album)
   before_action :correct_category, only: :destroy
+  impressionist actions: [:song_album]
 
   def new
     @album = Album.new
@@ -48,7 +49,7 @@ class AlbumsController < ApplicationController
   end
 
   def song_album
-    @songs = @album.songs.page(params[:page]). per 3
+    @songs = Song.all.rank_song
   end
 
   private
