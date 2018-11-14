@@ -14,3 +14,5 @@ Rails.application.config.assets.precompile += %w(admin.js)
 # folder are already added.
 # Rails.application.config.assets.precompile += %w( admin.js admin.css )
 Rails.application.config.assets.precompile += %w( playlist.js )
+Rails.application.config.assets.precompile += %w(autoNextSong.js)
+Rails.application.config.assets.precompile += %w( ckeditor/filebrowser/images/gal_del.png )

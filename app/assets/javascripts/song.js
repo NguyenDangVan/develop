@@ -1,7 +1,8 @@
 var check = false;
 var check_cmt = false;
 var check_edit = false;
-var check_lyric = false;
+var check_reply = false;
+
 $(document).on("click", ".add-to-pls", function(){
     if (check == false) {
       $(".list-pls").show();
@@ -30,11 +31,24 @@ $(document).on("click", ".btn-edit-cmt", function(){
     }
 });
 $(document).on("click", ".show-lyric", function(){
-  if (check_lyric == false) {
-      $(".hide-lyric").show();
-      check_lyric = true;
-    } else {
-      $(".hide-lyric").hide();
-      check_lyric = false;
-    }
+  $(".hide-lyric").show();
+  $(".btn-hide").show();
+  $(this).hide();
 })
+$(document).on("click", ".btn-hide", function(){
+  $(this).hide();
+  $(".hide-lyric").hide();
+  $(".show-lyric").show();
+})
+
+$(document).on("click", ".btn-reply", function(){
+  if (check_reply == false) {
+      $(this).parent().find(".hide-reply").show();
+      check_reply = true;
+      $(this).parent().next(".replies").show();
+    } else {
+      $(this).parent().find(".hide-reply").hide();
+      check_reply = false;
+      $(this).parent().next(".replies").hide();
+    }
+});

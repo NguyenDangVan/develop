@@ -3,6 +3,7 @@ class SongsController < ApplicationController
   before_action :find_song, except: %i(create new index)
   before_action :admin_user, only: %i(edit update destroy)
   before_action :all_categories
+  impressionist actions: [:show]
 
   def new
     @song = Song.new
@@ -51,16 +52,17 @@ class SongsController < ApplicationController
     @playlist_song = PlaylistSong.new
     @lyrics = Lyric.all
     @comment = Comment.new
-    @comment5 = @song.comments.first(5)
+    @comment5 = @song.comments.where(parent_id: nil).first(5)
     @comment6_to_last = @song.comments[5..-1]
-    return if @song
-    flash[:danger] = "Not found this song"
-    redirect_to not_found_path
+    @comments = @song.comments
+    @songs = Song.all.rank_song
+    @suggest_song = @song.album.artist.songs.shuffle[0..4]
   end
 
   def download
     file_path = @song.audio
     if @song.audio?
+      @song.count_download
       send_file @song.audio.path, :x_send_file => true
     else
       redirect_to @song
@@ -81,7 +83,6 @@ class SongsController < ApplicationController
 
     def find_song
       @song = Song.find_by id: params[:id]
-
       return if @song
       flash[:danger] = "Not found song"
       redirect_to root_url

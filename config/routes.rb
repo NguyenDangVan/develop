@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  mount Ckeditor::Engine => '/ckeditor'
   get 'lyrics/new'
   get "favorites/destroy"
   get "favorites/create"
@@ -42,11 +43,14 @@ Rails.application.routes.draw do
     resources :playlists
   end
   resources :favorites, only: %i(create destroy)
-  resources :playlist_songs
+  resources :playlist_songs, only: %i(create destroy)
+  delete "/playlist_songs", to: "playlist_songs#destroy"
   resources :albums
   resources :songs do
     resources :lyrics, only: %i(new create destroy)
   end
   resources :lyrics
+
+  get "/comments/new(:parents_id)", to: "comments#new", as: :new_comment
   resources :comments
 end

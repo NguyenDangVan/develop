@@ -1,55 +1,70 @@
+<% content_for :javascript_includes do %>
+  <%= javascript_include_tag "autoNextSong.js" %>
+<% end %>
 <div class="row">
-  <div class="col-md-8 player">
-    <h1><b><%= @song.name %> - <%= @song.album.artist.name %></b></h1>
+  <div class="col-md-7 player">
+    <h1>
+      <b><%= @song.name %></b>
+      -
+      <%= link_to @song.album.artist.name, artist_path(@song.album.artist.id) %>
+    </h1>
     <h5> Upload at <%= time_ago_in_words(@song.updated_at) %> ago.</h5>
     <div>
       <%= audio_tag @song.audio, class: "audio-play-song", controls: "true", loop: "true" %>
     </div>
+    <div class="count-listen">
+      <%= image_tag "icon/headphone.png", size: "35x35" %>
+      <%= @song.impressionist_count(filter: :id) %>
+      <%= social_share_button_tag(@song.name, :allow_sites => %w(twitter), :'data-source' => "http://localhost:3000/songs/1") %>
+    </div>
+    <div class="clearfix"></div>
     <div class="download">
       <%= link_to song_download_path(@song), target: :_blank do %>
       <%= image_tag "icon/download.png", size: "20x20"%>
       Download
       <% end %>
+      <span class="count-download">Downloaded:
+        <%= @song.impressions_count %>
+      </span>
     </div>
   <% if logged_in?  %>
     <% if current_user.playlists.empty? %>
       <p> You have no playlist </p>
-      <%= link_to new_user_playlist_path(params[:id]) do %>
+      <%= link_to new_user_playlist_path(current_user.id) do %>
       <%= image_tag "icon/add-playlist.png", size: "25x25" %>
         <span>New playlist</span>
-      <% end %>
-    </div>
-  <% else %>
+    <% end %>
+    <% else %>
       <div>
         <p class="add-to-pls">
           <%= image_tag "icon/add-song.png", size: "20x20" %>
           Add to my playlist
         </p>
-          <ul class="list-pls">
-            <% current_user.playlists.each do |list| %>
-              <li><div class="list-play"><%= list.title %>
-                <%= form_for @playlist_song do |f| %>
-                  <%= f.hidden_field :playlist_id, value: list.id %>
-                  <%= f.hidden_field :song_id, value: @song.id %>
-                  <%= f.submit :Add, class: "add-playlist" %>
-                <% end %>
-              </div>
-              </li>
-            <% end %>
-          </ul>
+        <ul class="list-pls">
+          <%= render "playlist_form" %>
+        </ul>
       </div>
     <% end %>
   <% end %>
   <%= render "favorite_form" if logged_in? %>
+  <% unless @song.lyrics.count == 0 %>
     <h3> Lyrics: </h3>
     <% @lyrics.each do |lyric| %>
-    <% if lyric.song_id == @song.id %>
-      <div class="lyric"><%= lyric.content[0..240] %></div>
-      <div class="hide-lyric"><%= lyric.content[241..-1] %></div>
-      <p class="show-lyric">More</p>
+      <% if lyric.song_id == @song.id %>
+        <span class="lyric">
+          <%= lyric.content.split("<br />")[0..4].join("<br />").html_safe %>
+        </span>
+        <br>
+        <% unless lyric.content.split("<br />")[5..-1].nil? %>
+          <span class="hide-lyric">
+            <%= lyric.content.split("<br />")[5..-1].join("<br />").html_safe %>
+            <p class="show-lyric">Click to show more</p>
+          </span>
+        <% end %>
+        <div class="btn-hide">Click to hide</div>
       <% end %>
-    <% end %>
-    <% if @song.lyrics.count == 0 %>
+      <% end %>
+    <% else %>
       <div class="lyric">Lyric has not been updated yet</div>
     <% end %>
     <!-- comment -->
@@ -57,10 +72,11 @@
       <!-- create comment -->
       <% if logged_in? %>
         </br>
-        <%= form_for @comment, remote: true do |f| %>
+        <%= form_for @comment do |f| %>
           <div class="field">
             <%= f.hidden_field :user_id, value: current_user.id %>
-            <%= f.hidden_field :commentable_id, value: @song.id %>
+            <%= f.hidden_field :parent_id, value: @comment.id %>
+            <%= f.hidden_field :commentable_id, value: params[:id] %>
             <%= f.hidden_field :commentable_type, value: @song.class.name %>
             <%= f.text_area :body, placeholder: "Compose new comment...", class: "form-control" %>
           </div>
@@ -69,14 +85,43 @@
       <% end %>
         <!-- view comment -->
         <ul class="parent-list-cmt">
-        <%= render partial: "comments/comment", collection: @comment5 %>
+          <%= comments_tree_for @comment5 %>
         </ul>
         <% unless (@comment6_to_last.nil?) %>
           <p class="show-cmt"> More ... </p>
           <ul class="hide-cmt">
-            <%= render partial: "comments/comment", collection: @comment6_to_last %>
+            <%= comments_tree_for @comment6_to_last %>
           </ul>
         <% end %>
-      </div>
+    </div>
+  </div>
+  <div class="col-md-3 charts">
+    <div>
+      Maybe you like:
+      <span class="autonext">Autonext</span>
+      <label class="switch">
+        <input type="checkbox">
+        <span class="slider round btn-autonext"></span>
+      </label>
+
+      <ul class="suggest">
+        <% @suggest_song.select do |k,v|  %>
+          <% if k.id != @song.id %>
+          <%= link_to song_path(k.id) do %>
+            <li class="song-suggest">
+              <%= image_tag "icon/play.png", size: "25x25" %>
+              <b><%= k.name %></b>
+              <br><span class="song-suggest-artist"><%= k.album.artist.name %></span>
+              <span></span>
+              <span class="song-suggest-count">
+                <%= image_tag "icon/headphones -gray.png", size: "20x20" %>
+                <%= k.impressionist_count %></span>
+            </li>
+          <% end %>
+          <% end %>
+        <% end %>
+      </ul>
+    </div>
+    <%= render "layouts/chart" %>
   </div>
 </div>

@@ -7,4 +7,6 @@
  *= require playlists
  *= require playlist_songs
  *= require songs
+ *= require social-share-button
+ *= require albums
 */

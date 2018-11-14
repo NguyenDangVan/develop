@@ -9,3 +9,8 @@
 //= require main
 //= require responsiveslides.min
 //= require song
+//= require social-share-button
+//= require ckeditor/init
+$(document).ready(function(){
+  $(".alert").fadeOut(3000);
+});
