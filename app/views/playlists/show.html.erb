@@ -1,12 +1,13 @@
-<% content_for :javascript_includes do %>
-  <%= javascript_include_tag "playlist.js" %>
-<% end %>
+
 <div class="row list">
-  <div class="col-md-8 col-md-offset-1">
+  <div class="col-md-7 col-md-offset-1">
     <h2><b><%= @playlist.title %></b></h2>
     <% if @playlist.songs.empty? %>
       <h3>No songs in this playlist</h3>
     <% else %>
+    <% content_for :javascript_includes do %>
+    <%= javascript_include_tag "playlist.js" %>
+    <% end %>
     <audio controls="true" id="audio" >
       <source src= "<%= @playlist.songs.first.audio %>", type="audio/mp3">
     </audio>
@@ -38,11 +39,14 @@
         </li>
       <% end %>
     </ul>
-    <h5>Create at <%= time_ago_in_words(@playlist.user.created_at) %> ago.</h5>
+    <h5>Create at <%= time_ago_in_words(@playlist.created_at) %> ago.</h5>
     <% if @playlist.description %>
       <div><b>Description:</b></div>
       <span><%= @playlist.description[0..240] %></span>
-      <span class="hide-description"><%= @playlist.description[241..-1] %></span>
+      <% unless @playlist.description[241..-1].nil? %>
+        <span class="hide-description"><%= @playlist.description[241..-1] %></span>
+        <div class="show-description">More</div>
+      <% end %>
       <div class="show-description">More</div>
     <% end %>
     <!-- Comment -->
@@ -60,18 +64,14 @@
           <%= f.submit "Comment", class: "btn-cmt" %>
         <% end %>
       <% end %>
-
       <!-- view comment -->
       <ul class="parent-list-cmt">
-        <%= render partial: "comments/comment", collection: @comment5 %>
+        <%= comments_tree_for @comments %>
       </ul>
-      <% unless (@comment6_to_last.nil?) %>
-        <p class="show-cmt"> More ... </p>
-        <ul class="hide-cmt">
-          <%= render partial: "comments/comment", collection: @comment6_to_last %>
-        </ul>
-        <% end %>
-      <% end %>
     </div>
+    <% end %>
+  </div>
+  <div class="col-md-3 charts">
+    <%= render "layouts/chart" %>
   </div>
 </div>

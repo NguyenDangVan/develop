@@ -1,5 +1,6 @@
 .player{
-  margin-left: 15%;
+  margin-left: 10%;
+  padding-bottom: 20px;
 }
 .audio-play-song, .cmt{
   width: 90%;
@@ -18,16 +19,17 @@
   position: relative;
 }
 .add-playlist{
-  background-color: #1bca1bbd;
+  background-color: #33a2f2;
   color: yellow;
   border-radius: 5px;
 }
-ul.list-pls, .hide-cmt, .hide-lyric{
-  display: none;
+.remove-from-playlist{
+  background-color: #cdb6b5;
+  border-radius: 5px;
+  margin-bottom: 10px;
 }
-audio{
-  border-radius: 25px;
-  border: solid 2px red;
+ul.list-pls, .hide-cmt, .hide-lyric, .btn-hide, .hide-reply{
+  display: none;
 }
 
 /* comment */
@@ -37,7 +39,7 @@ audio{
 .btn-cmt{
   width: 20%;
   border-radius: 5px;
-  background-color: #ff9232;
+  background-color: #6dc4f7;
 }
 .btn-cmt:hover{
   color: #ffffff;
@@ -60,7 +62,6 @@ textarea#comment_body{
   border: 1px solid #f88657;
   box-shadow: 8px 6px #ceb6b6;
   border-radius: 5px;
-
 }
 .list-cmt-child{
   background-color: #dcedf5;
@@ -74,4 +75,107 @@ textarea#comment_body{
 .add-favourite{
   width: 25px;
   color: red;
+}
+.replies {margin-left: 50px;}
+/*.replies .replies {margin-left: 0;}*/
+
+/* lyric */
+.show-lyric, .btn-hide{
+  text-align: center;
+  color: red;
+}
+.count-listen{
+  margin-right: 78px;
+  color: #2660d8;
+  font-size: 3rem;
+}
+.count-download{
+  float: right;
+  margin-right: 85px;
+  font-size: 0.75em;
+}
+
+/* bai hat goi y */
+.suggest{
+  padding-left: 0px;
+}
+.song-suggest{
+  height: auto;
+  border-bottom: 1px solid #cccccc;
+  margin-top: 5px;
+  padding-bottom: 5px;
+}
+.song-suggest-artist{
+  color: gray;
+  margin-left: 30px;
+  font-size: 1.5rem;
+}
+.song-suggest-count{
+  float: right;
+  color: gray;
+}
+.song-suggest:hover{
+  background-image: linear-gradient(to right, #dbedf6, #33a2f2 );
+}
+/* auto next */
+/*.btn-autonext{
+  position: absolute;
+  margin-left: 5px;
+}
+*/
+.autonext{
+  margin-left: 15%;
+}
+
+.switch {
+  position: relative;
+  display: inline-block;
+  width: 50px;
+  height: 30px;
+}
+
+.switch input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  -webkit-transition: .4s;
+  transition: .4s;
+}
+
+.slider:before {
+  position: absolute;
+  content: "";
+  height: 22px;
+  width: 22px;
+  left: 4px;
+  bottom: 4px;
+  background-color: white;
+  transition: .4s;
+  transform: translateX(20px);
+}
+
+input:focus + .slider {
+  box-shadow: 0 0 1px #2196F3;
+}
+
+input:checked + .slider:before {
+  transform: translateX(0px);
+}
+
+/* Rounded sliders */
+.slider.round {
+  border-radius: 34px;
+}
+
+.slider.round:before {
+  border-radius: 50%;
 }

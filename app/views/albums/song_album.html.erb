@@ -1,6 +1,63 @@
-<% provide :title, "Song Album" %>
-<h1 style="text-align: center;">All Song Album</h1>
-<ul class="users">
-  <%= render @songs %>
-</ul>
-<div style="margin-left: 40px;"><%= paginate @songs, theme: "twitter-bootstrap-3" %></div>
+<% provide :title, @album.title %>
+<div class="row list">
+  <div class="col-md-7 col-md-offset-1">
+    <div>
+      <span class="album-title">
+        <b>
+          <%= @album.title %>
+        </b>
+        - <%= link_to @album.artist.name, artist_path(@album.artist.id) %>
+      </span>
+      <span class="listened">
+        <%= image_tag "icon/headphones -gray.png", size: "20x20" %>
+        <%= @album.impressionist_count %>
+      </span>
+    </div>
+    <div class="clearfix"></div>
+    <% if @album.songs.empty? %>
+      <h3>No songs in this album</h3>
+    <% else %>
+      <% content_for :javascript_includes do %>
+      <%= javascript_include_tag "playlist.js" %>
+      <% end %>
+      <audio controls="true" id="audio" >
+        <source src= "<%= @album.songs.first.audio %>", type="audio/mp3">
+      </audio>
+      <button id="previous-song">
+        <%= image_tag "icon/previous-song.png", size: "20x20" %>
+      </button>
+      <button id="next-song">
+        <%= image_tag "icon/next-song.png", size: "20x20" %>
+      </button>
+      <ul id="playlist">
+        <% @album.songs.each do |song| %>
+          <li class="play-list" >
+            <div class="song-in-playlist">
+              <a href="<%= song.audio %>" class="song" >
+                <%= song.name %>
+              </a>
+            </div>
+            <%= link_to song_download_path(song.id), target: :_blank do %>
+              <%= image_tag "icon/download.png", size: "20x20" %>
+            <% end %>
+            <%= link_to song_path(song), target: :_blank do %>
+              <%= image_tag "icon/open-new-tab.jpeg", size: "25x25" %>
+            <% end %>
+          </li>
+        <% end %>
+      <% end %>
+    </ul>
+    <h5>Create at <%= time_ago_in_words(@album.created_at) %> ago.</h5>
+    <% if @album.description %>
+      <div><b>Description:</b></div>
+      <span><%= @album.description[0..240] %></span>
+      <% unless @album.description[241..-1].nil? %>
+        <span class="hide-description"><%= @album.description[241..-1] %></span>
+        <div class="show-description">More</div>
+      <% end %>
+    <% end %>
+  </div>
+  <div class="col-md-3 charts">
+    <%= render "layouts/chart_album" %>
+  </div>
+</div>

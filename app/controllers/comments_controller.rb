@@ -2,19 +2,23 @@ class CommentsController < ApplicationController
   before_action :find_cmt, only: %i(destroy edit update)
 
   def new
-    @comment = Comment.new
+    @comment = Comment.new(parent_id: params[:parent_id])
   end
 
   def create
-    @comment = Comment.new comment_params
-    if @comment.save
-      respond_to do |format|
-        format.js
-      end
+    if params[:comment][:parent_id].to_i > 0
+      parent = Comment.find_by_id(params[:comment].delete(:parent_id))
+      @comment = parent.children.build(comment_params)
     else
-      flash[:danger] = "Your comment was not successfully added"
-      redirect_to song_path(@comment.commentable_id)
+      @comment = Comment.new comment_params
     end
+    if @comment.save
+      flash[:success] = "Successfully"
+    else
+      flash[:danger] = "Unsuccessfully"
+    end
+    redirect_to song_path(@comment.commentable_id) if @comment.commentable_type == "Song"
+    redirect_to user_playlist_path(current_user.id, @comment.commentable_id) if @comment.commentable_type == "Playlist"
   end
 
   def destroy

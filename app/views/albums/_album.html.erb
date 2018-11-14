@@ -1,12 +1,17 @@
 <div class="album-grid">
   <div class="album-grid-pic">
-    <%= image_tag("artists/post2.jpg") %>
+    <%= image_tag("artists/post#{@albums.index(album)+1}.jpg") %>
   </div>
   <div class="album-grid-info">
-    <p><strong>Title:</strong> <%= album.title %> </p>
-    <p><strong>Artist:</strong> <%= album.artist.name %> </p>
-    <p><strong>Category:</strong> <%= album.category.name %> </p>
-    <p><strong>Description:</strong> <%= album.description %> </p>
+    <p class="index-title"><strong> <%= album.title %> </strong>
+      <span class="index-listened">
+      <%= image_tag "icon/headphones -gray.png", size: "18x18" %>
+      <%= album.impressionist_count %>
+      </span>
+    </p>
+    <p class="index-info"><%= link_to album.artist.name, artist_path(album.artist.id) %> </p>
+    <p class="index-info"><%= album.category.name %> </p>
+
     <%= link_to "Play album", song_album_path(album), class: "download-album" %>
   </div>
 </div>

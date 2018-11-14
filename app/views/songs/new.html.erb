@@ -7,7 +7,7 @@
     <%= f.select :album_id, options_from_collection_for_select(Album.all, :id, :title) %>
     <%= f.fields_for :lyrics do |builder| %>
       <%= builder.label :content, "Content's lyric" %>
-      <%= builder.text_area :content, class: "form-control" %>
+      <%= builder.text_area :content, class: "form-control ckeditor" %>
     <% end %>
     <span class="audio">
       <%= f.file_field :audio %>

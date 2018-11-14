@@ -1,0 +1,4 @@
+<%= link_to playlist_song_path(playlist_id: list.id, song_id: @song.id, id: @song.id), method: :delete, data: {confirm: "Delete #{@song.name} from playlist ?" } do %>
+<br>
+  <button class="remove-from-playlist"> Remove </button>
+<% end %>
