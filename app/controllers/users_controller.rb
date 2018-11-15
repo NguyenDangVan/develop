@@ -1,12 +1,11 @@
 class UsersController < ApplicationController
   before_action :find_user, except: %i(new create index)
-  before_action :logged_in_user, except: %i(new create)
   before_action :correct_user, only: [:update, :edit]
   before_action :admin_user, only: :destroy
 
-  def new
-    @user = User.new
-  end
+  # def new
+  #   @user = User.new
+  # end
 
   def index
     if params[:search]
@@ -25,16 +24,16 @@ class UsersController < ApplicationController
     @playlists = @user.playlists.page(params[:page]).per 10
   end
 
-  def create
-    @user = User.new user_params
-    if @user.save
-      @user.send_activation_email
-      flash[:info] = t ".pls_check"
-      redirect_to root_url
-    else
-      render :new
-    end
-  end
+  # def create
+  #   @user = User.new user_params
+  #   if @user.save
+  #     @user.send_activation_email
+  #     flash[:info] = t ".pls_check"
+  #     redirect_to root_url
+  #   else
+  #     render :new
+  #   end
+  # end
 
   def edit; end
 
@@ -73,7 +72,7 @@ class UsersController < ApplicationController
 
     def correct_user
       @user = User.find_by id: params[:id]
-      redirect_to root_url unless current_user?(@user) || current_user.admin
+      redirect_to root_url unless current_user==@user || current_user.admin
     end
 
     def find_user

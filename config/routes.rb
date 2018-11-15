@@ -1,15 +1,15 @@
 Rails.application.routes.draw do
-  mount Ckeditor::Engine => '/ckeditor'
-  get 'lyrics/new'
-  get "favorites/destroy"
-  get "favorites/create"
-  get "password_resets/new"
-  get "password_resets/edit"
+  devise_for :users,
+    controllers:{omniauth_callbacks: "users/omniauth_callbacks"}
+  as :user do
+    get "signin", to: "devise/sessions#new"
+    post "signin", to: "devise/sessions#create"
+    delete "signout", to: "devise/sessions#destroy"
+  end
+  mount Ckeditor::Engine => "/ckeditor"
+  require "sidekiq/web"
+  mount Sidekiq::Web => "/sidekiq"
   root "static_pages#home"
-  get "/signup", to: "users#new"
-  get "/login", to: "sessions#new"
-  post "/login", to: "sessions#create"
-  delete "/logout", to: "sessions#destroy"
   get "/upload", to: "songs#new"
   get "/download/:id", to: "songs#download", as: :song_download
   get "/details", to: "artists#show"
@@ -20,10 +20,11 @@ Rails.application.routes.draw do
     resources :songs do
       resources :lyrics, only: %i(new create destroy)
     end
-    resources :users, only: :index
+    resources :users
     resources :artists, only: :index
     resources :albums, only: :index
     resources :dashboards, only: :index
+    resources :charts, only: :index
     root "dashboards#index"
   end
   resources :account_activations, only: :edit
@@ -50,7 +51,6 @@ Rails.application.routes.draw do
   resources :songs do
     resources :lyrics, only: %i(new create destroy)
   end
-  resources :lyrics
 
   get "/comments/new(:parents_id)", to: "comments#new", as: :new_comment
   resources :comments

@@ -46,12 +46,6 @@ class PlaylistsController < ApplicationController
       params.require(:playlist).permit(:user_id, :title)
     end
 
-    def logged_in_user
-      return if logged_in?
-      flash[:danger] = "Please log in."
-      redirect_to login_url
-    end
-
     def to_key
       id ? id : nil
     end

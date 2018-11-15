@@ -1,0 +1,9 @@
+<div class="card mb-3">
+  <div class="card-header">
+    <i class="fas fa-chart-area"></i>
+  Favourite Song of Month</div>
+  <div class="card-body">
+    <%= area_chart @song_charts.group_by_month(:created_at).count, colors: ["silver", "silver"] %>
+  </div>
+  <div class="card-footer small text-muted">Updated yesterday at 11:59 PM</div>
+</div>

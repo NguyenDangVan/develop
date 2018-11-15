@@ -1,14 +1,14 @@
 /*
- *= require admin/bootstrap.min
  *= require admin/all.min
+ *= require easy-autocomplete
  *= require admin/bootstrap-grid.min
  *= require admin/bootstrap-reboot.min
+ *= require admin/bootstrap.min
  *= require admin/brands.min
  *= require admin/dataTables.bootstrap4.min
  *= require admin/fontawesome.min
  *= require admin/regular.min
  *= require admin/sb-admin.min
  *= require admin/solid.min
- *= require admin/svg-with-js.min
  *= require admin/v4-shims.min
 */
