@@ -1,0 +1,25 @@
+<% if @activities.empty? %>
+  You have no activities
+<% else %>
+  <div class="col-md-12 div-activity">
+    <table class="table-history">
+
+      <% @activities.each do |activity| %>
+        <tr class="history-row">
+          <td class="history-type">
+            <% if activity.trackable_type == "Playlist" %>
+              <%= image_tag "icon/playlist.png", size: "25x25" %>
+            <% else %>
+              <%= image_tag "icon/comment.png", size: "25x25" %>
+            <% end %>
+            <%= activity.trackable_type %>
+          </td>
+          <td class="history-key"><%= activity.key.html_safe %></td>
+          <td class="history-time"><%= time_ago_in_words(activity.created_at) %></td>
+        </tr>
+      <% end %>
+    </table>
+    <%= paginate @activities, theme: "twitter-bootstrap-3" %>
+  </div>
+<% end %>
+

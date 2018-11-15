@@ -34,6 +34,7 @@ gem "closure_tree"
 gem "impressionist"
 gem "social-share-button"
 gem "ckeditor"
+gem "public_activity"
 
 group :development, :test do
   gem "sqlite3"
