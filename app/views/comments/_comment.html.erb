@@ -5,7 +5,7 @@
   </div>
   <p class="comment-content"><%= comment.body %></p>
   <!-- reply -->
-  <% if logged_in? %>
+  <% if user_signed_in? %>
     <span class="btn-reply">
       (<%= Comment.where(parent_id: comment.id).size %>)
       Reply
@@ -28,7 +28,7 @@
     </div>
   <% end %>
 
-    <% if current_user?(comment.user) %>
+    <% if current_user == comment.user %>
       <span class="btn-edit-cmt"><%= image_tag "icon/edit-cmt.png", size: "15x15" %> Edit</span>
       <span class="btn-del-cmt"><%= link_to comment_path(comment), remote: true, method: :delete, data: { confirm: 'Delete this comment?' } do %>
           <%= image_tag "icon/del-cmt.png", size: "15x15" %> Delete

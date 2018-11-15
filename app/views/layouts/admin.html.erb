@@ -11,13 +11,24 @@
     <%= csp_meta_tag %>
     <%= stylesheet_link_tag "admin", media: "all" %>
     <%= javascript_include_tag "admin" %>
+    <%= javascript_include_tag "https://www.gstatic.com/charts/loader.js" %>
   </head>
   <body id="page-top">
     <%= render "layouts/headeradmin" %>
     <div id="wrapper">
       <%= render "layouts/menu-left" %>
-      <%= yield %>
+      <div id="content-wrapper">
+        <div class="container-fluid">
+          <ol class="breadcrumb">
+            <li class="breadcrumb-item">
+              <a href="#">Dashboard</a>
+            </li>
+            <li class="breadcrumb-item active"><%= nav_title yield :title %></li>
+          </ol>
+          <%= yield %>
+        </div>
       </div>
+      <%= render "layouts/footeradmin" %>
     </div>
     <a class="scroll-to-top rounded" href="#page-top">
       <i class="fas fa-angle-up"></i>
@@ -34,7 +45,7 @@
           <div class="modal-body">Select "Logout" below if you are ready to go Home</div>
           <div class="modal-footer">
             <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
-            <%= link_to "Log out", logout_path, class: "btn btn-secondary", method: :delete %>
+            <%= link_to "Log out", signout_path, class: "btn btn-secondary", method: :delete %>
           </div>
         </div>
       </div>

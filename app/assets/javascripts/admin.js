@@ -1,6 +1,12 @@
 //= require admin/jquery
-//= require admin/jquery.min
+//= retuire jquery.easy-autocomplete
 //= require jquery_ujs
+//= require Chart.bundle
+//= require chartkick
+//= require highcharts
+//= require jquery-ui
+//= require search
+//= require admin/jquery.min
 //= require admin/jquery.slim
 //= require admin/jquery.slim.min
 //= require admin/all
@@ -14,4 +20,3 @@
 //= require admin/sb-admin.min
 //= require admin/solid.min
 //= require admin/v4-shims.min
-//= require messages

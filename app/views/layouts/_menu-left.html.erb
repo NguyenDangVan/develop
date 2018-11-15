@@ -1,44 +1,38 @@
 <ul class="sidebar navbar-nav">
-        <li class="nav-item active">
-          <%= link_to admin_root_path, class: "nav-link" do %>
-            <i class="fas fa-fw fa-tachometer-alt"></i> Dashboard
-          <% end %>
-        </li>
-        <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle" href="#" id="pagesDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            <i class="fas fa-fw fa-folder"></i>
-            <span>Pages</span>
-          </a>
-          <div class="dropdown-menu" aria-labelledby="pagesDropdown">
-            <h6 class="dropdown-header">Login Screens:</h6>
-            <%= link_to "Log in", logout_path, class: "dropdown-item",
-              method: :delete %>
-            <%= link_to "Sign up", signup_path, class: "dropdown-item" %>
-            <%= link_to "Forgot Password", password_resets_new_path, class: "dropdown-item" %>
-            <div class="dropdown-divider"></div>
-            <h6 class="dropdown-header">Other Pages:</h6>
-            <a class="dropdown-item" href="#">Blank Page</a>
-          </div>
-        </li>
-        <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle" href="#" id="pagesDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            <i class="fas fa-fw fa-folder"></i>
-            <span>Tables</span>
-          </a>
-          <div class="dropdown-menu" aria-labelledby="pagesDropdown">
-            <h6 class="dropdown-header">Admin:</h6>
-            <%= link_to "Song", admin_songs_path, class: "dropdown-item" %>
-            <%= link_to "Album", admin_albums_path, class: "dropdown-item" %>
-            <%= link_to "Artist", admin_artists_path, class: "dropdown-item" %>
-            <%= link_to "Category", admin_categories_path, class: "dropdown-item" %>
-            <div class="dropdown-divider"></div>
-            <h6 class="dropdown-header">Other Pages:</h6>
-            <%= link_to "Blank Page", "#", class: "dropdown-item" %>
-          </div>
-        </li>
-        <li class="nav-item">
-          <%= link_to admin_users_path, :class=> "nav-link" do %>
-            <i class="fas fa-fw fa-table"></i> Users
-          <% end %>
-        </li>
-      </ul>
+  <li class="nav-item active">
+    <%= link_to admin_root_path, class: "nav-link" do %>
+    <i class="fas fa-fw fa-tachometer-alt"></i>
+    <span>&nbsp;Dashboard</span>
+    <% end %>
+  </li>
+  <li class="nav-item">
+    <%= link_to admin_charts_path, :class=> "nav-link" do %>
+      <i class="fas fa-fw fa-chart-area"></i>
+      <span>&nbsp;Charts</span>
+    <% end %>
+  </li>
+  <li class="nav-item">
+    <%= link_to admin_songs_path, :class=> "nav-link" do %>
+      <i class="fas fa-music"></i>
+      <span>&nbsp;&nbsp;Songs ( <%= @total_songs %> )</span>
+    <% end %>
+  </li>
+  <li class="nav-item">
+    <%= link_to admin_albums_path, :class=> "nav-link" do %>
+      <i class="fas fa-fw fa-list"></i>
+      <span>&nbsp;Albums ( <%= @total_albums %> )</span>
+    <% end %>
+  </li>
+  <li class="nav-item">
+    <%= link_to admin_artists_path, :class=> "nav-link" do %>
+      &nbsp;<i class="fas fa-microphone"></i>
+      <span>&nbsp;&nbsp;Artist ( <%= @total_artists %> )</span>
+    <% end %>
+  </li>
+  <li class="nav-item">
+    <%= link_to admin_users_path, :class=> "nav-link" do %>
+      <i class="fas fa-user-alt"></i>
+      <span>&nbsp;&nbsp;Users ( <%= @total_users %> )</span>
+    <% end %>
+  </li>
+</ul>
