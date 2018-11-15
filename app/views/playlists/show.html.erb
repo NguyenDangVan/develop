@@ -58,6 +58,7 @@
         <%= form_for @comment do |f| %>
           <div class="field">
             <%= f.hidden_field :user_id, value: current_user.id %>
+            <%= f.hidden_field :user_comment_id, value: params[:user_id] %>
             <%= f.hidden_field :commentable_id, value: @playlist.id %>
             <%= f.hidden_field :commentable_type, value: @playlist.class.name %>
             <%= f.text_area :body, placeholder: "Compose new comment...", class: "form-control" %>

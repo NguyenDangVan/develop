@@ -6,4 +6,5 @@ class Playlist < ApplicationRecord
   has_many :comments, as: :commentable
   validates :title, presence: true
   validates :user_id, presence: true
+  include PublicActivity::Model
 end

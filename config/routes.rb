@@ -41,6 +41,7 @@ Rails.application.routes.draw do
       get :favorite_songs
     end
     resources :playlists
+    get "/activities", to: "activities#index"
   end
   resources :favorites, only: %i(create destroy)
   resources :playlist_songs, only: %i(create destroy)
@@ -53,4 +54,5 @@ Rails.application.routes.draw do
 
   get "/comments/new(:parents_id)", to: "comments#new", as: :new_comment
   resources :comments
+
 end

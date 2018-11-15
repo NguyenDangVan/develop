@@ -5,4 +5,5 @@ class Comment < ApplicationRecord
   validates :user_id, presence: true
   validates :body, presence: true
   acts_as_tree order: 'created_at DESC'
+  include PublicActivity::Model
 end

@@ -22,7 +22,6 @@ $(document).on("turbolinks:load", function(){
 
   audio[0].addEventListener("ended", function(){
     if (sessionStorage.check_autonext == "true"){
-      console.log(sessionStorage.check_autonext);
       autonext();
     }
   })
@@ -31,7 +30,6 @@ $(document).on("turbolinks:load", function(){
 function autonext(){
   var next = $("ul.suggest a:first-child");
   var link = next.attr("href");
-  console.log("a");
   window.open(link, "_self");
   return false;
 }

@@ -24,6 +24,7 @@ class PlaylistsController < ApplicationController
     @playlist = Playlist.new playlist_params
     if @playlist.save
       flash[:success] = "Playlist is created"
+      @playlist.create_activity key: "Created a new playlist <a href='/users/#{current_user.id}/playlists/#{@playlist.id}'><b>#{@playlist.title}</b></a> successfully", owner: current_user
       redirect_to current_user
     else
       flash[:danger] = "Playlist is not created"
@@ -32,7 +33,10 @@ class PlaylistsController < ApplicationController
   end
 
   def destroy
-    current_user.playlists.find_by(id: params[:id]).destroy
+    @del_playlist = current_user.playlists.find_by(id: params[:id])
+    @del_playlist.create_activity key: "Deleted playlist <b>#{@del_playlist.title}</b> successfully", owner: current_user
+    @del_playlist.destroy
+
     flash[:success] = "Playlist deleted"
     redirect_to current_user
   end
@@ -49,6 +53,6 @@ class PlaylistsController < ApplicationController
     end
 
     def to_key
-id ? id : nil
-end
+      id ? id : nil
+    end
 end
