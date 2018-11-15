@@ -27,7 +27,7 @@
         <%= @song.impressions_count %>
       </span>
     </div>
-  <% if logged_in?  %>
+  <% if user_signed_in?  %>
     <% if current_user.playlists.empty? %>
       <p> You have no playlist </p>
       <%= link_to new_user_playlist_path(current_user.id) do %>
@@ -46,7 +46,7 @@
       </div>
     <% end %>
   <% end %>
-  <%= render "favorite_form" if logged_in? %>
+  <%= render "favorite_form" if user_signed_in? %>
   <% unless @song.lyrics.count == 0 %>
     <h3> Lyrics: </h3>
     <% @lyrics.each do |lyric| %>
@@ -70,7 +70,7 @@
     <!-- comment -->
     <div class="cmt"><span class="show-cmt">Comments:</span>
       <!-- create comment -->
-      <% if logged_in? %>
+      <% if user_signed_in? %>
         </br>
         <%= form_for @comment do |f| %>
           <div class="field">

@@ -7,7 +7,7 @@
     <div class="name"><%= @user.name %></div>
   </aside>
   <div class="col-md-8 new-playlist">
-    <% if current_user? @user %>
+    <% if current_user == @user %>
       <%= link_to new_user_playlist_path(params[:id]) do %>
         <%= image_tag "icon/add-playlist.png", size: "30x30" %>
         <span>New playlist</span>

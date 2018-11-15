@@ -1,6 +1,6 @@
 class Admin::BaseController < ApplicationController
   layout "admin"
-  before_action :logged_in_user
+  #before_action :logged_in_user
   before_action :require_admin
   before_action :find_total
   before_action :search_all
