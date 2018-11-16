@@ -179,3 +179,9 @@ input:checked + .slider:before {
 .slider.round:before {
   border-radius: 50%;
 }
+
+/*Favorite*/
+#favorite_form{
+  position: absolute;
+  margin-left: 5%;
+}

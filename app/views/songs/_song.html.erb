@@ -1,11 +1,21 @@
-<li>
+<li class="song-in-index">
   <div>
     <div class="info-user">
-      <p><strong>Name:</strong> <strong class="name-song"><%= link_to song.name, song %></strong></p>
-      <p><strong>Album:</strong> <%= link_to song.album.title, "#" %></p>
-      <p><strong>Artist:</strong> <%= link_to song.album.artist.name, "#" %></p>
-      <p><strong>Cateogry:</strong> <%= link_to song.album.category.name, "#" %></p>
+      <p><strong class="name-song"><%= link_to song.name, song %></strong></p>
+      <p><%= link_to song.album.title, "#" %></p>
     </div>
-    <div><strong><%= link_to "play", song, class: "play-song" %></strong></div>
+    <div>
+      <span class="count-listen-song">
+        <%= image_tag "icon/headphones -gray.png", size: "20x20" %>
+        <%= song.impressionist_count %>
+      </span>
+      <%= link_to song, class: "play-song" do %>
+        <%= image_tag "icon/play.png", size: "35x35" %>
+      <% end %>
+      <%= link_to song_download_path(song), class: "download-song", target: :_blank do %>
+        <%= image_tag "icon/download.png", size: "25x25"%>
+      <% end %>
+      <div class="clearfix"></div>
+    </div>
   </div>
 </li>

@@ -1,7 +1,9 @@
 <li id="playlist">
   <span><b><%= link_to playlist.title, user_playlist_path(@user, playlist.id) %></b></span>
+  have <%= playlist.playlist_songs.size %> songs.
+  <br>
   <span class="timestamp">
-    Posted <%= time_ago_in_words(playlist.created_at) %> ago.
+    Created <%= time_ago_in_words(playlist.created_at) %> ago.
   </span>
   <% if current_user == @user %>
       <%= link_to user_playlist_path(@user, playlist.id), method: :delete,
