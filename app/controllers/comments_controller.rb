@@ -34,12 +34,10 @@ class CommentsController < ApplicationController
       @comment.create_activity key: "Deleted comment on song
       <a href='/songs/#{@comment.commentable.id}'><b>#{@comment.commentable.name}</b></a> <br /> #{@comment.body[0..50]}", owner: current_user
     end
-
     if @comment.commentable_type == "Playlist"
       @comment.create_activity key: "Deleted comment on playlist
-      <a href='/users/#{params[:user_id]}/playlists/#{@comment.commentable_id}'><b> <br />#{@comment.commentable.title}</b></a><br /> #{@comment.body[0..50]}", owner: current_user
+      <a href='/users/#{params[:user_id]}/playlists/#{@comment.commentable_id}'><b>#{@comment.commentable.title}</b></a><br /> #{@comment.body[0..50]}", owner: current_user
     end
-
     @comment.destroy
     respond_to do |format|
       format.js

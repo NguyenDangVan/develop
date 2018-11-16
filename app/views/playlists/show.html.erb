@@ -5,78 +5,78 @@
     <% if @playlist.songs.empty? %>
       <h3>No songs in this playlist</h3>
     <% else %>
-    <% content_for :javascript_includes do %>
-      <%= javascript_include_tag "playlist.js" %>
-    <% end %>
-    <audio controls="true" id="audio" >
-      <source src= "<%= @playlist.songs.first.audio %>", type="audio/mp3">
-    </audio>
-    <button id="previous-song">
-      <%= image_tag "icon/previous-song.png", size: "20x20" %>
-    </button>
-    <button id="next-song">
-      <%= image_tag "icon/next-song.png", size: "20x20" %>
-    </button>
-    <ul id="playlist">
-      <% @playlist.songs.each do |song| %>
-        <li class="play-list" >
-          <div class="song-in-playlist">
-            <a href="<%= song.audio %>" class="song" >
-              <%= song.name %> - <%= song.album.artist.name %>
-            </a>
-          </div>
-          <%= link_to song_download_path(song.id), target: :_blank do %>
-            <%= image_tag "icon/download.png", size: "20x20" %>
-          <% end %>
-          <%= link_to song_path(song), target: :_blank do%>
-            <%= image_tag "icon/open-new-tab.jpeg", size: "25x25" %>
-          <% end %>
-          <% if current_user?(@user) %>
-              <%= link_to playlist_song_path(playlist_id: @playlist.id, song_id: song.id), method: :delete, data: {confirm: "Delete #{song.name} ?" } do %>
-                <%= image_tag "icon/delete-playlist-song.png", size: "25x25" %>
-              <% end %>
-          <% end %>
-        </li>
+      <% content_for :javascript_includes do %>
+        <%= javascript_include_tag "playlist.js" %>
       <% end %>
-    </ul>
-    <h5>Create at <%= time_ago_in_words(@playlist.created_at) %> ago.</h5>
-    <% if @playlist.description %>
+      <audio controls="true" id="audio" >
+        <source src= "<%= @playlist.songs.first.audio %>", type="audio/mp3">
+      </audio>
+      <button id="previous-song">
+        <%= image_tag "icon/previous-song.png", size: "20x20" %>
+      </button>
+      <button id="next-song">
+        <%= image_tag "icon/next-song.png", size: "20x20" %>
+      </button>
+      <ul id="playlist">
+        <% @playlist.songs.each do |song| %>
+          <li class="play-list" >
+            <div class="song-in-playlist">
+              <a href="<%= song.audio %>" class="song" >
+                <%= song.name %> - <%= song.album.artist.name %>
+              </a>
+            </div>
+            <%= link_to song_download_path(song.id), target: :_blank do %>
+              <%= image_tag "icon/download.png", size: "20x20" %>
+            <% end %>
+            <%= link_to song_path(song), target: :_blank do%>
+              <%= image_tag "icon/open-new-tab.jpeg", size: "25x25" %>
+            <% end %>
+            <% if current_user == @user %>
+                <%= link_to playlist_song_path(playlist_id: @playlist.id, song_id: song.id), method: :delete, data: {confirm: "Delete #{song.name} ?" } do %>
+                  <%= image_tag "icon/delete-playlist-song.png", size: "25x25" %>
+                <% end %>
+            <% end %>
+          </li>
+        <% end %>
+      </ul>
+      <h5>Create at <%= time_ago_in_words(@playlist.created_at) %> ago.</h5>
       <% if @playlist.description %>
-      <div><b>Description:</b></div>
-      <span><%= @playlist.description[0..240] %></span>
-      <% unless @playlist.description[241..-1].nil? %>
-        <span class="hide-description"><%= @playlist.description[241..-1] %></span>
-        <div class="show-description">More</div>
-      <% end %>
-    <% end %>
-    <% end %>
-    <!-- Comment -->
-    <div class="cmt cmt-playlist"><span class="show-cmt">Comments:</span>
-      <!-- create comment -->
-      <% if logged_in? %>
-        </br>
-        <%= form_for @comment do |f| %>
-          <div class="field">
-            <%= f.hidden_field :user_id, value: current_user.id %>
-            <%= f.hidden_field :user_comment_id, value: params[:user_id] %>
-            <%= f.hidden_field :commentable_id, value: @playlist.id %>
-            <%= f.hidden_field :commentable_type, value: @playlist.class.name %>
-            <%= f.text_area :body, placeholder: "Compose new comment...", class: "form-control" %>
-          </div>
-          <%= f.submit "Comment", class: "btn-cmt" %>
+        <% if @playlist.description %>
+        <div><b>Description:</b></div>
+        <span><%= @playlist.description[0..240] %></span>
+        <% unless @playlist.description[241..-1].nil? %>
+          <span class="hide-description"><%= @playlist.description[241..-1] %></span>
+          <div class="show-description">More</div>
         <% end %>
       <% end %>
-      <!-- view comment -->
-      <ul class="parent-list-cmt">
-        <%= comments_tree_for @comment5 %>
-      </ul>
-      <% unless (@comment6_to_last.nil?) %>
-        <p class="show-cmt"> More ... </p>
-        <ul class="hide-cmt">
-          <%= comments_tree_for @comment6_to_last %>
-        </ul>
       <% end %>
-    </div>
+      <!-- Comment -->
+      <div class="cmt cmt-playlist"><span class="show-cmt">Comments:</span>
+        <!-- create comment -->
+        <% if user_signed_in? %>
+          </br>
+          <%= form_for @comment do |f| %>
+            <div class="field">
+              <%= f.hidden_field :user_id, value: current_user.id %>
+              <%= f.hidden_field :user_comment_id, value: params[:user_id] %>
+              <%= f.hidden_field :commentable_id, value: @playlist.id %>
+              <%= f.hidden_field :commentable_type, value: @playlist.class.name %>
+              <%= f.text_area :body, placeholder: "Compose new comment...", class: "form-control" %>
+            </div>
+            <%= f.submit "Comment", class: "btn-cmt" %>
+          <% end %>
+        <% end %>
+        <!-- view comment -->
+        <ul class="parent-list-cmt">
+          <%= comments_tree_for @comment5 %>
+        </ul>
+        <% unless (@comment6_to_last.nil?) %>
+          <p class="show-cmt"> More ... </p>
+          <ul class="hide-cmt">
+            <%= comments_tree_for @comment6_to_last %>
+          </ul>
+        <% end %>
+      </div>
     <% end %>
   </div>
   <div class="col-md-3 charts">
