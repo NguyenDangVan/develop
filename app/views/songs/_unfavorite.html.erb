@@ -3,5 +3,5 @@
   <%= button_tag(type: "submit", class: "btn btn-light") do %>
     <%= image_tag "icon/heart.png", class: "add-favourite" %>
   <% end %>
-  (<%= link_to "go to my favourite", favorite_songs_user_path(current_user), class: "add-favourite" %>)
+  <%= link_to "My favourite", favorite_songs_user_path(current_user), class: "add-favourite" %>
 <% end %>

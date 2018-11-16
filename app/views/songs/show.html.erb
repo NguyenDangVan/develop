@@ -14,7 +14,8 @@
     </div>
     <div class="count-listen">
       <%= image_tag "icon/headphone.png", size: "35x35" %>
-      <%= @song.impressionist_count(filter: :id) %>
+      <%= @song.impressionist_count %>
+      <%= render "favorite_form" if user_signed_in? %>
       <%= social_share_button_tag(@song.name, :allow_sites => %w(twitter), :'data-source' => "http://localhost:3000/songs/1") %>
     </div>
     <div class="clearfix"></div>
@@ -46,7 +47,7 @@
       </div>
     <% end %>
   <% end %>
-  <%= render "favorite_form" if user_signed_in? %>
+
   <% unless @song.lyrics.count == 0 %>
     <h3> Lyrics: </h3>
     <% @lyrics.each do |lyric| %>
@@ -103,7 +104,7 @@
         <input type="checkbox">
         <span class="slider round btn-autonext"></span>
       </label>
-
+      <!-- Suggest song -->
       <ul class="suggest">
         <% @suggest_song.select do |k,v|  %>
           <% if k.id != @song.id %>
