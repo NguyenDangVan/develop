@@ -10,7 +10,7 @@ class User < ApplicationRecord
     dependent: :destroy
   has_many :playlists, dependent: :destroy
   VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
-  validates :name, :email, presence: true
+  validates :name, :email, :age, presence: true
   validates :name, length: {maximum: Settings.user.max_name_size}
   validates :age, numericality: true, :inclusion => 15..80,
     length: {maximum: Settings.user.maximum_age}
