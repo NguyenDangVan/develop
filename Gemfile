@@ -37,11 +37,14 @@ gem "ckeditor"
 gem "public_activity"
 
 group :development, :test do
+  gem "factory_bot_rails", require: false
+  gem "rspec-rails", "~> 3.6"
   gem "sqlite3"
   gem "byebug", platforms: [:mri, :mingw, :x64_mingw]
 end
 
 group :development do
+  gem "capybara"
   gem "web-console", ">= 3.3.0"
   gem "listen", ">= 3.0.5", "< 3.2"
   gem "spring"
@@ -49,7 +52,9 @@ group :development do
 end
 
 group :test do
-  gem "capybara", ">= 2.15"
+  gem "shoulda-matchers", "~> 3.1"
+  gem 'database_cleaner', '~> 1.5'
+  gem "capybara"
   gem "selenium-webdriver"
   gem "chromedriver-helper"
 end
